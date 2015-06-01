@@ -1,0 +1,7 @@
+<ul>
+<?php
+foreach($menu_elements as $el){
+	echo '<li>'.$el['name'].'</li>';
+}
+?>
+</ul>

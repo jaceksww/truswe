@@ -1,0 +1,56 @@
+<!-- BEGIN CONTENT -->
+          <div class="col-md-12">
+            <h1>Kontakt</h1>
+            <div class="content-page">
+              <div class="row">
+                <div class="col-md-12">
+                  <div id="map" class="gmaps margin-bottom-40" style="height:400px;"></div>
+                </div>
+                <div class="col-md-9 col-sm-9">
+                  [[Kontakt-tresc]]
+                  <!-- BEGIN FORM-->
+                  <form action="#" role="form">
+                    <div class="form-group">
+                      <label for="contacts-name">Imię i nazwisko</label>
+                      <input type="text" class="form-control" id="contacts-name">
+                    </div>
+                    <div class="form-group">
+                      <label for="contacts-email">Email</label>
+                      <input type="email" class="form-control" id="contacts-email">
+                    </div>
+                    <div class="form-group">
+                      <label for="contacts-message">Wiadomość</label>
+                      <textarea class="form-control" rows="5" id="contacts-message"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="icon-ok"></i> Wyślijd</button>
+                    <button type="button" class="btn btn-default">Anuluj</button>
+                  </form>
+                  <!-- END FORM-->
+                </div>
+
+                <div class="col-md-3 col-sm-3 sidebar2">
+                  <h2>Nasz adres</h2>
+                  <address>
+                    <strong>Loop, Inc.</strong><br>
+                    795 Park Ave, Suite 120<br>
+                    San Seattle, CA 94107<br>
+                    <abbr title="Phone">P:</abbr> (234) 222-1810
+                  </address>
+                  <address>
+                    <strong>Email</strong><br>
+                    <a href="mailto:info@email.com">info@email.com</a><br>
+                    <a href="mailto:support@example.com">support@example.com</a>
+                  </address>
+                  <ul class="social-icons margin-bottom-40">
+                    <li><a href="javascript:;" data-original-title="facebook" class="facebook"></a></li>
+                    <li><a href="javascript:;" data-original-title="github" class="github"></a></li>
+                    <li><a href="javascript:;" data-original-title="Goole Plus" class="googleplus"></a></li>
+                    <li><a href="javascript:;" data-original-title="linkedin" class="linkedin"></a></li>
+                    <li><a href="javascript:;" data-original-title="rss" class="rss"></a></li>
+                  </ul>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- END CONTENT -->
