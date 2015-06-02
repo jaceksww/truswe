@@ -105,7 +105,7 @@ License: You must have a valid license purchased only from themeforest (the abov
     </div>
     <!-- END TOP BAR -->
     <!-- BEGIN HEADER -->
-    <div class="header">
+    <div class="header reduce-header">
       <div class="container">
         <a class="site-logo" href="/"><img src="/img/logo.png" alt="TrusTrans FrontEnd"></a>
 
@@ -208,12 +208,15 @@ License: You must have a valid license purchased only from themeforest (the abov
     <!--[if lt IE 9]>
     <script src="/assets/global/plugins/respond.min.js"></script>
     <![endif]--> 
+	<script src="/js/trustran.js" type="text/javascript"></script>
     <script src="/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
     <script src="/assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
     <script src="/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>      
     <script src="/assets/frontend/layout/scripts/back-to-top.js" type="text/javascript"></script>
     <!-- END CORE PLUGINS -->
 
+	
+	
     <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
     <script src="/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
     <script src="/assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.min.js" type="text/javascript"></script><!-- slider for products -->
@@ -221,9 +224,11 @@ License: You must have a valid license purchased only from themeforest (the abov
     <!-- BEGIN RevolutionSlider -->  
     <script src="/assets/global/plugins/slider-revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js" type="text/javascript"></script> 
     <script src="/assets/global/plugins/slider-revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js" type="text/javascript"></script> 
-    <script src="/assets/frontend/pages/scripts/revo-slider-init.js" type="text/javascript"></script>
+    
     <!-- END RevolutionSlider -->
 
+	<script src="/js/trustran.js" type="text/javascript"></script>
+	
     <script src="/assets/frontend/layout/scripts/layout.js" type="text/javascript"></script>
     <script type="text/javascript">
         jQuery(document).ready(function() {
@@ -237,7 +242,7 @@ License: You must have a valid license purchased only from themeforest (the abov
     </script>
     <!-- END PAGE LEVEL JAVASCRIPTS -->
     
-<?php if (strstr($_SERVER['REQUEST_URI'], 'contact')):?>  
+<?php if (strstr($_SERVER['REQUEST_URI'], 'contact') || strstr($_SERVER['REQUEST_URI'], 'search')):?>  
     <!--if contact -->
     <script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
     <script src="/assets/global/plugins/gmaps/gmaps.js" type="text/javascript"></script>
