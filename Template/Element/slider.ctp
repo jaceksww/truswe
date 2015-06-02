@@ -10,6 +10,55 @@
       <div class="fullwidthbanner-container revolution-slider">
         <div class="fullwidthabnner">
           <ul id="revolutionul">
+           <!-- THE FIRST SLIDE -->
+            <li data-transition="fade" data-slotamount="8" data-masterspeed="700" data-delay="9400" data-thumb="../../assets/frontend/pages/img/revolutionslider/thumbs/thumb2.jpg">
+              <!-- THE MAIN IMAGE IN THE FIRST SLIDE -->
+              <img src="../../assets/frontend/pages/img/revolutionslider/bg3.jpg" alt="">
+                            
+              <div class="caption lft slide_title shadow gray slide_item_left"
+                data-x="30"
+                data-y="105"
+                data-speed="400"
+                data-start="1500"
+                data-easing="easeOutExpo">
+                Transport na lotnisko
+              </div>
+              <div class="caption lft modern_big_redbg slide_item_left"
+                data-x="70"
+                data-y="200"
+                data-speed="400"
+                data-start="2000"
+                data-easing="easeOutExpo">
+                - na czas i bez stresu
+              </div>
+              <!--
+              <div class="caption lft slide_desc slide_item_left"
+                data-x="30"
+                data-y="220"
+                data-speed="400"
+                data-start="2500"
+                data-easing="easeOutExpo">
+                Lorem ipsum dolor sit amet, dolore eiusmod<br> quis tempor incididunt. Sed unde omnis iste.
+              </div>
+              <a class="caption lft btn green slide_btn slide_item_left" href="#"
+                data-x="30"
+                data-y="290"
+                data-speed="400"
+                data-start="3000"
+                data-easing="easeOutExpo">
+                Zacznij teraz!
+              </a>
+              -->                        
+              <div class="caption lfb"
+                data-x="650" 
+                data-y="30" 
+                data-speed="700" 
+                data-start="1000" 
+                data-easing="easeOutExpo">
+                <img src="../../img/slider/slider-lotnisko-3.jpg" alt="Image 1">
+              </div>
+            </li>
+            
             <!-- THE NEW SLIDE -->
             <li data-transition="fade" data-slotamount="8" data-masterspeed="700" data-delay="9400" data-thumb="../../assets/frontend/pages/img/revolutionslider/thumbs/thumb2.jpg">
               <!-- THE MAIN IMAGE IN THE FIRST SLIDE -->
@@ -143,52 +192,7 @@
                         
                         
                         
-            <!-- THE FIRST SLIDE -->
-            <li data-transition="fade" data-slotamount="8" data-masterspeed="700" data-delay="9400" data-thumb="../../assets/frontend/pages/img/revolutionslider/thumbs/thumb2.jpg">
-              <!-- THE MAIN IMAGE IN THE FIRST SLIDE -->
-              <img src="../../assets/frontend/pages/img/revolutionslider/bg1.jpg" alt="">
-                            
-              <div class="caption lft slide_title slide_item_left"
-                data-x="30"
-                data-y="105"
-                data-speed="400"
-                data-start="1500"
-                data-easing="easeOutExpo">
-                Sukces 
-              </div>
-              <div class="caption lft slide_subtitle slide_item_left"
-                data-x="30"
-                data-y="180"
-                data-speed="400"
-                data-start="2000"
-                data-easing="easeOutExpo">
-                Kilka kroków 
-              </div>
-              <div class="caption lft slide_desc slide_item_left"
-                data-x="30"
-                data-y="220"
-                data-speed="400"
-                data-start="2500"
-                data-easing="easeOutExpo">
-                Lorem ipsum dolor sit amet, dolore eiusmod<br> quis tempor incididunt. Sed unde omnis iste.
-              </div>
-              <a class="caption lft btn green slide_btn slide_item_left" href="#"
-                data-x="30"
-                data-y="290"
-                data-speed="400"
-                data-start="3000"
-                data-easing="easeOutExpo">
-                Zacznij teraz!
-              </a>                        
-              <div class="caption lfb"
-                data-x="640" 
-                data-y="55" 
-                data-speed="700" 
-                data-start="1000" 
-                data-easing="easeOutExpo">
-                <img src="../../assets/frontend/pages/img/revolutionslider/man-winner.png" alt="Image 1">
-              </div>
-            </li>
+           
  
                 </ul>
                 <div class="tp-bannertimer tp-bottom"></div>
