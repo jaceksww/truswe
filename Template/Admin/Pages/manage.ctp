@@ -35,7 +35,7 @@
 						</div>
 						<div class="form-group">
 							<label class="control-label col-md-3">Treść strony:</label>
-							<?php echo $this->Form->textarea('content',['class'=>'inbox-editor wysihtml5 form-control  col-md-9', 'rows'=>12,'label'=>false]);?>
+							<?php echo $this->Form->textarea('content',['class'=>'inbox-editor wysihtml5 form-control  col-md-9', 'data-provide'=>'markdown' , 'rows'=>12,'label'=>false]);?>
 							
 						</div>
 						

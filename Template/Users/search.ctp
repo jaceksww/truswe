@@ -5,6 +5,7 @@
 .search-results{border-right:5px solid #ff6b3c;background: #ffe5dd; height:100%;}
 .lightgray{background:#f0f0f0 !important; border-left: 5px solid #c1c1c1 !important;}
 .separator-orange{border-bottom:1px solid #ddd; clear:both; min-height:10px;margin-top:15px;}
+.search-res-box{cursor:pointer}
 </style>
 <!-- BEGIN CONTENT -->
           <div class="col-md-12 col-sm-12">
@@ -80,25 +81,35 @@
                             
 							
 							<?php
+							
 							foreach ($profiles as $user) {
 										
 										echo '
 										<div class="row">
-											<div class="note note-default lightgray">
+										
+											<div class="note note-default lightgray search-res-box" onclick="location.href = \'#\'">
 												<div class="col-lg-3">
 													<img class="img-responsive" src="../../assets/admin/pages/media/blog/3.jpg" alt="">
 												</div>
 												<div class="col-lg-9">
 													<h4 class="block">'. $user['login'].'</h4>
 													<p>
-														 Duis mollis, est non commodo luctus, nisi erat mattis consectetur purus sit amet porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.
-													</p>
+														 <span class="testimonials-name">Miejscowość: </span>'. $user['city'].'<br />
+														 <span class="orange">Transport: </span>';
+														 $cities_str = '';
+														 foreach($user['cities'] as $city){
+															   $cities_str .= $city['city'].', ';
+														 }
+														 echo trim( $cities_str, ', ');
+														
+											echo '</p>
 													<a href="javascript:;" class="btn btn-default pull-right">
 													Zobacz profil <i class="m-icon-swapright m-icon-white"></i>
 													</a>
 												</div>
 												<p class="clearfix"></p>
 											</div>
+										</a>
 										</div>';
 									}
 							?>

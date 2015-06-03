@@ -48,18 +48,15 @@ class UsersController extends AppController
 					}])
 					->group(['Users.id']);
 					*/
-					
-			$conn = ConnectionManager::get('default');
-			 $query = $conn->query('
-			select u.id, u.login, uc.name from users u
-			left outer join users_user_categories as uuc on (u.id = uuc.user_id)
-			left outer join user_categories as uc on (uuc.user_category_id = uc.id) 
-			where uc.id = '.$catID.'
-			');
+			$query = $this->Users->getUsersOfCat($catID, true);
+			
 			
 			$this->set('profiles',  $query);
 		
     }
+	function getTRASA(){
+		//SELECT uc1.city, uc2.city FROM `user_cities` uc1 ,`user_cities` as uc2 WHERE uc1.city = 'Pradolina' and uc2.city = 'Mikkowo'  and uc1.user_id = uc2.user_id
+	}
 	public function getAllWithCats()
     {
         $query = $this->Users->find('all')->contain(['UserCategories']);

@@ -127,82 +127,10 @@ License: You must have a valid license purchased only from themeforest (the abov
     </div>
 
     <!-- BEGIN PRE-FOOTER -->
-    <div class="pre-footer">
-      <div class="container">
-        <div class="row">
-          <!-- BEGIN BOTTOM ABOUT BLOCK -->
-          <div class="col-md-4 col-sm-6 pre-footer-col">
-            <h2>O nas</h2>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam sit nonummy nibh euismod tincidunt ut laoreet dolore magna aliquarm erat sit volutpat.</p>
-
-            <div class="photo-stream">
-              <h2>Szukaj:</h2>
-              <ul class="list-unstyled">
-                <li><a href="javascript:;"><img alt="" src="/img/search-types/airport.jpg"></a></li>
-                <li><a href="javascript:;"><img alt="" src="/img/search-types/bus.jpg"></a></li>
-                <li><a href="javascript:;"><img alt="" src="/img/search-types/bus-packs.jpg"></a></li>
-                <li><a href="javascript:;"><img alt="" src="/img/search-types/movings.jpg"></a></li>
-                <li><a href="javascript:;"><img alt="" src="/img/search-types/big.jpg"></a></li>
-              </ul>                    
-            </div>
-          </div>
-          <!-- END BOTTOM ABOUT BLOCK -->
-
-          <!-- BEGIN BOTTOM CONTACTS -->
-          <div class="col-md-4 col-sm-6 pre-footer-col">
-            <h2>Kontakt</h2>
-            <address class="margin-bottom-40">
-              35, Lorem Lis Street, Park Ave<br>
-              London, US<br>
-              Phone: 300 323 3456<br>
-              Fax: 300 323 1456<br>
-              Email: <a href="mailto:info@TrusTrans.com">info@TrusTrans.com</a><br>
-              Skype: <a href="skype:TrusTrans">TrusTrans</a>
-            </address>
-
-            
-          </div>
-          <!-- END BOTTOM CONTACTS -->
-          
-          <!-- BEGIN BOTTOM CONTACTS -->
-          <div class="col-md-4 col-sm-6 pre-footer-col">
-            <h2>Śledź nas na</h2>
-            <ul class="social-footer list-unstyled list-inline pull-right">
-              <li><a href="javascript:;"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="javascript:;"><i class="fa fa-google-plus"></i></a></li>
-              <li><a href="javascript:;"><i class="fa fa-linkedin"></i></a></li>
-              <li><a href="javascript:;"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="javascript:;"><i class="fa fa-skype"></i></a></li>
-              <li><a href="javascript:;"><i class="fa fa-youtube"></i></a></li>
-            </ul> 
-            
-          </div>
-          <!-- END BOTTOM CONTACTS -->
-
-        </div>
-      </div>
-    </div>
-    <!-- END PRE-FOOTER -->
-
-    <!-- BEGIN FOOTER -->
-    <div class="footer">
-      <div class="container">
-        <div class="row">
-          <!-- BEGIN COPYRIGHT -->
-          <div class="col-md-6 col-sm-6 padding-top-10">
-            2014 © TrusTrans Shop UI. ALL Rights Reserved. <a href="javascript:;">Privacy Policy</a> | <a href="javascript:;">Terms of Service</a>
-          </div>
-          <!-- END COPYRIGHT -->
-          <!-- BEGIN PAYMENTS -->
-          <div class="col-md-6 col-sm-6">
-             
-          </div>
-          <!-- END PAYMENTS -->
-        </div>
-      </div>
-    </div>
-    <!-- END FOOTER -->
-
+    
+	<?php echo $this->element('footer');?>
+     <!-- END FOOTER -->
+	 
     <!-- Load javascripts at bottom, this will reduce page load time -->
     <!-- BEGIN CORE PLUGINS (REQUIRED FOR ALL PAGES) -->
     <!--[if lt IE 9]>

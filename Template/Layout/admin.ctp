@@ -257,8 +257,18 @@ jQuery(document).ready(function() {
 
         if ($('.wysihtml5').size() > 0) {
             $('.wysihtml5').wysihtml5({
-                "stylesheets": ["../../assets/global/plugins/bootstrap-wysihtml5/wysiwyg-color.css"]
+                "stylesheets": ["../../assets/global/plugins/bootstrap-wysihtml5/wysiwyg-color.css"],
+				"font-styles": true, // Font styling, e.g. h1, h2, etc.
+				"emphasis": true, // Italics, bold, etc.
+				"lists": true, // (Un)ordered lists, e.g. Bullets, Numbers.
+				"html": false, // Button which allows you to edit the generated HTML.
+				"link": true, // Button to insert a link.
+				"image": true, // Button to insert an image.
+				"color": false, // Button to change color of font
+				"blockquote": true, // Blockquote
+				"size": <buttonsize> // options are xs, sm, lg
             });
+			
         }
     }
 

@@ -82,6 +82,9 @@ class PagesController extends AppController
 			$content = file_get_contents('/src/Template/Pages/contact.ctp');
 			$kontakt_tresc = $this->requestAction('/pl/Pages/view/Kontakt-tresc.html');
 			$content = str_replace(array('[[Kontakt-tresc]]'), $kontakt_tresc, $content);
+			
+            $kontakt_tresc_adres = $this->requestAction('/pl/Pages/view/kontakt-adres');
+			$content = str_replace(array('[[Kontakt-tresc-adres]]'), $kontakt_tresc_adres, $content);
 		}
 		else if($uri == 'home2'){
 			$title = '';
