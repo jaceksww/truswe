@@ -242,7 +242,7 @@ License: You must have a valid license purchased only from themeforest (the abov
     </script>
     <!-- END PAGE LEVEL JAVASCRIPTS -->
     
-<?php if (strstr($_SERVER['REQUEST_URI'], 'contact') || strstr($_SERVER['REQUEST_URI'], 'search')):?>  
+<?php if (strstr($_SERVER['REQUEST_URI'], 'contact')):?>  
     <!--if contact -->
     <script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
     <script src="/assets/global/plugins/gmaps/gmaps.js" type="text/javascript"></script>
@@ -253,6 +253,56 @@ License: You must have a valid license purchased only from themeforest (the abov
         });
     </script>
 <?php endif; ?>
+
+<?php if (strstr($_SERVER['REQUEST_URI'], 'search')):?>  
+    <!--if contact -->
+    <script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
+    <script src="/assets/global/plugins/gmaps/gmaps.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            var UsersSearch = function () {
+
+			return {
+				//main function to initiate the module
+				init: function () {
+					var map;
+					$(document).ready(function(){
+					  map = new GMaps({
+						div: '#search_map',
+					    lat: -13.004333,
+						lng: -38.494333,
+					  });
+					  for(var i = 0; i<1000;i++)
+					  {
+					  var lat = -13.004333+(i/100);
+						   var marker = map.addMarker({
+								lat: lat,
+								lng: -38.494333,
+								title: 'Loop ed, Inc.',
+								click: function(e) {
+									alert('Szukaj tej miejscowości..');
+								  },
+								mouseover: function(e){
+								//marker.infoWindow.open(map, marker);
+								},
+								infoWindow: {
+								    content: "<b>Loop, Inc.</b> 795 Park Ave, Suite 120<br>San Francisco, CA 94107"
+								}
+							});
+
+						   //marker.infoWindow.open(map, marker);
+					   }
+					});
+				}
+			};
+
+		}();
+		UsersSearch.init();
+        });
+    </script>
+<?php endif; ?>
+
+
 
 <?php if ($_SERVER['REQUEST_URI'] == '' ||$_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/pl' || strstr($_SERVER['REQUEST_URI'], 'home2')): ?>
 		<script type="text/javascript">
