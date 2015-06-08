@@ -52,6 +52,8 @@ class UsersController extends AppController
 			
 			
 			$this->set('profiles',  $query);
+			$queryCat = $this->Users->getCatParams($catID);
+			$this->set('catParams',  $queryCat);
 		
     }
 	function getTRASA(){

@@ -3,6 +3,7 @@ namespace App\Model\Table;
 
 use Cake\ORM\Table;
 use Cake\Datasource\ConnectionManager;
+use Cake\ORM\TableRegistry;
 
 class UsersTable extends Table
 {
@@ -23,7 +24,7 @@ class UsersTable extends Table
 				left outer join user_categories as uc on (uuc.user_category_id = uc.id) 
 				where uc.id = '.$catID.' 
 				');
-			if($appendCities){
+			if($appendCities && count($users) > 0) {
 				$result = array();
 				
 				$user_ids = array();
@@ -51,5 +52,14 @@ class UsersTable extends Table
 				return $result;
 			}
 			return $users;
+	}
+	public function getCatParams($catID){
+		
+			
+			$uc = TableRegistry::get('UserCategories');
+
+			// Start a new query.
+			$cat = $uc->find()->where(['id' => $catID])->toArray();
+			return $cat;
 	}
 }

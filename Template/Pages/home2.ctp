@@ -46,7 +46,7 @@
 <!-- BEGIN SERVICE BOX -->   
         <div class="row service-box margin-bottom-40">
 		
-          <div class="col-md-5ths col-xs-6">
+          <div class="col-md-5ths col-xs-6" onclick="location.href='/pl/search/1'">
 		  <div class="service-box-v1">
           <img src="/img/search-types/airport.jpg" class="img-responsive" />
           	<div class="service-box-heading">
@@ -54,11 +54,11 @@
               <p>Przewóz osób</p>
             </div>
             <p>Transport na lotnisko/dowolnie ustalone miejsce.</p>
-            <a href="#" class="btn btn-primary btn-block">Szukaj</a>
+            <a href="/pl/search/1'" class="btn btn-primary btn-block">Szukaj</a>
           </div>
           </div>
           
-          <div class="col-md-5ths col-xs-6">
+          <div class="col-md-5ths col-xs-6" onclick="location.href='/pl/search/2'">
 		  <div class="service-box-v1">
           <img src="/img/search-types/bus.jpg" class="img-responsive" />
           	<div class="service-box-heading">
@@ -66,13 +66,13 @@
               <p>Transport grupowy</p>
             </div>
             <p>Busy/autokary.<br /><br /><br /></p>
-            <a href="#" class="btn btn-primary btn-block">Szukaj</a>
+            <a href="/pl/search/2" class="btn btn-primary btn-block">Szukaj</a>
           </div>
           </div>
           
           
           
-          <div class="col-md-5ths col-xs-6">
+          <div class="col-md-5ths col-xs-6" onclick="location.href='/pl/search/3'">
 		  <div class="service-box-v1">
           <img src="/img/search-types/bus-packs.jpg" class="img-responsive" />
           	
@@ -81,12 +81,12 @@
               <p>Usługi kurierskie</p>
             </div>
             <p>Przewóz paczek i zwierząt<br /><br /><br /></p>
-            <a href="#" class="btn btn-primary btn-block">Szukaj</a>
+            <a href="/pl/search/3" class="btn btn-primary btn-block">Szukaj</a>
           </div>
 		  </div>
           
           
-          <div class="col-md-5ths col-xs-6">
+          <div class="col-md-5ths col-xs-6" onclick="location.href='/pl/search/4'">
 		  <div class="service-box-v1">
           <img src="/img/search-types/movings.jpg" class="img-responsive" />
           	
@@ -95,13 +95,13 @@
               <p>Przeprowadzki</p>
             </div>
             <p>Przewóz mebli/sprzętu AGD<br /><br /><br /></p>
-            <a href="#" class="btn btn-primary btn-block">Szukaj</a>
+            <a href="/pl/search/4" class="btn btn-primary btn-block">Szukaj</a>
           </div>
 		  </div>
           
-          <div class="col-md-5ths col-xs-6">
+          <div class="col-md-5ths col-xs-6"  onclick="location.href='/pl/search/5'">
 		  <div class="service-box-v1">
-          	<img src="/img/search-types/big.jpg" class="img-responsive" />
+          	<img src="/img/search-types/big.jpg" class="img-responsive"  />
           	
             <div class="service-box-heading">
               <em><i class="fa fa-car black" style="border: 1px solid;"></i></em>
@@ -109,7 +109,7 @@
             </div>
             
             <p>Lawety/gabaryty<br /><br /><br /></p>
-          	<a href="#" class="btn btn-primary btn-block">Szukaj</a>
+          	<a href="/pl/search/5" class="btn btn-primary btn-block">Szukaj</a>
           </div>
 		  </div>
           

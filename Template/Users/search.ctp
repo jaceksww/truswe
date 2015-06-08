@@ -1,3 +1,4 @@
+
 <style>
 .gray .portlet-title{background:#ddd !important; color:#666 !important;}
 .gray .portlet-title *{color:#666 !important;}
@@ -20,6 +21,7 @@
 								<i class="fa fa-search"></i>Szukaj
 							</div>
 						 </div>
+						 <?php if($catParams[0]->id == 1 || $catParams[0]->id == 2 || $catParams[0]->id == 3 || $catParams[0]->id == 4 || $catParams[0]->id == 5) :?>
 						 <div class="portlet-body">
 							
 							  <h3>Szukaj według miasta:</h3>
@@ -27,7 +29,7 @@
 								  <div class="form-group">
 									<form class="form-horizontal form-without-legend" role="form">
 										<div class="col-lg-8">
-										  <input type="text" class="form-control" id="firstname">
+										  <input type="text" class="form-control" id="search_city">
 										</div>
 										
 										<div class="col-lg-4">
@@ -36,8 +38,11 @@
 									</form>
 								</div>
 							 
-								<div class="separator-orange"><br /><br /></div>
-							
+								
+							<?php endif;?>
+							 
+							 <?php if($catParams[0]->id == 1 || $catParams[0]->id == 2 || $catParams[0]->id == 3  ||  $catParams[0]->id == 4 || $catParams[0]->id == 5):?>
+							 <div class="separator-orange"><br /><br /></div>
 							 
 							  <h3>Szukaj an mapie:</h3>
 								<div class="form-group">
@@ -45,20 +50,22 @@
 										<div id="search_map" class="gmaps margin-bottom-40" style="height:220px;"></div>
 									</div>
 								</div>
-						
+							<?php endif;?>
+							
+							<?php if($catParams[0]->id == 1 || $catParams[0]->id == 2 || $catParams[0]->id == 3  || $catParams[0]->id == 5):?>
 							<div class="separator-orange"></div>
 							
 							  <h3>Trasa:</h3>
 								  <form class="form-horizontal form-without-legend" role="form">
 									 <div class="form-group">
 										<div class="col-lg-12">
-										  <input type="text" class="form-control" id="firstname" placeholder="Z">
+										  <input type="text" class="form-control" id="route_from" placeholder="Z">
 										</div>
 									</div>
 									
 									<div class="form-group">
 										<div class="col-lg-12">
-										  <input type="text" class="form-control" id="firstname"  placeholder="DO">
+										  <input type="text" class="form-control" id="route_to"  placeholder="DO">
 										</div>
 									</div>
 									<div class="form-group">
@@ -67,17 +74,19 @@
 										</div>
 									</div>
 								  </form>
-								  
+								  <?php endif;?>
+								 
 								  <p class="clearfix"></p>
 								  
 						</div>
+						
 					</div>
                 </div>
                 <div class="col-md-8 col-sm-9">
                     
                       <!-- START TAB 1 -->
                       
-                         
+                         <h1><?php  echo mb_convert_encoding($catParams[0]->name, 'utf8') ?></h1>
                             
 							
 							<?php

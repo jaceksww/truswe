@@ -55,7 +55,7 @@
 									
 									<td>
 										<?php echo $this->Html->link('<i class="fa fa-edit"></i> Edytuj </a>', ['controller'=>'menus', 'action'=>'manage', $menu['menuID'] ], array('escape'=>false,'class'=>'btn default btn-xs blue')); ?>
-										<?php echo $this->Html->link('<i class="fa fa-trash-o"></i> Usuń </a>', ['controller'=>'menus', 'action'=>'manage', $menu['menuID'] ], array('escape'=>false, 'class'=>'btn default btn-xs black')); ?>
+										<?php echo $this->Html->link('<i class="fa fa-trash-o"></i> Usuń </a>', ['controller'=>'menus', 'action'=>'remove', $menu['menuID'] ], array('onclick'=>'return confirm(\'Usunąć ten element?\')','escape'=>false, 'class'=>'btn default btn-xs black')); ?>
 										
 									</td>
 								</tr>

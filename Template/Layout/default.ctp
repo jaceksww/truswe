@@ -232,12 +232,37 @@ License: You must have a valid license purchased only from themeforest (the abov
 
 
 
-<?php if ($_SERVER['REQUEST_URI'] == '' ||$_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/pl' || strstr($_SERVER['REQUEST_URI'], 'home2')): ?>
+<?php if (strstr($_SERVER['REQUEST_URI'], 'search')): ?>
 		<script type="text/javascript">
         jQuery(document).ready(function() {
         	$('#registerModal').modal('show');
         });
-    </script>
+		</script>
+		<!-- https://developers.google.com/maps/documentation/javascript/places-autocomplete -->
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+		<script type="text/javascript">
+			  jQuery(document).ready(function() {
+				
+				var defaultBounds = new google.maps.LatLngBounds(
+				  new google.maps.LatLng(-33.8902, 151.1759),
+				  new google.maps.LatLng(-33.8474, 151.2631));
+
+				var input = document.getElementById('search_city');
+				var options = {
+				  bounds: defaultBounds,
+				  types: ['geocode'],
+				   //componentRestrictions: {country: 'pl'}
+				};
+				autocomplete = new google.maps.places.Autocomplete(input, options);
+				
+				var input_route_from = document.getElementById('route_from');
+				autocomplete = new google.maps.places.Autocomplete(input_route_from, options);
+				
+				var input_route_to = document.getElementById('route_to');
+				autocomplete = new google.maps.places.Autocomplete(input_route_to, options);
+			})
+
+		</script>
 <?php endif; ?>    
 
 <div id="registerModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="false" data-keyboard="false" data-backdrop="static">

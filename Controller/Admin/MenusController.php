@@ -39,8 +39,10 @@ class MenusController extends AppController
 		$this->layout = 'admin';
     }
     
-    public function remove()
+    public function remove($id)
     {
-		$this->layout = 'admin';
+		$entity = $this->Menus->get($id);
+		$this->Menus->delete($entity);
+		return $this->redirect(['controller'=>'menus','action' => 'index']);
     }
 }
