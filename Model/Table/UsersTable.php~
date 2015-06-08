@@ -63,12 +63,12 @@ class UsersTable extends Table
 			return $cat;
 	}
 	
-	public function getUserParams($profile)
+	public function getUserParams($userID)
 	{
 			$u = TableRegistry::get('Users');
 
 			// Start a new query.
-			$user = $u->find()->where(['login' => $profile])->toArray();
+			$user = $u->find()->where(['id' => $userID])->toArray();
 			return $user;
 	}
 }
