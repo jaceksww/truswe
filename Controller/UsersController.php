@@ -32,6 +32,8 @@ class UsersController extends AppController
 	{
 		$queryUser = $this->Users->getUserParams($profile);
 		$this->set('userParams',  $queryUser);
+		
+		$this->layout = 'profile';
 	}
 
     /**
