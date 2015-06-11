@@ -53,6 +53,7 @@ License: You must have a valid license purchased only from themeforest (the abov
   <link href="/assets/frontend/pages/css/style-revolution-slider.css" rel="stylesheet"><!-- TrusTrans revo slider styles -->
   <link href="/assets/frontend/layout/css/style-responsive.css" rel="stylesheet">
   <link href="/assets/frontend/layout/css/themes/red.css" rel="stylesheet" id="style-color">
+  <link href="/css/theme_trustran.css" rel="stylesheet" id="theme-style-color">
   <link href="/assets/frontend/layout/css/custom.css" rel="stylesheet">
   <!-- Theme styles END -->
 </head>

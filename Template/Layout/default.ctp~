@@ -53,6 +53,7 @@ License: You must have a valid license purchased only from themeforest (the abov
   <link href="/assets/frontend/pages/css/style-revolution-slider.css" rel="stylesheet"><!-- TrusTrans revo slider styles -->
   <link href="/assets/frontend/layout/css/style-responsive.css" rel="stylesheet">
   <link href="/assets/frontend/layout/css/themes/red.css" rel="stylesheet" id="style-color">
+  <link href="/css/trustran.css" rel="stylesheet" id="theme-style-color">
   <link href="/assets/frontend/layout/css/custom.css" rel="stylesheet">
   <!-- Theme styles END -->
 </head>
@@ -127,82 +128,10 @@ License: You must have a valid license purchased only from themeforest (the abov
     </div>
 
     <!-- BEGIN PRE-FOOTER -->
-    <div class="pre-footer">
-      <div class="container">
-        <div class="row">
-          <!-- BEGIN BOTTOM ABOUT BLOCK -->
-          <div class="col-md-4 col-sm-6 pre-footer-col">
-            <h2>O nas</h2>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam sit nonummy nibh euismod tincidunt ut laoreet dolore magna aliquarm erat sit volutpat.</p>
-
-            <div class="photo-stream">
-              <h2>Szukaj:</h2>
-              <ul class="list-unstyled">
-                <li><a href="javascript:;"><img alt="" src="/img/search-types/airport.jpg"></a></li>
-                <li><a href="javascript:;"><img alt="" src="/img/search-types/bus.jpg"></a></li>
-                <li><a href="javascript:;"><img alt="" src="/img/search-types/bus-packs.jpg"></a></li>
-                <li><a href="javascript:;"><img alt="" src="/img/search-types/movings.jpg"></a></li>
-                <li><a href="javascript:;"><img alt="" src="/img/search-types/big.jpg"></a></li>
-              </ul>                    
-            </div>
-          </div>
-          <!-- END BOTTOM ABOUT BLOCK -->
-
-          <!-- BEGIN BOTTOM CONTACTS -->
-          <div class="col-md-4 col-sm-6 pre-footer-col">
-            <h2>Kontakt</h2>
-            <address class="margin-bottom-40">
-              35, Lorem Lis Street, Park Ave<br>
-              London, US<br>
-              Phone: 300 323 3456<br>
-              Fax: 300 323 1456<br>
-              Email: <a href="mailto:info@TrusTrans.com">info@TrusTrans.com</a><br>
-              Skype: <a href="skype:TrusTrans">TrusTrans</a>
-            </address>
-
-            
-          </div>
-          <!-- END BOTTOM CONTACTS -->
-          
-          <!-- BEGIN BOTTOM CONTACTS -->
-          <div class="col-md-4 col-sm-6 pre-footer-col">
-            <h2>Śledź nas na</h2>
-            <ul class="social-footer list-unstyled list-inline pull-right">
-              <li><a href="javascript:;"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="javascript:;"><i class="fa fa-google-plus"></i></a></li>
-              <li><a href="javascript:;"><i class="fa fa-linkedin"></i></a></li>
-              <li><a href="javascript:;"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="javascript:;"><i class="fa fa-skype"></i></a></li>
-              <li><a href="javascript:;"><i class="fa fa-youtube"></i></a></li>
-            </ul> 
-            
-          </div>
-          <!-- END BOTTOM CONTACTS -->
-
-        </div>
-      </div>
-    </div>
-    <!-- END PRE-FOOTER -->
-
-    <!-- BEGIN FOOTER -->
-    <div class="footer">
-      <div class="container">
-        <div class="row">
-          <!-- BEGIN COPYRIGHT -->
-          <div class="col-md-6 col-sm-6 padding-top-10">
-            2014 © TrusTrans Shop UI. ALL Rights Reserved. <a href="javascript:;">Privacy Policy</a> | <a href="javascript:;">Terms of Service</a>
-          </div>
-          <!-- END COPYRIGHT -->
-          <!-- BEGIN PAYMENTS -->
-          <div class="col-md-6 col-sm-6">
-             
-          </div>
-          <!-- END PAYMENTS -->
-        </div>
-      </div>
-    </div>
-    <!-- END FOOTER -->
-
+    
+	<?php echo $this->element('footer');?>
+     <!-- END FOOTER -->
+	 
     <!-- Load javascripts at bottom, this will reduce page load time -->
     <!-- BEGIN CORE PLUGINS (REQUIRED FOR ALL PAGES) -->
     <!--[if lt IE 9]>
@@ -283,7 +212,7 @@ License: You must have a valid license purchased only from themeforest (the abov
 									alert('Szukaj tej miejscowości..');
 								  },
 								mouseover: function(e){
-								marker.infoWindow.open(map, marker);
+								//marker.infoWindow.open(map, marker);
 								},
 								infoWindow: {
 								    content: "<b>Loop, Inc.</b> 795 Park Ave, Suite 120<br>San Francisco, CA 94107"
@@ -304,12 +233,37 @@ License: You must have a valid license purchased only from themeforest (the abov
 
 
 
-<?php if ($_SERVER['REQUEST_URI'] == '' ||$_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/pl' || strstr($_SERVER['REQUEST_URI'], 'home2')): ?>
+<?php if (strstr($_SERVER['REQUEST_URI'], 'search')): ?>
 		<script type="text/javascript">
         jQuery(document).ready(function() {
         	$('#registerModal').modal('show');
         });
-    </script>
+		</script>
+		<!-- https://developers.google.com/maps/documentation/javascript/places-autocomplete -->
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+		<script type="text/javascript">
+			  jQuery(document).ready(function() {
+				
+				var defaultBounds = new google.maps.LatLngBounds(
+				  new google.maps.LatLng(-33.8902, 151.1759),
+				  new google.maps.LatLng(-33.8474, 151.2631));
+
+				var input = document.getElementById('search_city');
+				var options = {
+				  bounds: defaultBounds,
+				  types: ['geocode'],
+				   //componentRestrictions: {country: 'pl'}
+				};
+				autocomplete = new google.maps.places.Autocomplete(input, options);
+				
+				var input_route_from = document.getElementById('route_from');
+				autocomplete = new google.maps.places.Autocomplete(input_route_from, options);
+				
+				var input_route_to = document.getElementById('route_to');
+				autocomplete = new google.maps.places.Autocomplete(input_route_to, options);
+			})
+
+		</script>
 <?php endif; ?>    
 
 <div id="registerModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="false" data-keyboard="false" data-backdrop="static">

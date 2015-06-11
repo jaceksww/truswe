@@ -15,8 +15,11 @@ margin:0px;
 border-width:0px;
 border-style:none;
 white-space:nowrap;
-background-color:#E84D1C;
+background-color:#ab0000;
 padding:25px 40px;
+}
+.trustranbg{
+	background-color:#e34545;
 }
 </style>
   
@@ -38,7 +41,7 @@ padding:25px 40px;
                 data-easing="easeOutExpo">
                 Transport na lotnisko
               </div>
-              <div class="caption lft modern_big_redbg slide_item_left"
+              <div class="caption lft modern_big_redbg trustranbg slide_item_left"
                 data-x="70"
                 data-y="200"
                 data-speed="400"
@@ -86,7 +89,7 @@ padding:25px 40px;
                 i zwierząt
               </div>
 			  
-              <div class="caption lfr slide_subtitle"
+              <div class="caption lfr slide_subtitle trustranbg"
                 data-x="650"
                 data-y="290"
                 data-speed="400"
