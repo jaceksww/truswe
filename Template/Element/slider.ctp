@@ -122,17 +122,17 @@ padding:25px 40px;
             <li data-transition="fade" data-slotamount="8" data-masterspeed="700" data-delay="7000" data-thumb="../../assets/frontend/pages/img/revolutionslider/thumbs/thumb2.jpg">
               <img src="../../assets/frontend/pages/img/revolutionslider/bg3.jpg" alt="">
               
-              <div class="caption lfr huge_white_orange_bg"
-                data-x="20"
-                data-y="80"
+              <div class="caption lfr"
+                data-x="center"
+                data-y="15"
                 data-speed="400"
                 data-start="1500"
                 data-easing="easeOutExpo">
-                TrusTran
+                <img <img src = "../../img/logo_pionowe_600.png" />
               </div>
               <div class="caption lfr slide_title"
-                data-x="20"
-                data-y="270"
+                data-x="center"
+                data-y="320"
                 data-speed="400"
                 data-start="2000"
                 data-easing="easeOutExpo">

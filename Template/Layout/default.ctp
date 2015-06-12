@@ -108,10 +108,18 @@ License: You must have a valid license purchased only from themeforest (the abov
     <!-- BEGIN HEADER -->
     <div class="header reduce-header">
       <div class="container">
-        <a class="site-logo" href="/"><img src="/img/logo.png" alt="TrusTrans FrontEnd"></a>
-
-        <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
-		<?php echo $this->element('navigation');?>
+      	<div class="row">
+		    <div class="col-md-3">
+		    <a class="site-logo" href="/"><img src="/img/logo.png" alt="TrusTrans FrontEnd"></a>
+		    </div>
+		    <div class="col-md-4">
+	<h3 class="header-tagline">Kierowcy którym możesz zaufać</h3>
+		    </div>
+		    <div class="col-md-5">
+		    <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
+			<?php echo $this->element('navigation');?>
+			</div>
+		</div>
       </div>
     </div>
     <!-- Header END -->
