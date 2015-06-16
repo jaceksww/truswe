@@ -21,9 +21,33 @@
 								<i class="fa fa-search"></i>Szukaj
 							</div>
 						 </div>
-						 <?php if($catParams[0]->id == 1 || $catParams[0]->id == 2 || $catParams[0]->id == 3 || $catParams[0]->id == 4 || $catParams[0]->id == 5) :?>
+						 
 						 <div class="portlet-body">
+						 
+						 <?php if($catParams[0]->id == 1 || $catParams[0]->id == 2 || $catParams[0]->id == 3 || $catParams[0]->id == 4 || $catParams[0]->id == 5) :?>
+						
 							
+							  <h3>Szukaj według nazwy:</h3>
+								  
+								  <div class="form-group">
+									<form class="form-horizontal form-without-legend" role="form">
+										<div class="col-lg-8">
+										  <input type="text" class="form-control" id="search_name">
+										</div>
+										
+										<div class="col-lg-4">
+										 <button class="btn btn-primary" type="button">Szukaj</button>
+										</div>
+									</form>
+								</div>
+							 
+								
+							<?php endif;?>
+						
+						 
+						 <?php if($catParams[0]->id == 1 || $catParams[0]->id == 2 || $catParams[0]->id == 3 || $catParams[0]->id == 4 || $catParams[0]->id == 5) :?>
+						
+							<div class="separator-orange"><br /><br /></div>
 							  <h3>Szukaj według miasta:</h3>
 								  
 								  <div class="form-group">
