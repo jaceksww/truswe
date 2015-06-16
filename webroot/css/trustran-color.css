@@ -1,0 +1,98 @@
+a, a:focus, a:hover, a:active {
+  color: #bf0606;
+}
+a:hover {
+  color: #bf0606;
+}
+::-moz-selection {
+  color: #fff;
+  background: #bf0606;
+}
+::selection {
+  color: #fff;
+  background: #bf0606;
+}
+.header-navigation a:hover,
+.header-navigation li.current a {
+  color: #bf0606;
+}
+.tb-socio .fa:hover {
+  color: #bf0606;
+  border: solid 1px #bf0606;
+}
+.carousel-indicators li.active {
+  background: #bf0606;
+}
+.go2top:hover {
+  border: solid 2px #bf0606;
+  color: #bf0606;
+}
+.content h1 strong, .content h2 strong, .content h3 strong, .content h4 strong {
+  color: #b50505;
+}
+.slider-item-1 .large_bold_white span,
+.slider-item-2 .large_bold_white span {
+  color: #b50505;
+}
+.tp-caption a {
+    color: #FF7302;
+}
+.services-block .fa {
+  background: #cc3304;
+}
+.services-block .fa:after {
+  border-top: 9px solid #cc3304;
+}
+.team-block em {
+  color: #b50505;
+}
+.portfolio-block .item > a {
+  background: rgba(229, 74, 26, 0.85);
+}
+.choose-us-block .panel-default .accordion-toggle:before {
+  background-color: #b50505;
+}
+.choose-us-block .panel-default .collapsed:before {
+  background-color: #495764;/* black */
+}
+.choose-us-block .panel-default .panel-title:hover .collapsed:before {
+  background-color: #b50505;
+}
+.btn-primary {
+  background: #e11919;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background: #cc3304;
+}
+.facts-block .item {
+  background: #cc3304
+}
+.pi-price strong {
+  background: #cc3304;
+}
+.pi-price strong:after {
+  border-top: 9px solid #cc3304;
+}
+.pricing-content .list-unstyled li i {
+  color: #cc3304;
+}
+.pricing-footer .btn-default:hover,
+.pricing-footer .btn-default:active {
+  background: #cc3304;
+}
+.portfolio-block .item b:hover {
+  color: #cc3304;
+}
+@media (max-width: 1024px) {
+	.header-mobi-ext .header-navigation a:hover,
+	.header-mobi-ext .header-navigation li.current a{
+	  background-color: #cc3304;
+	  color: #fff !important;
+	}
+}
+.header .mobi-toggler:hover {
+  background-color: #cc3304;
+  border-color: #cc3304;
+}
