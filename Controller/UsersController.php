@@ -41,8 +41,11 @@ class UsersController extends AppController
 	{
 		$queryUser = $this->Users->getUserParams($profile);
 		$this->set('userParams',  $queryUser);
-		
-		$this->layout = 'profile';
+		if($queryUser[0]['type'] == '1'){
+			$this->layout = 'profile';
+		}else{
+			$this->layout = 'profilesimple';
+		}
 	}
 
     /**
