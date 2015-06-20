@@ -116,7 +116,7 @@
 							<?php
 							
 							foreach ($profiles as $user) {
-										
+										//print_r($user);
 										echo '
 										<div class="row">
 										
@@ -136,7 +136,7 @@
 														 echo trim( $cities_str, ', ');
 														
 											echo '</p>
-													<a href="javascript:;" class="btn btn-default pull-right">
+													<a href="/'. $user['login'].'" class="btn btn-default pull-right">
 													Zobacz profil <i class="m-icon-swapright m-icon-white"></i>
 													</a>
 												</div>

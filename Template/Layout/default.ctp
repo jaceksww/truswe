@@ -96,8 +96,8 @@ License: You must have a valid license purchased only from themeforest (the abov
                 <!-- BEGIN TOP BAR MENU -->
                 <div class="col-md-6 col-sm-6 additional-nav">
                     <ul class="list-unstyled list-inline pull-right">
-                        <li><a>Zaloguj się</a></li>
-                        <li><a href="#registerModal">Utwórz profil</a></li>
+                        <li><a class="openLoginModal" href="#loginModal" data-toggle="modal">Zaloguj się</a></li>
+                        <li><a class="openRegisterModal" href="#registerModal" data-toggle="modal">Utwórz profil</a></li>
                     </ul>
                 </div>
                 <!-- END TOP BAR MENU -->
@@ -244,7 +244,7 @@ License: You must have a valid license purchased only from themeforest (the abov
 <?php if (strstr($_SERVER['REQUEST_URI'], 'search')): ?>
 		<script type="text/javascript">
         jQuery(document).ready(function() {
-        	$('#registerModal').modal('show');
+        	$('#loginModal').modal('show');
         });
 		</script>
 		<!-- https://developers.google.com/maps/documentation/javascript/places-autocomplete -->
@@ -282,7 +282,7 @@ License: You must have a valid license purchased only from themeforest (the abov
 			Utwórz profil
       </div>
       <div class="modal-body">
-          <?php echo $this->requestAction('/pages/create_account');?>
+          <?php echo $this->requestAction('/users/create_account');?>
       </div>
       <div class="modal-footer">
           <div>
@@ -293,6 +293,37 @@ License: You must have a valid license purchased only from themeforest (the abov
   </div>
   </div>
 </div>
+
+<div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="false" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			Zaloguj się
+      </div>
+      <div class="modal-body">
+          <?php echo $this->requestAction('/users/login');?>
+      </div>
+      <div class="modal-footer">
+          <div>
+          
+            <ul class="pull-left list-inline"><li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li><li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li><li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li></ul>
+		  </div>	
+      </div>
+  </div>
+  </div>
+</div>
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		$('.openRegisterModal').click(function(){
+			$('#loginModal').modal('hide');
+		});
+		$('.openLoginModal').click(function(){
+			$('#registerModal').modal('hide');
+		});
+	})
+
+	</script>
 
 </body>
 <!-- END BODY -->
