@@ -64,8 +64,11 @@
                     <div class="row">
                     <div class="col-md-12">
                     <fieldset>
-                      <legend>Przepisz kod</legend>>
-                    <!-- BEGIN REPCAPTCHA -->
+                      <legend>Przepisz kod</legend>
+                      	<div class="form-group">
+		                    <label for="password" class="col-lg-4 control-label">Kod <span class="require">*</span></label>
+		                    <div class="col-lg-8">
+		                      <!-- BEGIN REPCAPTCHA -->
 											<div id="recaptcha_widget" class="form-recaptcha">
 												<div class="form-recaptcha-img" style="width: 325px">
 													<a id="recaptcha_image" href="javascript:;">
@@ -99,6 +102,9 @@
 												</p>
 											</div>
 											<!-- END REPCAPTCHA -->
+		                    </div>
+		                  </div>
+		                
 						</fieldset>
                     </div>
                     </div>
@@ -108,6 +114,15 @@
                         <button type="button" class="btn btn-default">Anuluj</button>
                       </div>
                     </div>
+                    
+                    <div class="row">
+                      <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-20">    
+                      	<p>Masz już konto w serwisie Trustran?</p>      
+                        <a class="btn btn-default openLoginModal" href="#loginModal" data-toggle="modal">Zaloguj się</a>
+                        
+                      </div>
+                    </div>
+                    
                   </form>
                 </div>
                 <!--

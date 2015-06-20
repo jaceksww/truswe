@@ -114,6 +114,15 @@
                         <button type="button" class="btn btn-default">Anuluj</button>
                       </div>
                     </div>
+                    
+                    <div class="row">
+                      <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-20">    
+                      	<p>Masz już konto w serwisie Trustran?</p>      
+                        <a class="btn btn-green openLoginModal" href="#loginModal" data-toggle="modal">Zaloguj się</a>
+                        
+                      </div>
+                    </div>
+                    
                   </form>
                 </div>
                 <!--

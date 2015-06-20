@@ -161,59 +161,125 @@ white-space:nowrap;
   <!-- About block BEGIN -->
   <div class="content content-left" id="about">
     <div class="container">
-     
+     <div class="row">
+     <div class="col-md-12 content-center">
+     	<h2><strong>Zakres</strong> usług</h2>
+     </div>
+     </div>
       <div class="row">
-		<div class="col-md-4 content-center">
 		
-		<br /><br /><br /><br /><br />
-		<img src="../../img/o-mnie/o-mnie-1.jpg" alt="walmart" ><br />
-		<img src="../../img/o-mnie/o-mnie-1.jpg" alt="walmart"  class="profile-gal-thumb">
-		<img src="../../img/o-mnie/o-mnie-1.jpg" alt="walmart"  class="profile-gal-thumb">
-		<img src="../../img/o-mnie/o-mnie-1.jpg" alt="walmart"   class="profile-gal-thumb">
-		<img src="../../img/o-mnie/o-mnie-1.jpg" alt="walmart"  class="profile-gal-thumb">
+		<div class="col-md-5 content-center">
 		
-		<hr />
-		<div class="carousel slide" data-ride="carousel" id="testimonials-block">
-        <!-- Wrapper for slides -->
+		<!--IMAGES -->
+		<div style="padding-top:0px;background:none;" class="portfolio-block content content-center" id="portfolio">
 		
-		<div class="caption">
-                  <span class="big"><i class="fa fa-comment-o"></i> Najnowsze opinie </span>
-                </div>
-        <div class="carousel-inner">
-          <!-- Carousel items -->
-          <div class="active item">
-            <blockquote>
-              <p>This is the most awesome, full featured, easy, costomizeble theme. Itӳ extremely responsive and very helpful to all suggestions.</p>
-            </blockquote>
-            <span class="testimonials-name">Mark Doe</span>
-          </div>
-          <!-- Carousel items -->
-          <div class="item">
-            <blockquote>
-              <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse.</p>
-            </blockquote>
-            <span class="testimonials-name">Joe Smith</span>
-          </div>
-          <!-- Carousel items -->
-          <div class="item">
-            <blockquote>
-              <p>Williamsburg carles vegan helvetica. Cosby sweater eu banh mi, qui irure terry richardson ex squid Aliquip placeat salvia cillum iphone.</p>
-            </blockquote>
-            <span class="testimonials-name">Linda Adams</span>
-          </div>
-        </div>
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-          <li data-target="#testimonials-block" data-slide-to="0" class="active"></li>
-          <li data-target="#testimonials-block" data-slide-to="1"></li>
-          <li data-target="#testimonials-block" data-slide-to="2"></li>
-        </ol>
-      </div>
-	  
+			<div class="row">
+			  <div class="item col-md-4 col-sm-6 col-xs-12">
+				<img src="../../assets/frontend/onepage/img/portfolio/2.jpg" alt="NAME" class="img-responsive">
+				<a href="../../assets/frontend/onepage/img/portfolio/2.jpg" class="zoom valign-center">
+				  <div class="valign-center-elem" style="position: absolute; top: 50%; margin-top: -40px; width: 100%; height: 80px;">
+				    <strong>Zdjęcie z galerii</strong>
+				    
+				    <b>Zobacz</b>
+				  </div>
+				</a>
+			  </div>
+			  <div class="item col-md-4 col-sm-6 col-xs-12">
+				<img src="../../assets/frontend/onepage/img/portfolio/6.jpg" alt="NAME" class="img-responsive">
+				<a href="../../assets/frontend/onepage/img/portfolio/6.jpg" class="zoom valign-center">
+				  <div class="valign-center-elem" style="position: absolute; top: 50%; margin-top: -40px; width: 100%; height: 80px;">
+				    <strong>Zdjęcie z galerii</strong>
+				    
+				    <b>Zobacz</b>
+				  </div>
+				</a>
+			  </div>
+			  <div class="item col-md-4 col-sm-3 col-xs-12">
+				<img src="../../assets/frontend/onepage/img/portfolio/8.jpg" alt="NAME" class="img-responsive">
+				<a href="../../assets/frontend/onepage/img/portfolio/8.jpg" class="zoom valign-center">
+				  <div class="valign-center-elem" style="position: absolute; top: 50%; margin-top: -40px; width: 100%; height: 80px;">
+				    <strong>Zdjęcie z galerii</strong>
+				    
+				    <b>Zobacz</b>
+				  </div>
+				</a>
+			  </div>
+			  <div class="item col-md-4 col-sm-3 col-xs-12">
+				<img src="../../assets/frontend/onepage/img/portfolio/3.jpg" alt="NAME" class="img-responsive">
+				<a href="../../assets/frontend/onepage/img/portfolio/3.jpg" class="zoom valign-center">
+				  <div class="valign-center-elem" style="position: absolute; top: 50%; margin-top: -40px; width: 100%; height: 80px;">
+				    <strong>Zdjęcie z galerii</strong>
+				    
+				    <b>Zobacz</b>
+				  </div>
+				</a>
+			  </div>
+			  <div class="item col-md-4 col-sm-3 col-xs-12">
+				<img src="../../assets/frontend/onepage/img/portfolio/5.jpg" alt="NAME" class="img-responsive">
+				<a href="../../assets/frontend/onepage/img/portfolio/5.jpg" class="zoom valign-center">
+				  <div class="valign-center-elem" style="position: absolute; top: 50%; margin-top: -40px; width: 100%; height: 80px;">
+				    <strong>Zdjęcie z galerii</strong>
+				    
+				    <b>Zobacz</b>
+				  </div>
+				</a>
+			  </div>
+			  <div class="item col-md-4 col-sm-3 col-xs-12">
+				<img src="../../assets/frontend/onepage/img/portfolio/4.jpg" alt="NAME" class="img-responsive">
+				<a href="../../assets/frontend/onepage/img/portfolio/4.jpg" class="zoom valign-center">
+				  <div class="valign-center-elem" style="position: absolute; top: 50%; margin-top: -40px; width: 100%; height: 80px;">
+				    <strong>Zdjęcie z galerii</strong>
+				    
+				    <b>Zobacz</b>
+				  </div>
+				</a>
+			  </div>
+			  
+			</div>
+			<!--end IMAGES -->
+		  
+			<hr />
+			<div class="carousel slide" data-ride="carousel" id="testimonials-block">
+		    <!-- Wrapper for slides -->
+		
+			<div class="caption">
+		              <span class="big"><i class="fa fa-comment-o"></i> Najnowsze opinie </span>
+		            </div>
+		    <div class="carousel-inner">
+		      <!-- Carousel items -->
+		      <div class="active item">
+		        <blockquote>
+		          <p>This is the most awesome, full featured, easy, costomizeble theme. Itӳ extremely responsive and very helpful to all suggestions.</p>
+		        </blockquote>
+		        <span class="testimonials-name">Mark Doe</span>
+		      </div>
+		      <!-- Carousel items -->
+		      <div class="item">
+		        <blockquote>
+		          <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse.</p>
+		        </blockquote>
+		        <span class="testimonials-name">Joe Smith</span>
+		      </div>
+		      <!-- Carousel items -->
+		      <div class="item">
+		        <blockquote>
+		          <p>Williamsburg carles vegan helvetica. Cosby sweater eu banh mi, qui irure terry richardson ex squid Aliquip placeat salvia cillum iphone.</p>
+		        </blockquote>
+		        <span class="testimonials-name">Linda Adams</span>
+		      </div>
+		    </div>
+		    <!-- Indicators -->
+		    <ol class="carousel-indicators">
+		      <li data-target="#testimonials-block" data-slide-to="0" class="active"></li>
+		      <li data-target="#testimonials-block" data-slide-to="1"></li>
+		      <li data-target="#testimonials-block" data-slide-to="2"></li>
+		    </ol>
+		  </div>
+		  </div>
 		</div>
-		<div class="col-md-8 ">
+		<div class="col-md-7 ">
 		<div class="pricing-content">
-		 <h2 class="pull-left padding-left-40"><strong>Zakres</strong> usług</h2>
+		 
               <div class="clearfix"></div>
 			  <br />
               <ul class="list-unstyled">
@@ -280,11 +346,10 @@ white-space:nowrap;
 								);
 	  ?>
 	  <?php  foreach($reviews as $review):?>
-      	<div class="active item">
-            <blockquote>
+      	<div class="item">
               <p><i><?php echo $review['content']?></i></p>
-            </blockquote>
             <span class="testimonials-name"><?php echo $review['author']?></span>
+            <hr />
    		</div>
 		<? endforeach;?>
     </div>

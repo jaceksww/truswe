@@ -28,6 +28,15 @@ use Cake\Datasource\ConnectionManager;
  */
 class UsersController extends AppController
 {
+	public function login()
+	{
+	
+	}
+	public function create_account()
+	{
+	
+	}
+	
 	public function profile($profile)
 	{
 		$queryUser = $this->Users->getUserParams($profile);
@@ -78,5 +87,7 @@ class UsersController extends AppController
 			echo '<br />';
 		}
     }
+    
+    
     
 }
