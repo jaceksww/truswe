@@ -1,0 +1,47 @@
+
+        <!-- BEGIN NAVIGATION -->
+        <div class="header-navigation pull-right font-transform-inherit">
+          <ul>
+            <li class="dropdown">
+              <?php echo $this->Html->link('Strona główna', '/pl', array('class'=>'dropdown-toggle')); ?>
+                
+            </li>
+           
+            <li class="dropdown">
+            	<?php echo $this->Html->link('O nas', array('controller'=>'Pages', 'action'=>'view', 'onas.html','language'=>'pl'), array('class'=>'dropdown-toggle')); ?>
+               
+            </li>
+            <li class="dropdown">
+              <?php echo $this->Html->link('Kontakt', array('controller'=>'Pages', 'action'=>'view', 'contact.html','language'=>'pl'), array('class'=>'dropdown-toggle')); ?>
+               
+                
+            </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle"  href="javascript:;">
+                Moje konto 
+                
+              </a>
+                
+            </li>
+            
+            <!-- BEGIN TOP SEARCH -->
+            <!--
+            <li class="menu-search">
+              <span class="sep"></span>
+              <i class="fa fa-search search-btn"></i>
+              <div class="search-box">
+                <form action="#">
+                  <div class="input-group">
+                    <input type="text" placeholder="Search" class="form-control">
+                    <span class="input-group-btn">
+                      <button class="btn btn-primary" type="submit">Search</button>
+                    </span>
+                  </div>
+                </form>
+              </div> 
+            </li>
+            -->
+            <!-- END TOP SEARCH -->
+          </ul>
+        </div>
+        <!-- END NAVIGATION -->

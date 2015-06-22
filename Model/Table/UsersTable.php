@@ -19,7 +19,7 @@ class UsersTable extends Table
 		
 			$conn = ConnectionManager::get('default');
 			 $users = $conn->query('
-				select u.id, u.login, uc.name, u.city from users u
+				select u.id, u.uri,u.login, uc.name, u.city from users u
 				left outer join users_user_categories as uuc on (u.id = uuc.user_id)
 				left outer join user_categories as uc on (uuc.user_category_id = uc.id) 
 				where uc.id = '.$catID.' 
@@ -68,7 +68,7 @@ class UsersTable extends Table
 			$u = TableRegistry::get('Users');
 
 			// Start a new query.
-			$user = $u->find()->where(['login' => $profile])->toArray();
+			$user = $u->find()->where(['uri' => $profile])->toArray();
 			return $user;
 	}
 }

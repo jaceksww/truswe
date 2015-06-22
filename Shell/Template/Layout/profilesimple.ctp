@@ -221,7 +221,9 @@ Lorem Ipsum, a ostatnio z zawierającym różne wersje Lorem Ipsum oprogramowani
 					
 					<tbody>
 						<tr class="unread" data-messageid="316 ">
-							
+							<td class="inbox-small-cells">
+								<div class="checker"><span><input type="checkbox" class="mail-checkbox"></span></div>
+							</td>
 							<td class="inbox-small-cells">
 								<i class="fa fa-star"></i>
 							</td>
@@ -239,7 +241,9 @@ Lorem Ipsum, a ostatnio z zawierającym różne wersje Lorem Ipsum oprogramowani
 							</td>
 						</tr>
 						<tr class="" data-messageid="314 ">
-							
+							<td class="inbox-small-cells">
+								<div class="checker"><span><input type="checkbox" class="mail-checkbox"></span></div>
+							</td>
 							<td class="inbox-small-cells">
 								<i class="fa fa-star"></i>
 							</td>
@@ -257,7 +261,9 @@ Lorem Ipsum, a ostatnio z zawierającym różne wersje Lorem Ipsum oprogramowani
 							</td>
 						</tr>
 						<tr class="" data-messageid="309 ">
-							
+							<td class="inbox-small-cells">
+								<div class="checker"><span><input type="checkbox" class="mail-checkbox"></span></div>
+							</td>
 							<td class="inbox-small-cells">
 								<i class="fa fa-star"></i>
 							</td>
@@ -275,7 +281,9 @@ Lorem Ipsum, a ostatnio z zawierającym różne wersje Lorem Ipsum oprogramowani
 							</td>
 						</tr>
 						<tr class="" data-messageid="305 ">
-							
+							<td class="inbox-small-cells">
+								<div class="checker"><span><input type="checkbox" class="mail-checkbox"></span></div>
+							</td>
 							<td class="inbox-small-cells">
 								<i class="fa fa-star"></i>
 							</td>
@@ -315,7 +323,9 @@ Lorem Ipsum, a ostatnio z zawierającym różne wersje Lorem Ipsum oprogramowani
 					
 					<tbody>
 						<tr class="unread" data-messageid="316 ">
-							
+							<td class="inbox-small-cells">
+								<div class="checker"><span><input type="checkbox" class="mail-checkbox"></span></div>
+							</td>
 							<td class="inbox-small-cells">
 								<i class="fa fa-star"></i>
 							</td>
@@ -333,7 +343,9 @@ Lorem Ipsum, a ostatnio z zawierającym różne wersje Lorem Ipsum oprogramowani
 							</td>
 						</tr>
 						<tr class="" data-messageid="314 ">
-							
+							<td class="inbox-small-cells">
+								<div class="checker"><span><input type="checkbox" class="mail-checkbox"></span></div>
+							</td>
 							<td class="inbox-small-cells">
 								<i class="fa fa-star"></i>
 							</td>
@@ -351,7 +363,9 @@ Lorem Ipsum, a ostatnio z zawierającym różne wersje Lorem Ipsum oprogramowani
 							</td>
 						</tr>
 						<tr class="" data-messageid="309 ">
-							
+							<td class="inbox-small-cells">
+								<div class="checker"><span><input type="checkbox" class="mail-checkbox"></span></div>
+							</td>
 							<td class="inbox-small-cells">
 								<i class="fa fa-star"></i>
 							</td>
@@ -369,7 +383,9 @@ Lorem Ipsum, a ostatnio z zawierającym różne wersje Lorem Ipsum oprogramowani
 							</td>
 						</tr>
 						<tr class="" data-messageid="305 ">
-							
+							<td class="inbox-small-cells">
+								<div class="checker"><span><input type="checkbox" class="mail-checkbox"></span></div>
+							</td>
 							<td class="inbox-small-cells">
 								<i class="fa fa-star"></i>
 							</td>
