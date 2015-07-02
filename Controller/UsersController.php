@@ -18,7 +18,8 @@ use Cake\Core\Configure;
 use Cake\Network\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
 use Cake\Datasource\ConnectionManager;
-
+use Cake\ORM\TableRegistry;
+ use Cake\Network\Http\Client;
 /**
  * Static content controller
  *
@@ -26,17 +27,18 @@ use Cake\Datasource\ConnectionManager;
  *
  * @link http://book.cakephp.org/3.0/en/controllers/pages-controller.html
  */
- use Cake\Network\Http\Client;
+
 class UsersController extends AppController
 {
+	public $helpers = ['Session'];
 	public function login()
 	{
 	
 	}
 	public function create_account()
 	{
-		if(!empty($_POST)){
-			pr($_POST);
+		if(!empty($this->request->data)){
+			
 			$http = new Client();
 			$response = $http->post('https://www.google.com/recaptcha/api/siteverify', [
 			  'secret' => '6LfiNgkTAAAAACm7btqBsvsxEUsGfE23gvcIOtrq',
@@ -44,28 +46,19 @@ class UsersController extends AppController
 			]);
 			$resp = json_decode($response->body);
 			if($resp->success){
-				echo 'ok';
+				$users = TableRegistry::get('Users');
+				$entity = $users->newEntity($this->request->data());
+				
+				$users->save($entity);
+				$this->Flash->set('Profil utworzono pomyślnie. Na podany adres email została wysłana ...');
+				//$entity->menuID
+				return $this->redirect('/');
 			}
 			else{
 				echo 'baaad';
 			}
-			exit;
-/*		
-		#https://www.google.com/recaptcha/admin#site/319320560?setup
-       addArticleCaptcha= RestClient.post 'https://www.google.com/recaptcha/api/siteverify',
-          {:secret => Rails.configuration.captcha_secret_addarticle, :response =>  params[:'g-recaptcha-response'] }
-      captchaResp = JSON.parse(addArticleCaptcha)
-      #render :text => captchaResp["success"]
-      if captchaResp["success"].nil? || !captchaResp["success"]
-      	flash[:error] = "Nie dodano artykułu. Źle zweryfikoany mechanizm antyspamowy"
-      	session[:isboot] = 1
-        redirect_to request.referer
-      else
-      	flash[:success] = "Prawidłowo zweryfikoany mechanizm antyspamowy. Teraz możesz więcej :)"
-      	session[:isboot] = 0
-        redirect_to request.referer
-      end
-	  */
+			
+
 		}
 		$queryCats = $this->Users->getCats();
 		$this->set('cats',  $queryCats);

@@ -31,25 +31,25 @@
                       <div class="form-group">
                         <label for="firstname" class="col-lg-4 control-label">Imię <span class="require">*</span></label>
                         <div class="col-lg-8">
-                          <input type="text" name="firstname" class="form-control" id="firstname">
+						  <?php echo $this->Form->input('firstname',['id'=>'firstname','class'=>'form-control', 'label'=>false]);?>
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="lastname" class="col-lg-4 control-label">Nazwisko <span class="require">*</span></label>
                         <div class="col-lg-8">
-                          <input type="text" name="lastname" class="form-control" id="lastname">
+						  <?php echo $this->Form->input('lastname',['id'=>'lastname','class'=>'form-control', 'label'=>false]);?>
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="lastname" class="col-lg-4 control-label">Login / Nazwa profilu <span class="require">*</span></label>
                         <div class="col-lg-8">
-                          <input type="text" name="login" class="form-control" id="login">
+                          <?php echo $this->Form->input('login',['id'=>'login','class'=>'form-control', 'label'=>false]);?>
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="email" class="col-lg-4 control-label">Email <span class="require">*</span></label>
                         <div class="col-lg-8">
-                          <input type="text" name="email" class="form-control" id="email">
+                          <?php echo $this->Form->input('email',['id'=>'email','class'=>'form-control', 'label'=>false]);?>
                         </div>
                       </div>
                     </fieldset>
@@ -90,13 +90,15 @@
                       <div class="form-group">
                         <label for="password" class="col-lg-4 control-label">Hasło <span class="require">*</span></label>
                         <div class="col-lg-8">
-                          <input type="text" name="password" class="form-control" id="password">
+                          
+						  <?php echo $this->Form->input('password',['id'=>'password','class'=>'form-control', 'label'=>false]);?>
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="confirm-password"  class="col-lg-4 control-label">Powtórz hasło <span class="require">*</span></label>
                         <div class="col-lg-8">
-                          <input type="text"  name="password2" class="form-control" id="confirm-password">
+                          
+						  <?php echo $this->Form->input('password2',['id'=>'confirm-password','class'=>'form-control', 'label'=>false]);?>
                         </div>
                       </div>
                     </fieldset>
@@ -168,12 +170,4 @@
           
           <!-- END CONTENT -->
           
- <!-- BEGIN GOOGLE RECAPTCHA -->
-<script type="text/javascript">
-        var RecaptchaOptions = {
-           theme : 'custom',
-           custom_theme_widget: 'recaptcha_widget'
-        };
-    </script>
-<script type="text/javascript" src="https://www.google.com/recaptcha/api/challenge?k=6LcrK9cSAAAAALEcjG9gTRPbeA0yAVsKd8sBpFpR"></script>
-<!-- END GOOGLE RECAPTCHA -->
+

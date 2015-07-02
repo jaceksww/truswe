@@ -28,7 +28,7 @@ use Cake\Core\Configure\Engine\PhpConfig;
  */
 class AppController extends Controller
 {
-
+	public $helpers = ['Session'];
     /**
      * Initialization hook method.
      *
