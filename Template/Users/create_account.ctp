@@ -1,51 +1,102 @@
+
 <!-- BEGIN CONTENT -->
-          <h1>Utwórz profil</h1>
-          <div class="col-md-12 col-sm-12">
-            
+          
+          
+            <div class="portlet box red" style="border:none;">
+										
+										<div class="portlet-body">
+										
+							<div class="tabbable tabbable-tabdrop">
+								<ul class="nav nav-tabs">
+									<li class="active">
+										<a href="#portlet_tab_1" data-toggle="tab">Utwórz profil kierowcy</a>
+									</li>
+									<li>
+										<a href="#portlet_tab_2" data-toggle="tab">Utwórz profil klienta</a>
+									</li>
+									
+								</ul>
+								
+							</div>
+							
+											<div class="tab-content">
+												<div class="tab-pane active" id="portlet_tab_1">
             <div class="content-form-page">
               <div class="row">
                 <div class="col-md-12 col-sm-12">
                 
-                  <form class="form-horizontal" role="form">
+				  <?php echo $this->Form->create('Users/create_account', ['class'=>'form-horizontal', 'method' => 'post']);?>
                     <fieldset>
                       <legend>Dane użytkownika</legend>
                       <div class="form-group">
                         <label for="firstname" class="col-lg-4 control-label">Imię <span class="require">*</span></label>
                         <div class="col-lg-8">
-                          <input type="text" class="form-control" id="firstname">
+                          <input type="text" name="firstname" class="form-control" id="firstname">
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="lastname" class="col-lg-4 control-label">Nazwisko <span class="require">*</span></label>
                         <div class="col-lg-8">
-                          <input type="text" class="form-control" id="lastname">
+                          <input type="text" name="lastname" class="form-control" id="lastname">
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="lastname" class="col-lg-4 control-label">Login / Nazwa profilu <span class="require">*</span></label>
                         <div class="col-lg-8">
-                          <input type="text" class="form-control" id="lastname">
+                          <input type="text" name="login" class="form-control" id="login">
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="email" class="col-lg-4 control-label">Email <span class="require">*</span></label>
                         <div class="col-lg-8">
-                          <input type="text" class="form-control" id="email">
+                          <input type="text" name="email" class="form-control" id="email">
                         </div>
                       </div>
                     </fieldset>
+					<fieldset>
+                      <legend>Rodzaje transportu</legend>
+					  
+					  <?php 
+					  $i = 0;
+					  foreach ($cats as $cat):
+					  if($i == 0 || $i==2 || $i == 4) echo '<div class="form-group">';
+					  ?>
+						  
+                        
+                        <div class="col-lg-6">
+                          <div class="md-checkbox">
+							<input type="checkbox" id="checkboxCreateAccountTransport<?php echo $cat['id'];?>" class="md-check" <?php echo ($i==0) ? 'checked' : ''; ?> >
+							<label name="transport" for="checkboxCreateAccountTransport<?php echo $cat['id'];?>">
+								<span></span>
+								<span class="check"></span>
+								<span class="box"></span>
+								<?php echo $cat['name'];?> 
+							</label>
+							</div>
+										
+                        </div>
+                      
+					  <?php 
+					  if($i == 1 || $i==3 || $i == 5) echo '</div>';
+					  $i++;
+					  endforeach; 
+					  ?>
+					  
+					  
+                    </fieldset>
+					
                     <fieldset>
                       <legend>Hasło</legend>
                       <div class="form-group">
                         <label for="password" class="col-lg-4 control-label">Hasło <span class="require">*</span></label>
                         <div class="col-lg-8">
-                          <input type="text" class="form-control" id="password">
+                          <input type="text" name="password" class="form-control" id="password">
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="confirm-password" class="col-lg-4 control-label">Powtórz hasło <span class="require">*</span></label>
+                        <label for="confirm-password"  class="col-lg-4 control-label">Powtórz hasło <span class="require">*</span></label>
                         <div class="col-lg-8">
-                          <input type="text" class="form-control" id="confirm-password">
+                          <input type="text"  name="password2" class="form-control" id="confirm-password">
                         </div>
                       </div>
                     </fieldset>
@@ -64,44 +115,13 @@
                     <div class="row">
                     <div class="col-md-12">
                     <fieldset>
-                      <legend>Przepisz kod</legend>
+                      <legend>Kontrola antyspamowa</legend>
                       	<div class="form-group">
-		                    <label for="password" class="col-lg-4 control-label">Kod <span class="require">*</span></label>
+		                    <label for="password" class="col-lg-4 control-label"> </label>
 		                    <div class="col-lg-8">
-		                      <!-- BEGIN REPCAPTCHA -->
-											<div id="recaptcha_widget" class="form-recaptcha">
-												<div class="form-recaptcha-img" style="width: 325px">
-													<a id="recaptcha_image" href="javascript:;">
-													</a>
-													<div class="recaptcha_only_if_incorrect_sol display-none" style="color:red">
-														 Incorrect please try again
-													</div>
-												</div>
-												<div class="input-group" style="width: 325px">
-													<input type="text" class="form-control" id="recaptcha_response_field" name="recaptcha_response_field">
-													<div class="input-group-btn">
-														<a class="btn default" href="javascript:Recaptcha.reload()">
-														<i class="fa fa-refresh"></i>
-														</a>
-														<a class="btn default recaptcha_only_if_image" href="javascript:Recaptcha.switch_type('audio')">
-														<i title="Get an audio CAPTCHA" class="fa fa-headphones"></i>
-														</a>
-														<a class="btn default recaptcha_only_if_audio" href="javascript:Recaptcha.switch_type('image')">
-														<i title="Get an image CAPTCHA" class="fa fa-picture-o"></i>
-														</a>
-														<a class="btn default" href="javascript:Recaptcha.showhelp()">
-														<i class="fa fa-question-circle"></i>
-														</a>
-													</div>
-												</div>
-												<p class="help-block">
-													<span class="recaptcha_only_if_image">
-													Przepisz kod z obrazka </span>
-													<span class="recaptcha_only_if_audio">
-													Wpisz kod który usłyszałeś </span>
-												</p>
-											</div>
-											<!-- END REPCAPTCHA -->
+								<!-- BEGIN REPCAPTCHA -->
+								<div class="g-recaptcha" data-sitekey="6LfiNgkTAAAAADLWbjrNshBvXvdP4OvCbEaz0iGP"></div>
+								<!-- END REPCAPTCHA -->
 		                    </div>
 		                  </div>
 		                
@@ -123,7 +143,7 @@
                       </div>
                     </div>
                     
-                  </form>
+                  <?php echo $this->Form->end()?>
                 </div>
                 <!--
                 <div class="col-md-4 col-sm-4 pull-right">
@@ -139,7 +159,13 @@
                 -->
               </div>
             </div>
-          </div>
+										</div>
+										<div class="tab-pane active" id="portlet_tab_2">
+										Profil klienta
+										</div>
+									</div>
+								</div>
+          
           <!-- END CONTENT -->
           
  <!-- BEGIN GOOGLE RECAPTCHA -->

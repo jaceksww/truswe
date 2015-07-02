@@ -62,6 +62,15 @@ class UsersTable extends Table
 			$cat = $uc->find()->where(['id' => $catID])->toArray();
 			return $cat;
 	}
+	public function getCats(){
+		
+			
+			$uc = TableRegistry::get('UserCategories');
+
+			// Start a new query.
+			$cats = $uc->find()->toArray();
+			return $cats;
+	}
 	
 	public function getUserParams($profile)
 	{

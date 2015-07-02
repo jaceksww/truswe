@@ -56,6 +56,8 @@ License: You must have a valid license purchased only from themeforest (the abov
   <link href="/css/theme_trustran.css" rel="stylesheet" id="theme-style-color">
   <link href="/assets/frontend/layout/css/custom.css" rel="stylesheet">
   <!-- Theme styles END -->
+  
+  <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <!-- Head END -->
 
