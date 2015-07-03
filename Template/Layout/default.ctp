@@ -57,7 +57,7 @@ License: You must have a valid license purchased only from themeforest (the abov
   <link href="/assets/frontend/layout/css/custom.css" rel="stylesheet">
   <!-- Theme styles END -->
   
-  <script src='https://www.google.com/recaptcha/api.js'></script>
+ <script src="//www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit" async defer></script>
 </head>
 <!-- Head END -->
 
@@ -124,6 +124,9 @@ License: You must have a valid license purchased only from themeforest (the abov
 		</div>
       </div>
     </div>
+	<div class="container">
+	<?php echo $this->Flash->render() ?>
+	</div>
     <!-- Header END -->
 	<?php if ($_SERVER['REQUEST_URI'] == '' ||$_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/pl' || strstr($_SERVER['REQUEST_URI'], 'home2')): ?>
 	<?php echo $this->element('slider');?>
@@ -132,7 +135,8 @@ License: You must have a valid license purchased only from themeforest (the abov
 
     <div class="main">
       <div class="container">
-      <?= $this->fetch('content') ?>
+	  
+      <?php echo $this->fetch('content') ?>
         
       </div>
     </div>
@@ -147,8 +151,7 @@ License: You must have a valid license purchased only from themeforest (the abov
     <!--[if lt IE 9]>
     <script src="/assets/global/plugins/respond.min.js"></script>
     <![endif]--> 
-	<script src="/js/trustran.js" type="text/javascript"></script>
-    <script src="/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+	<script src="/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
     <script src="/assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
     <script src="/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>      
     <script src="/assets/frontend/layout/scripts/back-to-top.js" type="text/javascript"></script>
@@ -276,26 +279,6 @@ License: You must have a valid license purchased only from themeforest (the abov
 		</script>
 <?php endif; ?>    
 
-<div id="registerModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="false" data-keyboard="false" data-backdrop="static">
-  <div class="modal-dialog">
-  <div class="modal-content">
-      <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			Utwórz profil
-      </div>
-      <div class="modal-body">
-          <?php echo $this->requestAction('/users/create_account');?>
-      </div>
-      <div class="modal-footer">
-          <div>
-          
-            <ul class="pull-left list-inline"><li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li><li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li><li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li></ul>
-		  </div>	
-      </div>
-  </div>
-  </div>
-</div>
-
 <div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="false" data-keyboard="false" data-backdrop="static">
   <div class="modal-dialog">
   <div class="modal-content">
@@ -307,25 +290,31 @@ License: You must have a valid license purchased only from themeforest (the abov
           <?php echo $this->requestAction('/users/login');?>
       </div>
       <div class="modal-footer">
-          <div>
-          
-            <ul class="pull-left list-inline"><li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li><li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li><li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li></ul>
-		  </div>	
+          	
       </div>
   </div>
   </div>
 </div>
-<script type="text/javascript">
-	jQuery(document).ready(function() {
-		$('.openRegisterModal').click(function(){
-			$('#loginModal').modal('hide');
-		});
-		$('.openLoginModal').click(function(){
-			$('#registerModal').modal('hide');
-		});
-	})
 
-	</script>
+<div id="registerModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="false" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			Utwórz profil
+      </div>
+      <div class="modal-body">
+          <?php echo $this->requestAction('/users/create_account');?>
+      </div>
+      <div class="modal-footer">
+          	
+      </div>
+  </div>
+  </div>
+</div>
+
+
+
 
 </body>
 <!-- END BODY -->

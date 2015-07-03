@@ -2,9 +2,9 @@
 <!-- BEGIN CONTENT -->
           
           
-            <div class="portlet box red" style="border:none;">
+<div class="portlet box red" style="border:none;">
 										
-										<div class="portlet-body">
+<div class="portlet-body">
 										
 							<div class="tabbable tabbable-tabdrop">
 								<ul class="nav nav-tabs">
@@ -19,16 +19,21 @@
 								
 							</div>
 							
-											<div class="tab-content">
-												<div class="tab-pane active" id="portlet_tab_1">
+	<div class="tab-content">
+		<div class="tab-pane active" id="portlet_tab_1">
             <div class="content-form-page">
               <div class="row">
                 <div class="col-md-12 col-sm-12">
-                
-				  <?php echo $this->Form->create('Users/create_account', ['class'=>'form-horizontal', 'method' => 'post']);?>
+					<div id="createAccountErrorBox" class="alert alert-danger fade in" style="display:none">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+					<span id="createAccountError"></span>
+					</div>
+
+				  <?php echo $this->Form->create('Users/create_account', ['id'=>'formCreateAccountTransport','class'=>'form-horizontal', 'method' => 'post']);?>
                     <fieldset>
                       <legend>Dane użytkownika</legend>
-                      <div class="form-group">
+                      <!--
+					  <div class="form-group">
                         <label for="firstname" class="col-lg-4 control-label">Imię <span class="require">*</span></label>
                         <div class="col-lg-8">
 						  <?php echo $this->Form->input('firstname',['id'=>'firstname','class'=>'form-control', 'label'=>false]);?>
@@ -40,6 +45,7 @@
 						  <?php echo $this->Form->input('lastname',['id'=>'lastname','class'=>'form-control', 'label'=>false]);?>
                         </div>
                       </div>
+					  -->
                       <div class="form-group">
                         <label for="lastname" class="col-lg-4 control-label">Login / Nazwa profilu <span class="require">*</span></label>
                         <div class="col-lg-8">
@@ -91,14 +97,14 @@
                         <label for="password" class="col-lg-4 control-label">Hasło <span class="require">*</span></label>
                         <div class="col-lg-8">
                           
-						  <?php echo $this->Form->input('password',['id'=>'password','class'=>'form-control', 'label'=>false]);?>
+						  <?php echo $this->Form->input('password',['type'=>'password','id'=>'password','class'=>'form-control', 'label'=>false]);?>
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="confirm-password"  class="col-lg-4 control-label">Powtórz hasło <span class="require">*</span></label>
                         <div class="col-lg-8">
                           
-						  <?php echo $this->Form->input('password2',['id'=>'confirm-password','class'=>'form-control', 'label'=>false]);?>
+						  <?php echo $this->Form->input('password2',['type'=>'password','id'=>'confirm-password','class'=>'form-control', 'label'=>false]);?>
                         </div>
                       </div>
                     </fieldset>
@@ -122,7 +128,8 @@
 		                    <label for="password" class="col-lg-4 control-label"> </label>
 		                    <div class="col-lg-8">
 								<!-- BEGIN REPCAPTCHA -->
-								<div class="g-recaptcha" data-sitekey="6LfiNgkTAAAAADLWbjrNshBvXvdP4OvCbEaz0iGP"></div>
+								<div id="createAccountRecaptchaTransport">
+								</div>
 								<!-- END REPCAPTCHA -->
 		                    </div>
 		                  </div>
@@ -132,7 +139,7 @@
                     </div>
                     <div class="row">
                       <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-20">                        
-                        <button type="submit" class="btn btn-primary">Utwórz konto</button>
+                        <button type="submit" id="submitCreateAccountTransport" class="btn btn-primary">Utwórz konto</button>
                         <button type="button" class="btn btn-default">Anuluj</button>
                       </div>
                     </div>
@@ -161,13 +168,101 @@
                 -->
               </div>
             </div>
-										</div>
-										<div class="tab-pane active" id="portlet_tab_2">
-										Profil klienta
-										</div>
-									</div>
+		</div>
+	<div class="tab-pane" id="portlet_tab_2">
+		<?php echo $this->Form->create('Users/create_account', ['id'=>'formCreateAccountClient','class'=>'form-horizontal', 'method' => 'post']);?>
+                    <fieldset>
+                      <legend>Dane użytkownika</legend>
+                      
+					  <div class="form-group">
+                        <label for="firstnameClient" class="col-lg-4 control-label">Imię <span class="require">*</span></label>
+                        <div class="col-lg-8">
+						  <?php echo $this->Form->input('firstname',['id'=>'firstnameClient','class'=>'form-control', 'label'=>false]);?>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="lastnameClient" class="col-lg-4 control-label">Nazwisko <span class="require">*</span></label>
+                        <div class="col-lg-8">
+						  <?php echo $this->Form->input('lastname',['id'=>'lastnameClient','class'=>'form-control', 'label'=>false]);?>
+                        </div>
+                      </div>
+					  
+                      <div class="form-group">
+                        <label for="loginClient" class="col-lg-4 control-label">Login / Nazwa profilu <span class="require">*</span></label>
+                        <div class="col-lg-8">
+                          <?php echo $this->Form->input('login',['id'=>'loginClient','class'=>'form-control', 'label'=>false]);?>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="emailClient" class="col-lg-4 control-label">Email <span class="require">*</span></label>
+                        <div class="col-lg-8">
+                          <?php echo $this->Form->input('email',['id'=>'emailClient','class'=>'form-control', 'label'=>false]);?>
+                        </div>
+                      </div>
+                    </fieldset>
+					
+					
+                    <fieldset>
+                      <legend>Hasło</legend>
+                      <div class="form-group">
+                        <label for="passwordClient" class="col-lg-4 control-label">Hasło <span class="require">*</span></label>
+                        <div class="col-lg-8">
+                          
+						  <?php echo $this->Form->input('password',['type'=>'password','id'=>'passwordClient','class'=>'form-control', 'label'=>false]);?>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="confirm-passwordClient"  class="col-lg-4 control-label">Powtórz hasło <span class="require">*</span></label>
+                        <div class="col-lg-8">
+                          
+						  <?php echo $this->Form->input('password2',['type'=>'password','id'=>'confirm-passwordClient','class'=>'form-control', 'label'=>false]);?>
+                        </div>
+                      </div>
+                    </fieldset>
+                    
+                    <div class="row">
+                    <div class="col-md-12">
+                    <fieldset>
+                      <legend>Kontrola antyspamowa</legend>
+                      	<div class="form-group">
+		                    <label for="" class="col-lg-4 control-label"> </label>
+		                    <div class="col-lg-8">
+								<!-- BEGIN REPCAPTCHA -->
+								<div id="createAccountRecaptchaClient">
+								
 								</div>
+								<!-- END REPCAPTCHA -->
+		                    </div>
+		                  </div>
+		                
+						</fieldset>
+                    </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-20">                        
+                        <button type="submit" id="submitCreateAccountClient" class="btn btn-primary">Utwórz konto</button>
+                        <button type="button" class="btn btn-default">Anuluj</button>
+                      </div>
+                    </div>
+                    
+                    <div class="row">
+                      <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-20">    
+                      	<p>Masz już konto w serwisie Trustran?</p>      
+                        <a class="btn btn-default openLoginModal" href="#loginModal" data-toggle="modal">Zaloguj się</a>
+                        
+                      </div>
+                    </div>
+                    
+                  <?php echo $this->Form->end()?>
+	</div>
+</div>
+</div>
           
           <!-- END CONTENT -->
           
-
+<script type="text/javascript">
+    var CaptchaCallback = function(){
+        grecaptcha.render('createAccountRecaptchaClient', {'sitekey' : '6LcVSAkTAAAAADwfYKPNAqYpAlWFcoX9htabCIYZ'});
+        grecaptcha.render('createAccountRecaptchaTransport', {'sitekey' : '6LcVSAkTAAAAADwfYKPNAqYpAlWFcoX9htabCIYZ'});
+    };
+</script>

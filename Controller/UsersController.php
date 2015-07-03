@@ -37,9 +37,13 @@ class UsersController extends AppController
 	}
 	public function create_account()
 	{
+		
 		if(!empty($this->request->data)){
 			
 			$http = new Client();
+			//client secret: 6LcVSAkTAAAAAMq0ReQwFbz5_-d11ajrYbfgFCSe
+			//transp secret: 6LfiNgkTAAAAACm7btqBsvsxEUsGfE23gvcIOtrq
+			
 			$response = $http->post('https://www.google.com/recaptcha/api/siteverify', [
 			  'secret' => '6LfiNgkTAAAAACm7btqBsvsxEUsGfE23gvcIOtrq',
 			  'response' => $_POST['g-recaptcha-response']
@@ -50,7 +54,7 @@ class UsersController extends AppController
 				$entity = $users->newEntity($this->request->data());
 				
 				$users->save($entity);
-				$this->Flash->set('Profil utworzono pomyślnie. Na podany adres email została wysłana ...');
+				$this->Flash->success('Profil utworzono pomyślnie. Na podany adres email została wysłana ...');
 				//$entity->menuID
 				return $this->redirect('/');
 			}

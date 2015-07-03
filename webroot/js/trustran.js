@@ -50,3 +50,58 @@ var RevosliderInit = function () {
     };
 
 }();
+
+
+jQuery(document).ready(function() {
+		$('.openRegisterModal').click(function(){
+			$('#loginModal').modal('hide');
+		});
+		$('.openLoginModal').click(function(){
+			$('#registerModal').modal('hide');
+		});
+		
+	$('#submitCreateAccountTransport').click(function(){
+		
+			var password = $('#password').val();
+			var password2 = $('#confirm-password').val();
+			var email = $('#email').val();
+			var login = $('#login').val();
+			var error = '';
+			if(password == '' || password2 == ''){
+				error += "Hasło jest obowiązkowe!<br />";
+			}
+			if(password != password2){
+				error += "Wpisane hasła nie są identyczne!<br />";
+			}
+			if(!validateEmail(email) || email == ''){
+				error += "Niepoprawny format adresu email!<br />";
+			}
+			if(login == ''){
+				error += "Login jest obowiązkowy!<br />";
+			}
+			
+			var response = grecaptcha.getResponse();
+			if(response.length == 0)
+			{
+				error += "Kontrola antyspamowa niepoprawnie zweryfikowana!<br />";
+			}
+			
+		if(error == ''){
+			$('#formCreateAccountTransport').submit();
+		}else{
+			$('#createAccountErrorBox').show();
+			$('#createAccountError').html(error);
+			
+			 $("#registerModal").animate({ scrollTop: 0 }, "slow");
+			return false;
+		}
+	});
+	
+
+})
+function validateEmail($email) {
+  var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+  return emailReg.test( $email );
+}
+
+	
