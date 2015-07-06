@@ -165,6 +165,22 @@ License: You must have a valid license purchased only from themeforest(the above
 						
 					</ul>
 				</li>
+				<li class="open">
+					<a href="javascript:;">
+					<i class="fa fa-camera"></i>
+					<span class="title">Profile</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu" style="display:block;">
+						<li>
+							<a href="/admin/users/index/1">
+							<i class="fa fa-list"></i>
+							Lista profili</a>
+						</li>
+						
+						
+					</ul>
+				</li>
 				<li>
 					<a href="javascript:;">
 					<i class="icon-briefcase"></i>
@@ -264,7 +280,13 @@ jQuery(document).ready(function() {
     }
 
             handleWysihtml5();
-    
+			
+	$('#adminUsersFilterType').change(function(){
+		window.location.href='/admin/users/setfilter/type/'+$(this).val();
+	});
+    $('#adminUsersFilterActive').change(function(){
+		window.location.href='/admin/users/setfilter/active/'+$(this).val();
+	});
     
 });
 </script>

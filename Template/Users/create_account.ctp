@@ -24,12 +24,13 @@
             <div class="content-form-page">
               <div class="row">
                 <div class="col-md-12 col-sm-12">
-					<div id="createAccountErrorBox" class="alert alert-danger fade in" style="display:none">
+					<div id="createAccountErrorBoxTransport" class="alert alert-danger fade in" style="display:none">
 					<button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-					<span id="createAccountError"></span>
+					<span id="createAccountErrorTransport"></span>
 					</div>
 
 				  <?php echo $this->Form->create('Users/create_account', ['id'=>'formCreateAccountTransport','class'=>'form-horizontal', 'method' => 'post']);?>
+				  <?php echo $this->Form->input('type',['value'=>1,'type'=>'hidden','id'=>'typeTransport','class'=>'form-control', 'label'=>false]);?>
                     <fieldset>
                       <legend>Dane użytkownika</legend>
                       <!--
@@ -170,7 +171,12 @@
             </div>
 		</div>
 	<div class="tab-pane" id="portlet_tab_2">
+		<div id="createAccountErrorBoxClient" class="alert alert-danger fade in" style="display:none">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+					<span id="createAccountErrorClient"></span>
+		</div>
 		<?php echo $this->Form->create('Users/create_account', ['id'=>'formCreateAccountClient','class'=>'form-horizontal', 'method' => 'post']);?>
+		<?php echo $this->Form->input('type',['value'=>2,'type'=>'hidden','id'=>'typeClient','class'=>'form-control', 'label'=>false]);?>
                     <fieldset>
                       <legend>Dane użytkownika</legend>
                       

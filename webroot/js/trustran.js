@@ -89,8 +89,51 @@ jQuery(document).ready(function() {
 		if(error == ''){
 			$('#formCreateAccountTransport').submit();
 		}else{
-			$('#createAccountErrorBox').show();
-			$('#createAccountError').html(error);
+			$('#createAccountErrorBoxTransport').show();
+			$('#createAccountErrorTransport').html(error);
+			
+			 $("#registerModal").animate({ scrollTop: 0 }, "slow");
+			return false;
+		}
+	});
+	
+	$('#submitCreateAccountClient').click(function(){
+		
+			var passwordClient = $('#passwordClient').val();
+			var password2Client = $('#confirm-passwordClient').val();
+			var emailClient = $('#emailClient').val();
+			var loginClient = $('#loginClient').val();
+			var firstnameClient = $('#firstnameClient').val();
+			var lastnameClient = $('#lastnameClient').val();
+			
+			var errorClient = '';
+			if(passwordClient == '' || password2Client == ''){
+				errorClient += "Hasło jest obowiązkowe!<br />";
+			}
+			if(firstnameClient == '' || lastnameClient == ''){
+				errorClient += "Imię i Nazwisko są obowiązkowe!<br />";
+			}
+			if(passwordClient != password2Client){
+				errorClient += "Wpisane hasła nie są identyczne!<br />";
+			}
+			if(!validateEmail(emailClient) || emailClient == ''){
+				errorClient += "Niepoprawny format adresu email!<br />";
+			}
+			if(login == ''){
+				errorClient += "Login jest obowiązkowy!<br />";
+			}
+			
+			var responseClient = grecaptcha.getResponse();
+			if(responseClient.length == 0)
+			{
+				errorClient += "Kontrola antyspamowa niepoprawnie zweryfikowana!<br />";
+			}
+			
+		if(errorClient == ''){
+			$('#formCreateAccountClient').submit();
+		}else{
+			$('#createAccountErrorBoxClient').show();
+			$('#createAccountErrorClient').html(errorClient);
 			
 			 $("#registerModal").animate({ scrollTop: 0 }, "slow");
 			return false;

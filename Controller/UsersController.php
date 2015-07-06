@@ -43,11 +43,19 @@ class UsersController extends AppController
 			$http = new Client();
 			//client secret: 6LcVSAkTAAAAAMq0ReQwFbz5_-d11ajrYbfgFCSe
 			//transp secret: 6LfiNgkTAAAAACm7btqBsvsxEUsGfE23gvcIOtrq
-			
-			$response = $http->post('https://www.google.com/recaptcha/api/siteverify', [
-			  'secret' => '6LfiNgkTAAAAACm7btqBsvsxEUsGfE23gvcIOtrq',
-			  'response' => $_POST['g-recaptcha-response']
-			]);
+			if($_POST['type'] == 1)
+			{
+				$response = $http->post('https://www.google.com/recaptcha/api/siteverify', [
+				  'secret' => '6LfiNgkTAAAAACm7btqBsvsxEUsGfE23gvcIOtrq',
+				  'response' => $_POST['g-recaptcha-response']
+				]);
+			}else{
+				$response = $http->post('https://www.google.com/recaptcha/api/siteverify', [
+				  'secret' => '6LcVSAkTAAAAAMq0ReQwFbz5_-d11ajrYbfgFCSe',
+				  'response' => $_POST['g-recaptcha-response']
+				]);
+
+			}
 			$resp = json_decode($response->body);
 			if($resp->success){
 				$users = TableRegistry::get('Users');
@@ -59,7 +67,8 @@ class UsersController extends AppController
 				return $this->redirect('/');
 			}
 			else{
-				echo 'baaad';
+				$this->Flash->error('Źle zweryfikowana kontrola antyspamowa!');
+				return $this->redirect('/');
 			}
 			
 
