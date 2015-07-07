@@ -63,7 +63,8 @@ License: You must have a valid license purchased only from themeforest(the above
 		<!-- BEGIN LOGO -->
 		<div class="page-logo">
 			<a href="index.html">
-			<img src="/assets/admin/layout/img/logo.png" alt="logo" class="logo-default"/>
+			<!--<img src="/assets/admin/layout/img/logo.png" alt="logo" class="logo-default"/>-->
+			<h5><span style="color:#e72323">CMS-</span><span style="color:#fff">ADMIN PANEL</span></h5>
 			</a>
 			<div class="menu-toggler sidebar-toggler hide">
 				<!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
@@ -104,48 +105,83 @@ License: You must have a valid license purchased only from themeforest(the above
 					<!-- END SIDEBAR TOGGLER BUTTON -->
 				</li>
 				
-				<li class="start ">
+				<li class="start open">
 					<a href="javascript:;">
-					<i class="icon-home"></i>
+					<i class="fa fa-ellipsis-h"></i>
 					<span class="title">Menu</span>
 					<span class="arrow "></span>
 					</a>
-					<ul class="sub-menu">
+					<ul class="sub-menu" style="display:block;">
 						<li>
 							<a href="/admin/menus">
 							
-							<i class="icon-bar-chart"></i>
+							<i class="fa fa-list"></i>
 							Lista menu</a>
 						</li>
 						<li>
 							<a href="/admin/menus/manage">
-							<i class="icon-bulb"></i>
+							<i class="fa fa-plus"></i>
 							Dodaj element</a>
 						</li>
 						
 					</ul>
 				</li>
-				<li>
+				<li class="open">
 					<a href="javascript:;">
-					<i class="icon-basket"></i>
+					<i class="fa fa-file-o"></i>
 					<span class="title">Strony</span>
 					<span class="arrow "></span>
 					</a>
-					<ul class="sub-menu">
+					<ul class="sub-menu" style="display:block;">
 						<li>
 							<a href="/admin/pages">
-							<i class="icon-home"></i>
+							<i class="fa fa-list"></i>
 							Lista stron</a>
 						</li>
 						<li>
 							<a href="/admin/pages/manage">
-							<i class="icon-basket"></i>
+							<i class="fa fa-plus"></i>
 							Dodaj stronę</a>
 						</li>
 						
 					</ul>
 				</li>
-				
+				<li class="open">
+					<a href="javascript:;">
+					<i class="fa fa-camera"></i>
+					<span class="title">Media</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu" style="display:block;">
+						<li>
+							<a href="/admin/medias">
+							<i class="fa fa-list"></i>
+							Lista multimediów</a>
+						</li>
+						<li>
+							<a href="/admin/medias/manage">
+							<i class="fa fa-plus"></i>
+							Dodaj media</a>
+						</li>
+						
+					</ul>
+				</li>
+				<li class="open">
+					<a href="javascript:;">
+					<i class="fa fa-camera"></i>
+					<span class="title">Profile</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu" style="display:block;">
+						<li>
+							<a href="/admin/users/index/1">
+							<i class="fa fa-list"></i>
+							Lista profili</a>
+						</li>
+						
+						
+					</ul>
+				</li>
 				<li>
 					<a href="javascript:;">
 					<i class="icon-briefcase"></i>
@@ -173,6 +209,7 @@ License: You must have a valid license purchased only from themeforest(the above
 			<!-- BEGIN PAGE CONTENT-->
 			<div class="row">
 				<div class="col-md-12">
+				<?= $this->Flash->render() ?>
 					<?= $this->fetch('content') ?>
 				</div>
 			</div>
@@ -239,11 +276,18 @@ jQuery(document).ready(function() {
             $('.wysihtml5').wysihtml5({
                 "stylesheets": ["../../assets/global/plugins/bootstrap-wysihtml5/wysiwyg-color.css"]
             });
+			
         }
     }
 
             handleWysihtml5();
-    
+			
+	$('#adminUsersFilterType').change(function(){
+		window.location.href='/admin/users/setfilter/type/'+$(this).val();
+	});
+    $('#adminUsersFilterActive').change(function(){
+		window.location.href='/admin/users/setfilter/active/'+$(this).val();
+	});
     
 });
 </script>

@@ -37,26 +37,26 @@
 					  <div class="form-group">
                         <label for="firstname" class="col-lg-4 control-label">Imię <span class="require">*</span></label>
                         <div class="col-lg-8">
-						  <?php echo $this->Form->input('firstname',['id'=>'firstname','class'=>'form-control', 'label'=>false]);?>
+						  <?php echo $this->Form->input('firstname',['id'=>'firstnameTransport','class'=>'form-control', 'label'=>false]);?>
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="lastname" class="col-lg-4 control-label">Nazwisko <span class="require">*</span></label>
                         <div class="col-lg-8">
-						  <?php echo $this->Form->input('lastname',['id'=>'lastname','class'=>'form-control', 'label'=>false]);?>
+						  <?php echo $this->Form->input('lastname',['id'=>'lastnameTransport','class'=>'form-control', 'label'=>false]);?>
                         </div>
                       </div>
 					  -->
                       <div class="form-group">
                         <label for="lastname" class="col-lg-4 control-label">Login / Nazwa profilu <span class="require">*</span></label>
                         <div class="col-lg-8">
-                          <?php echo $this->Form->input('login',['id'=>'login','class'=>'form-control', 'label'=>false]);?>
+                          <?php echo $this->Form->input('login',['id'=>'loginTransport','class'=>'form-control', 'label'=>false]);?>
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="email" class="col-lg-4 control-label">Email <span class="require">*</span></label>
                         <div class="col-lg-8">
-                          <?php echo $this->Form->input('email',['id'=>'email','class'=>'form-control', 'label'=>false]);?>
+                          <?php echo $this->Form->input('email',['id'=>'emailTransport','class'=>'form-control', 'label'=>false]);?>
                         </div>
                       </div>
                     </fieldset>
@@ -98,14 +98,14 @@
                         <label for="password" class="col-lg-4 control-label">Hasło <span class="require">*</span></label>
                         <div class="col-lg-8">
                           
-						  <?php echo $this->Form->input('password',['type'=>'password','id'=>'password','class'=>'form-control', 'label'=>false]);?>
+						  <?php echo $this->Form->input('password',['type'=>'password','id'=>'passwordTransport','class'=>'form-control', 'label'=>false]);?>
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="confirm-password"  class="col-lg-4 control-label">Powtórz hasło <span class="require">*</span></label>
                         <div class="col-lg-8">
                           
-						  <?php echo $this->Form->input('password2',['type'=>'password','id'=>'confirm-password','class'=>'form-control', 'label'=>false]);?>
+						  <?php echo $this->Form->input('password2',['type'=>'password','id'=>'confirm-passwordTransport','class'=>'form-control', 'label'=>false]);?>
                         </div>
                       </div>
                     </fieldset>
@@ -265,10 +265,4 @@
 </div>
           
           <!-- END CONTENT -->
-          
-<script type="text/javascript">
-    var CaptchaCallback = function(){
-        grecaptcha.render('createAccountRecaptchaClient', {'sitekey' : '6LcVSAkTAAAAADwfYKPNAqYpAlWFcoX9htabCIYZ'});
-        grecaptcha.render('createAccountRecaptchaTransport', {'sitekey' : '6LcVSAkTAAAAADwfYKPNAqYpAlWFcoX9htabCIYZ'});
-    };
-</script>
+

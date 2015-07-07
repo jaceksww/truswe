@@ -122,7 +122,14 @@
 										
 											<div class="note note-default lightgray search-res-box" onclick="location.href = \'#\'">
 												<div class="col-lg-3">
-													<img class="img-responsive" src="../../assets/admin/pages/media/blog/3.jpg" alt="">
+												';
+												if(file_exists("/uploads/profiles/".$user['id']."/main.jpg")){
+													echo '<img class="img-responsive" src="/uploads/profiles/'.$user['id'].'/main.jpg" alt="">';
+												}
+												else{
+													echo '<img class="img-responsive" src="/uploads/profiles/avatar-default.jpg" alt="">';
+												} 
+												echo '
 												</div>
 												<div class="col-lg-9">
 													<h4 class="block">'. $user['login'].'</h4>

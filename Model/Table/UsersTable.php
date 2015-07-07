@@ -15,14 +15,15 @@ class UsersTable extends Table
         ]);
     }
 	
-	public function getUsersOfCat($catID, $appendCities = false){
+	public function getUsersOfCat($catID, $appendCities = false, $start=0, $limit=20){
 		
 			$conn = ConnectionManager::get('default');
 			 $users = $conn->query('
 				select u.id, u.uri,u.login, uc.name, u.city from users u
 				left outer join users_user_categories as uuc on (u.id = uuc.user_id)
 				left outer join user_categories as uc on (uuc.user_category_id = uc.id) 
-				where uc.id = '.$catID.' 
+				where uc.id = '.$catID.' and active = 1 and deleted = 0
+				limit '.$start.', '.$limit.'
 				');
 			if($appendCities && count($users) > 0) {
 				$result = array();

@@ -63,7 +63,8 @@ License: You must have a valid license purchased only from themeforest(the above
 		<!-- BEGIN LOGO -->
 		<div class="page-logo">
 			<a href="index.html">
-			<img src="/assets/admin/layout/img/logo.png" alt="logo" class="logo-default"/>
+			<!--<img src="/assets/admin/layout/img/logo.png" alt="logo" class="logo-default"/>-->
+			<h4><span style="color:#e72323">CMS-</span><span style="color:#fff">ADMIN PANEL</span></h4>
 			</a>
 			<div class="menu-toggler sidebar-toggler hide">
 				<!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->

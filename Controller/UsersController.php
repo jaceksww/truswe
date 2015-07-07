@@ -62,8 +62,9 @@ class UsersController extends AppController
 				$entity = $users->newEntity($this->request->data());
 				
 				$users->save($entity);
+				mkdir(WWW_ROOT."/uploads/profiles/".$entity->id, 0777);
 				$this->Flash->success('Profil utworzono pomyślnie. Na podany adres email została wysłana ...');
-				//$entity->menuID
+				
 				return $this->redirect('/');
 			}
 			else{
@@ -95,7 +96,7 @@ class UsersController extends AppController
      * @throws \Cake\Network\Exception\NotFoundException When the view file could not
      *   be found or \Cake\View\Exception\MissingTemplateException in debug mode.
      */
-    public function search($catID=1)
+    public function search($catID=1, $start=0, $limit=20)
     {
 		/*
         $query = $this->Users
@@ -107,7 +108,7 @@ class UsersController extends AppController
 					}])
 					->group(['Users.id']);
 					*/
-			$query = $this->Users->getUsersOfCat($catID, true);
+			$query = $this->Users->getUsersOfCat($catID, true,$start, $limit);
 			
 			
 			$this->set('profiles',  $query);

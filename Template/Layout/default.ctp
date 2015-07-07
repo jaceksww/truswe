@@ -35,7 +35,7 @@ License: You must have a valid license purchased only from themeforest (the abov
   <meta property="og:image" content="-CUSTOMER VALUE-"><!-- link to image for socio -->
   <meta property="og:url" content="-CUSTOMER VALUE-">
 
-  <link rel="shortcut icon" href="favicon.ico">
+<!--  <link rel="shortcut icon" href="/favicon.ico">-->
 
   <!-- Fonts START -->
   <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|PT+Sans+Narrow|Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css">
@@ -58,6 +58,21 @@ License: You must have a valid license purchased only from themeforest (the abov
   <!-- Theme styles END -->
   
  <script src="//www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit" async defer></script>
+ <script>
+ var widgetCaptchaClient;
+    var widgetCaptchaTransport;
+	var CaptchaCallback = function(){
+	 	
+		    widgetCaptchaClient = grecaptcha.render('createAccountRecaptchaClient', {
+		      'sitekey' : '6LcVSAkTAAAAADwfYKPNAqYpAlWFcoX9htabCIYZ',
+		      'theme' : 'light'
+		    });
+		    widgetCaptchaTransport = grecaptcha.render('createAccountRecaptchaTransport', {
+		      'sitekey' : '6LfiNgkTAAAAADLWbjrNshBvXvdP4OvCbEaz0iGP',
+		      'theme' : 'light'
+		    });
+	};
+	</script>
 </head>
 <!-- Head END -->
 
@@ -145,140 +160,7 @@ License: You must have a valid license purchased only from themeforest (the abov
     
 	<?php echo $this->element('footer');?>
      <!-- END FOOTER -->
-	 
-    <!-- Load javascripts at bottom, this will reduce page load time -->
-    <!-- BEGIN CORE PLUGINS (REQUIRED FOR ALL PAGES) -->
-    <!--[if lt IE 9]>
-    <script src="/assets/global/plugins/respond.min.js"></script>
-    <![endif]--> 
-	<script src="/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-    <script src="/assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
-    <script src="/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>      
-    <script src="/assets/frontend/layout/scripts/back-to-top.js" type="text/javascript"></script>
-    <!-- END CORE PLUGINS -->
-
 	
-	
-    <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
-    <script src="/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
-    <script src="/assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.min.js" type="text/javascript"></script><!-- slider for products -->
-
-    <!-- BEGIN RevolutionSlider -->  
-    <script src="/assets/global/plugins/slider-revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js" type="text/javascript"></script> 
-    <script src="/assets/global/plugins/slider-revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js" type="text/javascript"></script> 
-    
-    <!-- END RevolutionSlider -->
-
-	<script src="/js/trustran.js" type="text/javascript"></script>
-	
-    <script src="/assets/frontend/layout/scripts/layout.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        jQuery(document).ready(function() {
-        	Layout.init();    
-            Layout.initOWL();
-            RevosliderInit.initRevoSlider();
-            Layout.initTwitter();
-            //Layout.initFixHeaderWithPreHeader(); /* Switch On Header Fixing (only if you have pre-header) */
-            //Layout.initNavScrolling(); 
-        });
-    </script>
-    <!-- END PAGE LEVEL JAVASCRIPTS -->
-    
-<?php if (strstr($_SERVER['REQUEST_URI'], 'contact')):?>  
-    <!--if contact -->
-    <script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
-    <script src="/assets/global/plugins/gmaps/gmaps.js" type="text/javascript"></script>
-    <script src="/assets/frontend/pages/scripts/contact-us.js" type="text/javascript"></script>
-     <script type="text/javascript">
-        jQuery(document).ready(function() {
-            ContactUs.init();
-        });
-    </script>
-<?php endif; ?>
-
-<?php if (strstr($_SERVER['REQUEST_URI'], 'search')):?>  
-    <!--if contact -->
-    <script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
-    <script src="/assets/global/plugins/gmaps/gmaps.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        jQuery(document).ready(function() {
-            var UsersSearch = function () {
-
-			return {
-				//main function to initiate the module
-				init: function () {
-					var map;
-					$(document).ready(function(){
-					  map = new GMaps({
-						div: '#search_map',
-					    lat: -13.004333,
-						lng: -38.494333,
-					  });
-					  for(var i = 0; i<1000;i++)
-					  {
-					  var lat = -13.004333+(i/100);
-						   var marker = map.addMarker({
-								lat: lat,
-								lng: -38.494333,
-								title: 'Loop ed, Inc.',
-								click: function(e) {
-									alert('Szukaj tej miejscowości..');
-								  },
-								mouseover: function(e){
-								//marker.infoWindow.open(map, marker);
-								},
-								infoWindow: {
-								    content: "<b>Loop, Inc.</b> 795 Park Ave, Suite 120<br>San Francisco, CA 94107"
-								}
-							});
-
-						   //marker.infoWindow.open(map, marker);
-					   }
-					});
-				}
-			};
-
-		}();
-		UsersSearch.init();
-        });
-    </script>
-<?php endif; ?>
-
-
-
-<?php if (strstr($_SERVER['REQUEST_URI'], 'search')): ?>
-		<script type="text/javascript">
-        jQuery(document).ready(function() {
-        	$('#loginModal').modal('show');
-        });
-		</script>
-		<!-- https://developers.google.com/maps/documentation/javascript/places-autocomplete -->
-		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
-		<script type="text/javascript">
-			  jQuery(document).ready(function() {
-				
-				var defaultBounds = new google.maps.LatLngBounds(
-				  new google.maps.LatLng(-33.8902, 151.1759),
-				  new google.maps.LatLng(-33.8474, 151.2631));
-
-				var input = document.getElementById('search_city');
-				var options = {
-				  bounds: defaultBounds,
-				  types: ['geocode'],
-				   //componentRestrictions: {country: 'pl'}
-				};
-				autocomplete = new google.maps.places.Autocomplete(input, options);
-				
-				var input_route_from = document.getElementById('route_from');
-				autocomplete = new google.maps.places.Autocomplete(input_route_from, options);
-				
-				var input_route_to = document.getElementById('route_to');
-				autocomplete = new google.maps.places.Autocomplete(input_route_to, options);
-			})
-
-		</script>
-<?php endif; ?>    
-
 <div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="false" data-keyboard="false" data-backdrop="static">
   <div class="modal-dialog">
   <div class="modal-content">
@@ -315,6 +197,136 @@ License: You must have a valid license purchased only from themeforest (the abov
 
 
 
+ 
+    <!-- Load javascripts at bottom, this will reduce page load time -->
+    <!-- BEGIN CORE PLUGINS (REQUIRED FOR ALL PAGES) -->
+    <!--[if lt IE 9]>
+    <script src="/assets/global/plugins/respond.min.js"></script>
+    <![endif]--> 
+	<script src="/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="/assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+    <script src="/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>      
+    <script src="/assets/frontend/layout/scripts/back-to-top.js" type="text/javascript"></script>
+    <!-- END CORE PLUGINS -->
+
+	
+	
+    <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
+    <script src="/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
+    <script src="/assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.min.js" type="text/javascript"></script><!-- slider for products -->
+
+    <!-- BEGIN RevolutionSlider -->  
+    <script src="/assets/global/plugins/slider-revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js" type="text/javascript"></script> 
+    <script src="/assets/global/plugins/slider-revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js" type="text/javascript"></script> 
+    
+    <!-- END RevolutionSlider -->
+
+
+    <script src="/assets/frontend/layout/scripts/layout.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+        	Layout.init();    
+            Layout.initOWL();
+            RevosliderInit.initRevoSlider();
+            Layout.initTwitter();
+            //Layout.initFixHeaderWithPreHeader(); /* Switch On Header Fixing (only if you have pre-header) */
+            //Layout.initNavScrolling(); 
+        });
+    </script>
+    <!-- END PAGE LEVEL JAVASCRIPTS -->
+    
+<?php if (strstr($_SERVER['REQUEST_URI'], 'contact')):?>  
+    <!--if contact -->
+    <script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
+    <script src="/assets/global/plugins/gmaps/gmaps.js" type="text/javascript"></script>
+    <script src="/assets/frontend/pages/scripts/contact-us.js" type="text/javascript"></script>
+     <script type="text/javascript">
+        jQuery(document).ready(function() {
+            ContactUs.init();
+        });
+    </script>
+<?php endif; ?>
+
+
+
+
+
+<?php if (strstr($_SERVER['REQUEST_URI'], 'search')): ?>
+		<script type="text/javascript">
+        jQuery(document).ready(function() {
+        	$('#loginModal').modal('show');
+        });
+		</script>
+		<!-- https://developers.google.com/maps/documentation/javascript/places-autocomplete -->
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true&libraries=places"></script>
+		<script src="/assets/global/plugins/gmaps/gmaps.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			  jQuery(document).ready(function() {
+				
+				var defaultBounds = new google.maps.LatLngBounds(
+				  new google.maps.LatLng(-33.8902, 151.1759),
+				  new google.maps.LatLng(-33.8474, 151.2631));
+
+				var input = document.getElementById('search_city');
+				var options = {
+				  bounds: defaultBounds,
+				  types: ['geocode'],
+				   //componentRestrictions: {country: 'pl'}
+				};
+				autocomplete = new google.maps.places.Autocomplete(input, options);
+				
+				var input_route_from = document.getElementById('route_from');
+				autocomplete = new google.maps.places.Autocomplete(input_route_from, options);
+				
+				var input_route_to = document.getElementById('route_to');
+				autocomplete = new google.maps.places.Autocomplete(input_route_to, options);
+				
+				//markers
+				var UsersSearch = function () {
+
+				return {
+					//main function to initiate the module
+					init: function () {
+						var map;
+						$(document).ready(function(){
+						  map = new GMaps({
+							div: '#search_map',
+							lat: -13.004333,
+							lng: -38.494333,
+						  });
+						  for(var i = 0; i<1000;i++)
+						  {
+						  var lat = -13.004333+(i/100);
+							   var marker = map.addMarker({
+									lat: lat,
+									lng: -38.494333,
+									title: 'Loop ed, Inc.',
+									click: function(e) {
+										alert('Szukaj tej miejscowości..');
+									  },
+									mouseover: function(e){
+									//marker.infoWindow.open(map, marker);
+									},
+									infoWindow: {
+										content: "<b>Loop, Inc.</b> 795 Park Ave, Suite 120<br>San Francisco, CA 94107"
+									}
+								});
+
+							   //marker.infoWindow.open(map, marker);
+						   }
+					});
+				}
+			};
+
+		}();
+		UsersSearch.init();
+			})
+
+		</script>
+<?php endif; ?>    
+
+<script src="/js/trustran.js?v=001" type="text/javascript"></script>
+	
 
 </body>
 <!-- END BODY -->

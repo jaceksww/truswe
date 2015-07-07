@@ -118,11 +118,18 @@
 							foreach ($profiles as $user) {
 										//print_r($user);
 										echo '
-										<div class="row">
+										<div class="row" onclick="location.href=\'/'. $user['uri'].'\'">
 										
 											<div class="note note-default lightgray search-res-box" onclick="location.href = \'#\'">
 												<div class="col-lg-3">
-													<img class="img-responsive" src="../../assets/admin/pages/media/blog/3.jpg" alt="">
+												';
+												if(file_exists(WWW_ROOT."uploads/profiles/".$user['id']."/main.jpg")){
+													echo '<img class="img-responsive" src="'.WWW_ROOT.'uploads/profiles/'.$user['id'].'/main.jpg" alt="">';
+												}
+												else{
+													echo '<img class="img-responsive" src="'.WWW_ROOT.'uploads/profiles/avatar-default.jpg" alt="">';
+												} 
+												echo '
 												</div>
 												<div class="col-lg-9">
 													<h4 class="block">'. $user['login'].'</h4>
@@ -136,7 +143,7 @@
 														 echo trim( $cities_str, ', ');
 														
 											echo '</p>
-													<a href="'. $user['login'].'" class="btn btn-default pull-right">
+													<a href="/'. $user['uri'].'" class="btn btn-default pull-right">
 													Zobacz profil <i class="m-icon-swapright m-icon-white"></i>
 													</a>
 												</div>

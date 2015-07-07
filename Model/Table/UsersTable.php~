@@ -19,10 +19,10 @@ class UsersTable extends Table
 		
 			$conn = ConnectionManager::get('default');
 			 $users = $conn->query('
-				select u.id, u.login, uc.name, u.city from users u
+				select u.id, u.uri,u.login, uc.name, u.city from users u
 				left outer join users_user_categories as uuc on (u.id = uuc.user_id)
 				left outer join user_categories as uc on (uuc.user_category_id = uc.id) 
-				where uc.id = '.$catID.' 
+				where uc.id = '.$catID.' and active = 1 and deleted = 0
 				');
 			if($appendCities && count($users) > 0) {
 				$result = array();
@@ -62,13 +62,22 @@ class UsersTable extends Table
 			$cat = $uc->find()->where(['id' => $catID])->toArray();
 			return $cat;
 	}
+	public function getCats(){
+		
+			
+			$uc = TableRegistry::get('UserCategories');
+
+			// Start a new query.
+			$cats = $uc->find()->toArray();
+			return $cats;
+	}
 	
-	public function getUserParams($userID)
+	public function getUserParams($profile)
 	{
 			$u = TableRegistry::get('Users');
 
 			// Start a new query.
-			$user = $u->find()->where(['id' => $userID])->toArray();
+			$user = $u->find()->where(['uri' => $profile])->toArray();
 			return $user;
 	}
 }
