@@ -96,8 +96,15 @@ class UsersController extends AppController
      * @throws \Cake\Network\Exception\NotFoundException When the view file could not
      *   be found or \Cake\View\Exception\MissingTemplateException in debug mode.
      */
-    public function search($catID=1, $start=0, $limit=20)
+    public function search($catID=1, $page=0)
     {
+		
+			$limit = Configure::read('pagination_item_per_page');
+			$start = $page*Configure::read('pagination_item_per_page');
+			$total_pages = ceil($this->Users->getTotalUsersOfCat($catID) / Configure::read('pagination_item_per_page'));
+			$this->set('total_pages',  $total_pages);
+			$this->set('current_page',  $page);
+			
 		/*
         $query = $this->Users
 			->find('all')
@@ -114,6 +121,7 @@ class UsersController extends AppController
 			$this->set('profiles',  $query);
 			$queryCat = $this->Users->getCatParams($catID);
 			$this->set('catParams',  $queryCat);
+			
 		
     }
 	function getTRASA(){

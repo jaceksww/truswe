@@ -54,6 +54,17 @@ class UsersTable extends Table
 			}
 			return $users;
 	}
+	public function getTotalUsersOfCat($catID){
+		$conn = ConnectionManager::get('default');
+			 $users = $conn->query('
+				select u.id from users u
+				left outer join users_user_categories as uuc on (u.id = uuc.user_id)
+				left outer join user_categories as uc on (uuc.user_category_id = uc.id) 
+				where uc.id = '.$catID.' and active = 1 and deleted = 0
+				');
+			
+			return count($users);
+	}
 	public function getCatParams($catID){
 		
 			

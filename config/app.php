@@ -325,5 +325,6 @@ return [
         'defaults' => 'php',
     ],
     'pageurl'=>'http://trustran.swedrowski.eu/',
-    'staticurl'=>'/webroot/uploads/'
+    'staticurl'=>'/webroot/uploads/',
+	'pagination_item_per_page'=>5
 ];

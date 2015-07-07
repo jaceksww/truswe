@@ -155,44 +155,34 @@
 							?>
                               
                          
-						 
-						 
-								<ul class="pagination pagination-lg">
-									<li>
+						 <ul class="pagination pagination-lg">
+						 <?php
+						 echo '<li>
 										<a href="javascript:;">
 										<i class="fa fa-angle-left"></i>
 										</a>
-									</li>
-									<li>
-										<a href="javascript:;">
-										1 </a>
-									</li>
-									<li>
-										<a href="javascript:;">
-										2 </a>
-									</li>
-									<li>
-										<a href="javascript:;">
-										3 </a>
-									</li>
-									<li>
-										<a href="javascript:;">
-										4 </a>
-									</li>
-									<li>
-										<a href="javascript:;">
-										5 </a>
-									</li>
-									<li>
-										<a href="javascript:;">
-										6 </a>
-									</li>
-									<li>
+									</li>';
+						
+						 for($i=0; $i < $total_pages; $i++)
+						 {
+							 $active = '';
+							 if($current_page == $i) $active = 'active';
+							 $next = $i+1;
+							  echo '<li class="'.$active.'">
+										<a href="/pl/search/'.$catParams[0]->id.'/'.$i.'">
+										'.$next.'
+										</a>
+									</li>';
+						 }
+						 echo '<li>
 										<a href="javascript:;">
 										<i class="fa fa-angle-right"></i>
 										</a>
-									</li>
-								</ul>
+									</li>';
+									
+						 ?>
+								
+						</ul>
 							
 							
 					<!-- END TAB 1 -->
