@@ -90,7 +90,7 @@
 										 }?>
 									</td>
 									<td>
-										<?php //echo $this->Html->link('<i class="fa fa-edit"></i> Edytuj </a>', ['controller'=>'pages', 'action'=>'manage', $user['id'] ], array('escape'=>false,'class'=>'btn default btn-xs blue')); ?>
+										<?php echo $this->Html->link('<i class="fa fa-edit"></i> Edytuj </a>', ['controller'=>'users', 'action'=>'manage', $user['id'] ], array('escape'=>false,'class'=>'btn default btn-xs blue')); ?>
 										<?php echo $this->Html->link('<i class="fa fa-trash-o"></i> Usuń </a>', ['controller'=>'users', 'action'=>'updatefield', $user['id'], 1,'deleted' ], array('escape'=>false,'onclick'=>'return confirm("Usunąć wybranego zawodnika?")' ,'class'=>'btn btn-xs red')); ?>
 										<?php 
 										 if($user['active'] == 1){

@@ -92,4 +92,34 @@ class UsersTable extends Table
 			$user = $u->find()->where(['uri' => $profile])->toArray();
 			return $user;
 	}
+	
+	public function saveUserCategories($cats, $userID){
+		foreach($cats as $cat){
+			$conn = ConnectionManager::get('default');
+			 $users = $conn->query('
+				insert into users_user_categories (user_id, user_category_id) values ('.$userID.', '.$cat.')
+				');
+		}
+	}
+	
+	public function getUserCategories($userID){
+			$conn = ConnectionManager::get('default');
+			  $users = $conn->query('
+				select * from users_user_categories where user_id = '.$userID.' 
+				');
+		$usersCats =array();
+		foreach($users as $uc){
+			$usersCats[] = $uc['user_category_id'];
+		}
+		return $usersCats;
+		
+	}
+	public function resetUserCategories( $userID){
+			$conn = ConnectionManager::get('default');
+			 $users = $conn->query('
+				delete from users_user_categories where user_id = '.$userID.'
+				');
+		
+	}
+	
 }

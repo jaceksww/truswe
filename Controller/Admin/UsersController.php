@@ -65,21 +65,38 @@ class UsersController extends AppController
     	if($id == 0){
     		$this->set('title', 'Dodaj nowy');
     	}else{
-			$page = $this->Pages->get($id);
-			$this->set('page', $page);
+			$user = $this->Users->get($id);
+			$this->set('user', $user);
     		$this->set('title', 'Edycja wybranego elementu');
     	}
-    	$this->set('pageurl',Configure::read('pageurl'));
+    	
     	if(!empty($this->request->data)){
-    		$this->request->data['uri'] = strtolower($this->myurl($this->request->data['name']));
-			$pages = TableRegistry::get('Pages');
-			$entity = $pages->newEntity($this->request->data());
+    		//$this->request->data['uri'] = strtolower($this->myurl($this->request->data['name']));
+			$users = TableRegistry::get('Users');
+			$entity = $users->newEntity($this->request->data());
     		
-    		$pages->save($entity);
-    		$this->Flash->set('Strona została zapisana pomyślnie.');
-    		return $this->redirect(['controller'=>'pages','action' => 'manage', $entity->pageID]);
+    		$users->save($entity);
+			
+			if($_POST['type'] == 1)
+				{
+					if(!empty($_POST['transportType'])){
+						$this->Users->resetUserCategories( $entity->id);
+						$this->Users->saveUserCategories($_POST['transportType'], $entity->id);
+					}
+				}
+				
+    		$this->Flash->set('Dane użytkownika zostały zapisane pomyślnie.');
+    		return $this->redirect(['controller'=>'users','action' => 'index', $entity->type]);
     	}
     	
+		$queryCats = $this->Users->getCats();
+		$this->set('cats',  $queryCats);
+		
+		$queryUsersCats = $this->Users->getUserCategories($id);
+		
+		
+		$this->set('usersCats',  $queryUsersCats);
+		
 		$this->layout = 'admin';
     }
     

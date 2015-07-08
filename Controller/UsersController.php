@@ -58,11 +58,20 @@ class UsersController extends AppController
 			}
 			$resp = json_decode($response->body);
 			if($resp->success){
+				
 				$users = TableRegistry::get('Users');
 				$entity = $users->newEntity($this->request->data());
 				
 				$users->save($entity);
 				mkdir(WWW_ROOT."/uploads/profiles/".$entity->id, 0777);
+				
+				if($_POST['type'] == 1)
+				{
+					if(!empty($_POST['transportType'])){
+						$this->Users->saveUserCategories($_POST['transportType'], $entity->id);
+					}
+				}
+				
 				$this->Flash->success('Profil utworzono pomyślnie. Na podany adres email została wysłana ...');
 				
 				return $this->redirect('/');

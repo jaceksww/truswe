@@ -12,30 +12,96 @@
 			</div>
 			<div class="portlet-body form">	
 					<?php 
-					if(!empty($page)){
-						echo $this->Form->create($page, ['class' => 'form-horizontal form-bordered']); 
-						echo $this->Form->input('pageID');
+					if(!empty($user)){
+						echo $this->Form->create($user, ['class' => 'form-horizontal form-bordered']); 
+						echo $this->Form->input('id');
 					}else{
 						echo $this->Form->create('', ['class' => 'form-horizontal form-bordered']); 
 					}
-					echo $this->Form->hidden('uri');
+					//echo $this->Form->hidden('uri');
 					?>
 						<div class="form-group">
-							<label class="control-label col-md-3">Nazwa strony:</label>
+							<label class="control-label col-md-3">Login:</label>
 							<div class="controls  col-md-9">
-								<?php echo $this->Form->input('name',['class'=>'form-control', 'label'=>false]);?>
+								<?php echo $this->Form->input('login',['class'=>'form-control', 'label'=>false]);?>
 							</div>
 						</div>
 						
 						<div class="form-group">
-							<label class="control-label col-md-3">Tytuł:</label>
+							<label class="control-label col-md-3">Email:</label>
 							<div class="controls col-md-9">
-								<?php echo $this->Form->input('title',['class'=>'form-control', 'label'=>false]);?>
+								<?php echo $this->Form->input('email',['class'=>'form-control', 'label'=>false]);?>
 							</div>
 						</div>
+						
 						<div class="form-group">
-							<label class="control-label col-md-3">Treść strony:</label>
-							<?php echo $this->Form->textarea('content',['class'=>'inbox-editor wysihtml5 form-control  col-md-9', 'data-provide'=>'markdown' , 'rows'=>12,'label'=>false]);?>
+							<label class="control-label col-md-3">Imię:</label>
+							<div class="controls col-md-9">
+								<?php echo $this->Form->input('firstname',['class'=>'form-control', 'label'=>false]);?>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="control-label col-md-3">Nazwisko:</label>
+							<div class="controls col-md-9">
+								<?php echo $this->Form->input('lastname',['class'=>'form-control', 'label'=>false]);?>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="control-label col-md-3">Miasto:</label>
+							<div class="controls col-md-9">
+								<?php echo $this->Form->input('city',['class'=>'form-control', 'label'=>false]);?>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="control-label col-md-3">Rodzaj konta:</label>
+							<div class="controls col-md-9">
+								<?php
+								
+								$options = [
+									'1' => 'Kierowca',
+									'2' => 'Klient'
+								];
+								echo $this->Form->select('type', $options, [
+									
+								]);
+?>
+							</div>
+						</div>
+						
+						<fieldset>
+					
+					<div class="controls col-md-3 text-right">
+					  Rodzaj transportu:
+					</div>
+					<div class="controls col-md-9">
+					  <?php 
+					
+					  foreach ($cats as $cat):
+					  ?>
+                          <div class="md-checkbox">
+							<input name="transportType[]" value="<?php echo $cat['id'];?>" type="checkbox" id="checkboxCreateAccountTransport<?php echo $cat['id'];?>" class="md-check" <?php echo (in_array( $cat['id'], $usersCats)) ? 'checked' : ''; ?> >
+							<label name="transport" for="checkboxCreateAccountTransport<?php echo $cat['id'];?>">
+								<span></span>
+								<span class="check"></span>
+								<span class="box"></span>
+								<?php echo $cat['name'];?> 
+							</label>
+							</div>
+					  <?php 
+					  endforeach; 
+					  ?>
+					  </div>
+					  
+                    </fieldset>
+					
+					
+						
+						<div class="form-group">
+							<label class="control-label col-md-3">Opis:</label>
+							<?php echo $this->Form->textarea('description',['class'=>'inbox-editor wysihtml5 form-control  col-md-9', 'data-provide'=>'markdown' , 'rows'=>12,'label'=>false]);?>
 							
 						</div>
 						

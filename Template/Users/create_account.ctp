@@ -72,7 +72,7 @@
                         
                         <div class="col-lg-6">
                           <div class="md-checkbox">
-							<input type="checkbox" id="checkboxCreateAccountTransport<?php echo $cat['id'];?>" class="md-check" <?php echo ($i==0) ? 'checked' : ''; ?> >
+							<input name="transportType[]" value="<?php echo $cat['id'];?>" type="checkbox" id="checkboxCreateAccountTransport<?php echo $cat['id'];?>" class="md-check" <?php echo ($i==0) ? 'checked' : ''; ?> >
 							<label name="transport" for="checkboxCreateAccountTransport<?php echo $cat['id'];?>">
 								<span></span>
 								<span class="check"></span>
