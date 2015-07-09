@@ -93,6 +93,7 @@ class UsersTable extends Table
 			return $user;
 	}
 	
+	///categories
 	public function saveUserCategories($cats, $userID){
 		foreach($cats as $cat){
 			$conn = ConnectionManager::get('default');
@@ -120,6 +121,35 @@ class UsersTable extends Table
 				delete from users_user_categories where user_id = '.$userID.'
 				');
 		
+	}
+	
+	////cities
+	public function getUserCities($userID){
+		
+			$conn = ConnectionManager::get('default');
+			  $users_cities = $conn->query('
+				select * from user_cities where user_id = '.$userID.' 
+				');
+		$usersCities =array();
+		foreach($users_cities as $uc){
+			$usersCities[] = array('id'=>$uc['id'],'user_id'=>$uc['user_id'], 'city'=>$uc['city']);
+		}
+		return $usersCities;
+		
+	}
+	
+	public function remUserCity($id, $userID){
+		$conn = ConnectionManager::get('default');
+			 $users = $conn->query('
+				delete from user_cities where id = '.$id.' and user_id = '.$userID.'
+				');
+	}
+	
+	public function addUserCity($userID, $city){
+		$conn = ConnectionManager::get('default');
+			 $users = $conn->query('
+				insert into user_cities (user_id, city) values ('.$userID.', "'.$city.'")
+				');
 	}
 	
 }

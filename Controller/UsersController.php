@@ -60,6 +60,7 @@ class UsersController extends AppController
 			if($resp->success){
 				
 				$users = TableRegistry::get('Users');
+				$this->request->data['uri'] = $this->myurl($this->request->data('login'));
 				$entity = $users->newEntity($this->request->data());
 				
 				$users->save($entity);

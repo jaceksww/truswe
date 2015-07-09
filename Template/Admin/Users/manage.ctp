@@ -5,7 +5,10 @@
   
 <h1><?php echo $title ?></h1>
 
-
+<?php echo $this->Html->link('<i class="fa fa-arrow-circle-left"></i> Wróć do listy </a>', ['controller'=>'users', 'action'=>'index', $user['type'] ], array('escape'=>false,'class'=>'btn default btn-xs blue')); ?>
+<br />
+<hr />
+<br />
 		<div class="portlet box green">
 			<div class="portlet-title">
 				<div class="caption"><i class="fa fa-gift"></i>Dane strony</div>
@@ -20,6 +23,17 @@
 					}
 					//echo $this->Form->hidden('uri');
 					?>
+					<div class="form-group">
+							<label class="control-label col-md-3">Avatar:</label>
+							<div class="controls col-md-9">
+								<?php 
+									echo $this->Html->link('<i class="fa fa-camera"></i> Zmień zdjęcie główne', ['controller'=>'users', 'action'=>'mainimage', $user['id']] , array('escape'=>false,'class'=>'btn default btn-xs blue')); 
+								
+								?>
+
+							</div>
+						</div>
+						
 						<div class="form-group">
 							<label class="control-label col-md-3">Login:</label>
 							<div class="controls  col-md-9">
@@ -56,6 +70,20 @@
 						</div>
 						
 						<div class="form-group">
+							<label class="control-label col-md-3">Transport:</label>
+							<div class="controls col-md-9">
+								<?php 
+								if($user['type'] == 1){
+									echo $this->Html->link('<i class="fa fa-align-justify"></i> Zarządzaj miejscowościami', ['controller'=>'users', 'action'=>'manageCities', $user['id']] , array('escape'=>false,'class'=>'btn default btn-xs blue')); 
+								}else{
+									echo 'Aby dodać miejscowości zmień konto na "Kierowca"  i zapisz zmiany';
+								}
+								?>
+
+							</div>
+						</div>
+						
+						<div class="form-group">
 							<label class="control-label col-md-3">Rodzaj konta:</label>
 							<div class="controls col-md-9">
 								<?php
@@ -78,7 +106,7 @@
 					</div>
 					<div class="controls col-md-9">
 					  <?php 
-					
+					if($user['type'] == 1){
 					  foreach ($cats as $cat):
 					  ?>
                           <div class="md-checkbox">
@@ -92,6 +120,9 @@
 							</div>
 					  <?php 
 					  endforeach; 
+					  }else{
+									echo 'Aby dodać rodzaj transortu zmień konto na "Kierowca" i zapisz zmiany';
+								}
 					  ?>
 					  </div>
 					  
@@ -120,4 +151,9 @@
 					?>
 			</div>			
 		</div>
+<br />
+<hr />
+<br />
+		<?php echo $this->Html->link('<i class="fa fa-arrow-circle-left"></i> Wróć do listy </a>', ['controller'=>'users', 'action'=>'index', $user['type'] ], array('escape'=>false,'class'=>'btn default btn-xs blue')); ?>
+
 

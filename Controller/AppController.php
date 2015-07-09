@@ -46,8 +46,10 @@ class AppController extends Controller
     
     function myurl($text)
    {
+	   $text = strtolower($text);
+	   
    $wynik = str_replace(array('Ę','Ó','Ą','Ś','Ł','Ż','Ź','Ć','Ń','ę','ó','ą','ś','ł','ż','ź','ć','ń',' '),
-			array('E','O','A','S','L','Z','Z','C','N','e','o','a','s','l','z','z','c','n','-'),
+			array('e','o','a','s','l','z','z','c','n','e','o','a','s','l','z','z','c','n','-'),
 			$text);
    return $wynik;
    }
