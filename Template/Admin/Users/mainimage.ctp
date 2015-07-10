@@ -1,12 +1,12 @@
-<h1>Zarządzanie głównym zdjęciem użytkownika (Avatar)</h1>
 
+<h1><?php echo $title ?></h1>
 <?php echo $this->Html->link('<i class="fa fa-arrow-circle-left"></i> Wróć do użytkownika </a>', ['controller'=>'users', 'action'=>'manage', $userID ], array('escape'=>false,'class'=>'btn default btn-xs blue')); ?>
 <br />
 <hr />
 <br />
 		<div class="portlet box green">
 			<div class="portlet-title">
-				<div class="caption"><i class="fa fa-gift"></i>Dane strony</div>
+				<div class="caption"><i class="fa fa-camera"></i><?php echo $subtitle ?></div>
 			</div>
 			<div class="portlet-body form">	
 					<?php 
@@ -23,11 +23,11 @@
 								<?php echo $this->Form->input('id',['type'=>'hidden','value'=>$userID,'class'=>'form-control', 'label'=>false]);?>
 								<?php echo $this->Form->input('mainImage',['value'=>$mainimage, 'class'=>'form-control', 'label'=>false]);?>
 								<?php
-								if(file_exists("/uploads/profiles/".$userID."/".$mainimage.".jpg")){
-									echo '<img class="img-responsive" src="/uploads/profiles/'.$userID.'/'.$mainimage.'" alt="">';
+								if(file_exists($staticurl."profiles/".$userID."/".$mainimage)){
+									echo '<img class="img-responsive" src="'.$staticurl.'profiles/'.$userID.'/'.$mainimage.'" alt="">';
 								}
 								else{
-									echo '<img class="img-responsive" src="/uploads/profiles/avatar-default.jpg" alt="">';
+									echo '<img class="img-responsive" src="'.$staticurl.'profiles/avatar-default.jpg" alt="">';
 								} 
 								?>
 								<?php echo $this->Form->file('new_mainImage',['class'=>'form-control', 'label'=>false]);?>

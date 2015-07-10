@@ -45,13 +45,7 @@ class UsersController extends AppController
         //$this->set('users',$users_els);
 		$this->layout = 'admin';
     }
-    public function updatefield($id, $state, $field){
-		$users = TableRegistry::get('Users');
-		$entity = $users->newEntity(array('id'=>$id, $field=>$state));
-		$users->save($entity);
-		$this->Flash->set('Profil zaktualizowany.');
-    	return $this->redirect(['controller'=>'users','action' => 'index', 1]);
-	} 
+    
 	public function setfilter($type, $val){
 		$session = $this->request->session();
 		$session->write('filter.'.$type, $val);
@@ -61,14 +55,25 @@ class UsersController extends AppController
 			return $this->redirect($_SERVER['HTTP_REFERER']);
 		}
 	}
+	
+	public function updatefield($id, $state, $field){
+		$users = TableRegistry::get('Users');
+		$entity = $users->newEntity(array('id'=>$id, $field=>$state));
+		$users->save($entity);
+		$this->Flash->set('Profil zaktualizowany.');
+    	return $this->redirect(['controller'=>'users','action' => 'index', 1]);
+	} 
+	
     public function manage($id=0)
     {
     	if($id == 0){
-    		$this->set('title', 'Dodaj nowy');
+    		$this->set('title', 'Zarządzanie profilem');
+			$this->set('subtitle', 'Dodaj nowy');
     	}else{
 			$user = $this->Users->get($id);
 			$this->set('user', $user);
-    		$this->set('title', 'Edycja wybranego elementu');
+			$this->set('title', 'Zarządzanie profilem');
+    		$this->set('subtitle', 'Edycja wybranego elementu');
     	}
     	
     	if(!empty($this->request->data)){
@@ -100,6 +105,9 @@ class UsersController extends AppController
     }
     public function manageCities($id=0)
     {
+		$this->set('title', 'Zarządzanie profilem');
+		$this->set('subtitle', 'Zarządzanie miejscowościami');
+		
 		$this->set('userID',  $id);
 		if(!empty($this->request->data)){
 			$this->Users->addUserCity($_POST['userID'], $_POST['city']);
@@ -120,13 +128,19 @@ class UsersController extends AppController
 	
 	// main image
 	public function mainimage($userID){
+		$this->set('title', 'Zarządzanie profilem');
+		$this->set('subtitle', 'Zarządzanie zdjęciem głównym');
+		
 		if(!empty($this->request->data)){
 			$tmpname = rand(000000,99999999999).'.jpg';
-			move_uploaded_file($_FILES['new_mainImage']['tmp_name'], "/webroot/uploads/profiles/tmp/".$tmpname);
-			$this->Image->prepare("/webroot/uploads/profiles/tmp/".$tmpname);
+			move_uploaded_file($_FILES['new_mainImage']['tmp_name'], Configure::read('staticurl')."profiles/tmp/".$tmpname);
+			$this->Image->prepare(Configure::read('staticurl')."profiles/tmp/".$tmpname);
 			$this->Image->resize(320,200);//width,height,Red,Green,Blue
-			$this->Image->save("/webroot/uploads/profiles/".$userID."/".$tmpname);//.$Largeimage[0].'_L.'.$Largeimage[1]
-			exit;
+			$this->Image->save(Configure::read('staticurl')."profiles/".$userID."/".$tmpname);//.$Largeimage[0].'_L.'.$Largeimage[1]
+			
+			$this->Users->saveUserMainimage($tmpname, $userID);
+			unlink(Configure::read('staticurl')."profiles/tmp/".$tmpname);
+			
 		}
 		$this->set('userID', $userID);
 		$user = $this->Users->get($userID);

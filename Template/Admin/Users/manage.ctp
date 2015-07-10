@@ -4,14 +4,16 @@
 <!-- Page level plugin styles END -->
   
 <h1><?php echo $title ?></h1>
-
 <?php echo $this->Html->link('<i class="fa fa-arrow-circle-left"></i> Wróć do listy </a>', ['controller'=>'users', 'action'=>'index', $user['type'] ], array('escape'=>false,'class'=>'btn default btn-xs blue')); ?>
 <br />
 <hr />
 <br />
+<?php
+//pr($this->Session->read('User'));
+?>
 		<div class="portlet box green">
 			<div class="portlet-title">
-				<div class="caption"><i class="fa fa-gift"></i>Dane strony</div>
+				<div class="caption"><i class="fa fa-cog"></i><?php echo $subtitle ?></div>
 			</div>
 			<div class="portlet-body form">	
 					<?php 
@@ -26,6 +28,14 @@
 					<div class="form-group">
 							<label class="control-label col-md-3">Avatar:</label>
 							<div class="controls col-md-9">
+							<?php
+								if(file_exists($staticurl."profiles/".$user['id']."/".$user['mainImage'])){
+									echo '<img class="img-responsive" src="'.$staticurl.'profiles/'.$user['id'].'/'.$user['mainImage'].'" alt="">';
+								}
+								else{
+									echo '<img class="img-responsive" src="'.$staticurl.'profiles/avatar-default.jpg" alt="">';
+								} 
+								?>
 								<?php 
 									echo $this->Html->link('<i class="fa fa-camera"></i> Zmień zdjęcie główne', ['controller'=>'users', 'action'=>'mainimage', $user['id']] , array('escape'=>false,'class'=>'btn default btn-xs blue')); 
 								

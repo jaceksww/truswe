@@ -6,13 +6,13 @@
               <div class="row">
                 <div class="col-md-12 col-sm-12">
                 
-                  <form class="form-horizontal" role="form">
+                  <?php echo $this->Form->create('Users/login', ['id'=>'formCreateAccountTransport','class'=>'form-horizontal', 'method' => 'post']);?>
                     <fieldset>
                       
                       <div class="form-group">
                         <label for="lastname" class="col-lg-4 control-label">Login / Nazwa profilu <span class="require">*</span></label>
                         <div class="col-lg-8">
-                          <input type="text" class="form-control" id="lastname">
+                          <?php echo $this->Form->input('login',['id'=>'loginLogin','class'=>'form-control', 'label'=>false]);?>
                         </div>
                       </div>
                       
@@ -20,7 +20,7 @@
                       <div class="form-group">
                         <label for="password" class="col-lg-4 control-label">Hasło <span class="require">*</span></label>
                         <div class="col-lg-8">
-                          <input type="text" class="form-control" id="password">
+                          <?php echo $this->Form->input('password',['type'=>'password','id'=>'passwordLogin','class'=>'form-control', 'label'=>false]);?>
                         </div>
                       </div>
                      
@@ -62,7 +62,7 @@
                       </div>
                     </div>
                     
-                  </form>
+                  <?php echo $this->Form->end()?>
                 </div>
                 <!--
                 <div class="col-md-4 col-sm-4 pull-right">

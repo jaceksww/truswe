@@ -15,6 +15,16 @@ class UsersTable extends Table
         ]);
     }
 	
+	//login
+	public function findUserByLoginPass($login, $pass){
+		
+		$userT = TableRegistry::get('Users');
+
+			// Start a new query.
+			$user = $userT->find()->where(['login' => $login, 'password'=>md5($pass)])->toArray();
+			return $user;
+			
+	}
 	public function getUsersOfCat($catID, $appendCities = false, $start=0, $limit=20){
 		
 			$conn = ConnectionManager::get('default');
@@ -67,7 +77,6 @@ class UsersTable extends Table
 	}
 	public function getCatParams($catID){
 		
-			
 			$uc = TableRegistry::get('UserCategories');
 
 			// Start a new query.
@@ -150,6 +159,16 @@ class UsersTable extends Table
 			 $users = $conn->query('
 				insert into user_cities (user_id, city) values ('.$userID.', "'.$city.'")
 				');
+	}
+	
+	//photo
+	public function saveUserMainimage($mainimage, $userID){
+		
+			$conn = ConnectionManager::get('default');
+			 $users = $conn->query('
+				update users set mainImage = "'.$mainimage.'" where id = '.$userID.'
+				');
+		
 	}
 	
 }

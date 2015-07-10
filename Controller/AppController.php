@@ -36,14 +36,22 @@ class AppController extends Controller
      *
      * @return void
      */
+	 public $session = '';
     public function initialize()
     {
         parent::initialize();
         $this->loadComponent('Flash');
         $this->set('staticurl',Configure::read('staticurl'));
-	$this->set('pageurl',Configure::read('pageurl'));
+		$this->set('pageurl',Configure::read('pageurl'));
+		$this->session = $this->request->session();
     }
     
+	function checkIfLoggedIn(){
+		if(!$this->session->check('User')){
+			$this->Flash->error('Zaloguj się aby uzyskać dostęp do wybranej strony.');
+			return $this->redirect('/users/login');
+		}
+	}
     function myurl($text)
    {
 	   $text = strtolower($text);

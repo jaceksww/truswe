@@ -31,9 +31,41 @@ use Cake\ORM\TableRegistry;
 class UsersController extends AppController
 {
 	public $helpers = ['Session'];
+	public function initialize()
+    {
+        parent::initialize();
+		$this->loadComponent('Image');
+		$session = $this->request->session();
+    }
+	
+	public function logout()
+	{
+		
+		$this->session->destroy('User');
+		$this->Flash->success('Zostałęś wylogowany z serwisu.');
+		return $this->redirect('/');
+	}
 	public function login()
 	{
-	
+		
+		if(!empty($this->request->data)){
+			if(empty($this->request->data['login']) || empty($this->request->data['password'])){
+				$this->Flash->error('Login i hasło są obowiązkowe');
+				return $this->redirect('/users/login');
+			}
+			
+			$checkUser = $this->Users->findUserByLoginPass($this->request->data('login'), $this->request->data('password'));
+			if(!empty($checkUser)){
+				$this->Flash->success('Witaj '.$checkUser[0]['login'].'! Logowanie zakończyło się powodzeniem.');
+				unset($checkUser[0]['password']);
+				$this->session->write('User', $checkUser[0]);
+				return $this->redirect('/');
+			}else{
+				$this->Flash->error('Nieudana próba logowania. Spróbuj ponownie.');
+				return $this->redirect('/users/login');
+			}
+		}
+		
 	}
 	public function create_account()
 	{
@@ -61,6 +93,7 @@ class UsersController extends AppController
 				
 				$users = TableRegistry::get('Users');
 				$this->request->data['uri'] = $this->myurl($this->request->data('login'));
+				$this->request->data['password'] = md5($this->request->data['password']);
 				$entity = $users->newEntity($this->request->data());
 				
 				$users->save($entity);
@@ -149,6 +182,91 @@ class UsersController extends AppController
 			echo '<br />';
 		}
     }
+	
+	
+	/*account*/
+	public function manage()
+    {
+    	$this->checkIfLoggedIn();
+		$id = $this->session->read('User.id');
+		
+			$user = $this->Users->get($id);
+			$this->set('user', $user);
+    		$this->set('title', 'Moje konto');
+			$this->set('subtitle', 'Zarządzanie profilem');
+    	
+    	
+    	if(!empty($this->request->data)){
+    		//$this->request->data['uri'] = strtolower($this->myurl($this->request->data['name']));
+			$users = TableRegistry::get('Users');
+			$entity = $users->newEntity($this->request->data());
+    		
+    		$users->save($entity);
+			
+			if($_POST['type'] == 1)
+				{
+					if(!empty($_POST['transportType'])){
+						$this->Users->resetUserCategories( $entity->id);
+						$this->Users->saveUserCategories($_POST['transportType'], $entity->id);
+					}
+				}
+				
+    		$this->Flash->set('Dane użytkownika zostały zapisane pomyślnie.');
+    		return $this->redirect(['controller'=>'users','action' => 'index', $entity->type]);
+    	}
+    	
+		$queryCats = $this->Users->getCats();
+		$this->set('cats',  $queryCats);
+		
+		$queryUsersCats = $this->Users->getUserCategories($id);
+		$this->set('usersCats',  $queryUsersCats);
+		$this -> render('/Admin/Users/manage');
+    }
+    public function manageCities($id=0)
+    {
+		$this->set('title', 'Moje konto');
+		$this->set('subtitle', 'Zarządzanie miejscowościami');
+		
+		$this->set('userID',  $id);
+		if(!empty($this->request->data)){
+			$this->Users->addUserCity($_POST['userID'], $_POST['city']);
+			$this->Flash->set('Miejscowość została zapisana pomyślnie.');
+			return $this->redirect(['controller'=>'users','action' => 'manageCities', $_POST['userID']]);
+		}
+		$queryUsersCities = $this->Users->getUserCities($id);
+		$this->set('usersCities',  $queryUsersCities);
+		
+		$this -> render('/Admin/Users/manage_cities');
+	}
+	public function removeCity($id=0, $userID)
+    {
+		$this->Users->remUserCity($id, $userID);
+		
+		return $this->redirect(['controller'=>'users','action' => 'manageCities', $userID]);
+	}
+	
+	// main image
+	public function mainimage($userID){
+		$this->set('title', 'Moje konto');
+		$this->set('subtitle', 'Zarządzanie zdjęciem głównym (Avatar)');
+			
+		if(!empty($this->request->data)){
+			$tmpname = rand(000000,99999999999).'.jpg';
+			move_uploaded_file($_FILES['new_mainImage']['tmp_name'], Configure::read('staticurl')."profiles/tmp/".$tmpname);
+			$this->Image->prepare(Configure::read('staticurl')."profiles/tmp/".$tmpname);
+			$this->Image->resize(320,200);//width,height,Red,Green,Blue
+			$this->Image->save(Configure::read('staticurl')."profiles/".$userID."/".$tmpname);//.$Largeimage[0].'_L.'.$Largeimage[1]
+			
+			$this->Users->saveUserMainimage($tmpname, $userID);
+			unlink(Configure::read('staticurl')."profiles/tmp/".$tmpname);
+			
+		}
+		$this->set('userID', $userID);
+		$user = $this->Users->get($userID);
+		$this->set('mainimage', $user['mainImage']);
+		
+		$this -> render('/Admin/Users/mainimage');
+	}
     
     
     

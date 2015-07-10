@@ -113,8 +113,13 @@ License: You must have a valid license purchased only from themeforest (the abov
                 <!-- BEGIN TOP BAR MENU -->
                 <div class="col-md-6 col-sm-6 additional-nav">
                     <ul class="list-unstyled list-inline pull-right">
+					<?php if($this->Session->check('User')):?>
+						<li><a class="openLoginModal" href="/users/logout" data-toggle="modal">Wyloguj się</a></li>
+                        <li><a class="openRegisterModal" href="/<?php echo $this->Session->read('User.login')?>" data-toggle="modal"><?php echo 'www.'.$_SERVER['SERVER_NAME'].'/'.$this->Session->read('User.login')?></a></li>
+					<?php else: ?>
                         <li><a class="openLoginModal" href="#loginModal" data-toggle="modal">Zaloguj się</a></li>
                         <li><a class="openRegisterModal" href="#registerModal" data-toggle="modal">Utwórz profil</a></li>
+					<?php endif; ?>
                     </ul>
                 </div>
                 <!-- END TOP BAR MENU -->
