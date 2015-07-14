@@ -36,6 +36,8 @@ class UsersController extends AppController
         parent::initialize();
 		$this->loadComponent('Image');
 		$session = $this->request->session();
+	    $this->loadComponent('RequestHandler');
+    
     }
 	
 	public function logout()
@@ -72,6 +74,8 @@ class UsersController extends AppController
 		
 		if(!empty($this->request->data)){
 			
+			$error = $this->Users->checkErrors($this->request->data);
+			
 			$http = new Client();
 			//client secret: 6LcVSAkTAAAAAMq0ReQwFbz5_-d11ajrYbfgFCSe
 			//transp secret: 6LfiNgkTAAAAACm7btqBsvsxEUsGfE23gvcIOtrq
@@ -88,8 +92,15 @@ class UsersController extends AppController
 				]);
 
 			}
+			
 			$resp = json_decode($response->body);
-			if($resp->success){
+			if(!$resp->success)
+			{
+				$error .= 'Źle zweryfikowana kontrola antyspamowa!';
+			}
+			
+			
+			if($error == ''){
 				
 				$users = TableRegistry::get('Users');
 				$this->request->data['uri'] = $this->myurl($this->request->data('login'));
@@ -111,8 +122,8 @@ class UsersController extends AppController
 				return $this->redirect('/');
 			}
 			else{
-				$this->Flash->error('Źle zweryfikowana kontrola antyspamowa!');
-				return $this->redirect('/');
+				$this->Flash->error($error);
+				//return $this->redirect('/users/create_account');
 			}
 			
 
@@ -120,6 +131,22 @@ class UsersController extends AppController
 		$queryCats = $this->Users->getCats();
 		$this->set('cats',  $queryCats);
 	}
+	
+	public function checkIfExists($field, $val){
+		
+		$queryUser = $this->Users->getByField($field, $val);
+		$ret = array();
+		if( empty($queryUser) ){
+			 $ret['exists'] = false;
+		}else{
+			$ret['exists'] = true;
+		}
+		
+		$this->autoRender = false;
+		$this->set('_serialize', $ret);
+		echo json_encode($ret);
+	}
+	
 	
 	public function profile($profile)
 	{

@@ -25,6 +25,39 @@ class UsersTable extends Table
 			return $user;
 			
 	}
+	
+	//create account
+	public function getByField($field, $val){
+		
+		$userT = TableRegistry::get('Users');
+
+			// Start a new query.
+			$user = $userT->find()->where([$field => $val])->toArray();
+			return $user;
+	}
+	public function checkErrors($data){
+		$error = '';
+			if($data['password'] == '' || $data['password'] != $data['password2']){
+				$error .= "Wystąpił problem z hasłem. Sprawdź czy hasło nie jest puste i czy są identyczne.<br />";
+			}
+			if(empty($data['login']) ||  $data['login'] == '' ){
+				$error .= "Login jest obowiązkowy<br />";
+			}
+			if(empty($data['email']) ||  $data['email'] == '' ){
+				$error .= "Email jest obowiązkowy<br />";
+			}
+			
+			$queryLogin = $this->getByField('login', $data['login'] );
+			if(!empty($queryLogin )){
+				$error .= "Ten Login już wcześniej został użyty<br />";
+			}
+			$queryEmail = $this->getByField('email', $data['email'] );
+			if(!empty($queryEmail )){
+				$error .= "Ten Email już wcześniej został użyty <br />";
+			}
+			return $error;
+	}
+	
 	public function getUsersOfCat($catID, $appendCities = false, $start=0, $limit=20){
 		
 			$conn = ConnectionManager::get('default');

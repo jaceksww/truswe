@@ -15,7 +15,50 @@ class UsersTable extends Table
         ]);
     }
 	
-	public function getUsersOfCat($catID, $appendCities = false){
+	//login
+	public function findUserByLoginPass($login, $pass){
+		
+		$userT = TableRegistry::get('Users');
+
+			// Start a new query.
+			$user = $userT->find()->where(['login' => $login, 'password'=>md5($pass)])->toArray();
+			return $user;
+			
+	}
+	
+	//create account
+	public function getByField($field, $val){
+		
+		$userT = TableRegistry::get('Users');
+
+			// Start a new query.
+			$user = $userT->find()->where([$field => $val])->toArray();
+			return $user;
+	}
+	public function checkErrors($data){
+		$error = '';
+			if($data['password'] == '' || $data['password'] != $data['password2']){
+				$error .= "Wystąpił problem z hasłem. Sprawdź czy hasło nie jest puste i czy są identyczne.\n";
+			}
+			if(empty($data['login']) ||  $data['login'] == '' ){
+				$error .= "Login jest obowiązkowy\n";
+			}
+			if(empty($data['email']) ||  $data['email'] == '' ){
+				$error .= "Email jest obowiązkowy\n";
+			}
+			
+			$queryLogin = $this->getByField('login', $data['login'] );
+			if(!empty($queryLogin )){
+				$error .= "Ten Login już wcześniej został użyty\n";
+			}
+			$queryEmail = $this->getByField('email', $data['email'] );
+			if(!empty($queryEmail )){
+				$error .= "Ten Email już wcześniej został użyty \n";
+			}
+			return $error;
+	}
+	
+	public function getUsersOfCat($catID, $appendCities = false, $start=0, $limit=20){
 		
 			$conn = ConnectionManager::get('default');
 			 $users = $conn->query('
@@ -23,6 +66,7 @@ class UsersTable extends Table
 				left outer join users_user_categories as uuc on (u.id = uuc.user_id)
 				left outer join user_categories as uc on (uuc.user_category_id = uc.id) 
 				where uc.id = '.$catID.' and active = 1 and deleted = 0
+				limit '.$start.', '.$limit.'
 				');
 			if($appendCities && count($users) > 0) {
 				$result = array();
@@ -53,9 +97,19 @@ class UsersTable extends Table
 			}
 			return $users;
 	}
+	public function getTotalUsersOfCat($catID){
+		$conn = ConnectionManager::get('default');
+			 $users = $conn->query('
+				select u.id from users u
+				left outer join users_user_categories as uuc on (u.id = uuc.user_id)
+				left outer join user_categories as uc on (uuc.user_category_id = uc.id) 
+				where uc.id = '.$catID.' and active = 1 and deleted = 0
+				');
+			
+			return count($users);
+	}
 	public function getCatParams($catID){
 		
-			
 			$uc = TableRegistry::get('UserCategories');
 
 			// Start a new query.
@@ -80,4 +134,74 @@ class UsersTable extends Table
 			$user = $u->find()->where(['uri' => $profile])->toArray();
 			return $user;
 	}
+	
+	///categories
+	public function saveUserCategories($cats, $userID){
+		foreach($cats as $cat){
+			$conn = ConnectionManager::get('default');
+			 $users = $conn->query('
+				insert into users_user_categories (user_id, user_category_id) values ('.$userID.', '.$cat.')
+				');
+		}
+	}
+	
+	public function getUserCategories($userID){
+			$conn = ConnectionManager::get('default');
+			  $users = $conn->query('
+				select * from users_user_categories where user_id = '.$userID.' 
+				');
+		$usersCats =array();
+		foreach($users as $uc){
+			$usersCats[] = $uc['user_category_id'];
+		}
+		return $usersCats;
+		
+	}
+	public function resetUserCategories( $userID){
+			$conn = ConnectionManager::get('default');
+			 $users = $conn->query('
+				delete from users_user_categories where user_id = '.$userID.'
+				');
+		
+	}
+	
+	////cities
+	public function getUserCities($userID){
+		
+			$conn = ConnectionManager::get('default');
+			  $users_cities = $conn->query('
+				select * from user_cities where user_id = '.$userID.' 
+				');
+		$usersCities =array();
+		foreach($users_cities as $uc){
+			$usersCities[] = array('id'=>$uc['id'],'user_id'=>$uc['user_id'], 'city'=>$uc['city']);
+		}
+		return $usersCities;
+		
+	}
+	
+	public function remUserCity($id, $userID){
+		$conn = ConnectionManager::get('default');
+			 $users = $conn->query('
+				delete from user_cities where id = '.$id.' and user_id = '.$userID.'
+				');
+	}
+	
+	public function addUserCity($userID, $city){
+		$conn = ConnectionManager::get('default');
+			 $users = $conn->query('
+				insert into user_cities (user_id, city) values ('.$userID.', "'.$city.'")
+				');
+	}
+	
+	//photo
+	public function saveUserMainimage($mainimage, $userID){
+		
+			$conn = ConnectionManager::get('default');
+			 $users = $conn->query('
+				update users set mainImage = "'.$mainimage.'" where id = '.$userID.'
+				');
+		
+	}
+	
 }

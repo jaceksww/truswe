@@ -48,6 +48,37 @@ jQuery(document).ready(function() {
 			return false;
 		}
 	});
+	$('#loginTransport').blur(function(){
+		$.ajax({
+		  url: "/users/checkIfExists/login/"+$(this).val(),
+		  success: function( data ) {
+					  if(data.exists == true ){
+					  	$('#loginTransport').val('');
+					  	$('#loginTransport').focus();
+					  	$('<span class="small_error login_error">Wybrany login już istnieje</span>').insertAfter('#loginTransport');
+					  }else{
+					  	$('.login_error').remove();
+					  }
+				},
+		  dataType: 'json'
+		});
+	});
+	$('#emailTransport').blur(function(){
+		$.ajax({
+		  url: "/users/checkIfExists/email/"+$(this).val(),
+		  success: function( data ) {
+					  if(data.exists == true ){
+					  	$('#emailTransport').val('');
+					  	$('#emailTransport').focus();
+					  	$('<span class="small_error email_error">Wybrany email już istnieje</span>').insertAfter('#emailTransport');
+					  }else{
+					  	$('.email_error').remove();
+					  }
+				},
+		  dataType: 'json'
+		});
+	});
+	
 	
 	$('#submitCreateAccountClient').click(function(){
 			var passwordClient = $('#passwordClient').val();
@@ -86,6 +117,37 @@ jQuery(document).ready(function() {
 			 $("#registerModal").animate({ scrollTop: 0 }, "slow");
 			return false;
 		}
+	});
+	
+	$('#loginClient').blur(function(){
+		$.ajax({
+		  url: "/users/checkIfExists/login/"+$(this).val(),
+		  success: function( data ) {
+					  if(data.exists == true ){
+					  	$('#loginClient').val('');
+					  	$('#loginClient').focus();
+					  	$('<span class="small_error login_error">Wybrany login już istnieje</span>').insertAfter('#loginClient');
+					  }else{
+					  	$('.login_error').remove();
+					  }
+				},
+		  dataType: 'json'
+		});
+	});
+	$('#emailClient').blur(function(){
+		$.ajax({
+		  url: "/users/checkIfExists/email/"+$(this).val(),
+		  success: function( data ) {
+					  if(data.exists == true ){
+					  	$('#emailClient').val('');
+					  	$('#emailClient').focus();
+					  	$('<span class="small_error email_error">Wybrany email już istnieje</span>').insertAfter('#emailClient');
+					  }else{
+					  	$('.email_error').remove();
+					  }
+				},
+		  dataType: 'json'
+		});
 	});
 	
 

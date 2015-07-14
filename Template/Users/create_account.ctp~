@@ -72,7 +72,7 @@
                         
                         <div class="col-lg-6">
                           <div class="md-checkbox">
-							<input type="checkbox" id="checkboxCreateAccountTransport<?php echo $cat['id'];?>" class="md-check" <?php echo ($i==0) ? 'checked' : ''; ?> >
+							<input name="transportType[]" value="<?php echo $cat['id'];?>" type="checkbox" id="checkboxCreateAccountTransport<?php echo $cat['id'];?>" class="md-check" <?php echo ($i==0) ? 'checked' : ''; ?> >
 							<label name="transport" for="checkboxCreateAccountTransport<?php echo $cat['id'];?>">
 								<span></span>
 								<span class="check"></span>
@@ -265,19 +265,4 @@
 </div>
           
           <!-- END CONTENT -->
-          
-<script type="text/javascript">
-var widgetCaptchaClient;
-    var widgetCaptchaTransport;
-var CaptchaCallback = function(){
- 	
-        widgetCaptchaClient = grecaptcha.render('createAccountRecaptchaClient', {
-          'sitekey' : '6LcVSAkTAAAAADwfYKPNAqYpAlWFcoX9htabCIYZ',
-          'theme' : 'light'
-        });
-        widgetCaptchaTransport = grecaptcha.render('createAccountRecaptchaTransport', {
-          'sitekey' : '6LfiNgkTAAAAADLWbjrNshBvXvdP4OvCbEaz0iGP',
-          'theme' : 'light'
-        });
-};
-</script>
+

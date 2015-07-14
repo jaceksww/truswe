@@ -21,7 +21,7 @@
 							
 	<div class="tab-content">
 		<div class="tab-pane active" id="portlet_tab_1">
-            <div class="content-form-page">
+            
               <div class="row">
                 <div class="col-md-12 col-sm-12">
 					<div id="createAccountErrorBoxTransport" class="alert alert-danger fade in" style="display:none">
@@ -167,7 +167,7 @@
                   </div>
                 </div>
                 -->
-              </div>
+              
             </div>
 		</div>
 	<div class="tab-pane" id="portlet_tab_2">
