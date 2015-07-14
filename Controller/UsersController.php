@@ -168,7 +168,10 @@ class UsersController extends AppController
      */
     public function search($catID=1, $page=0)
     {
-		
+		if($page > 0 && !$this->session->check('User')){
+			$this->Flash->error('Nie możesz przeglądać ofert. Zaloguj się lub utwórz konto.');
+			return $this->redirect(['controller'=>'users','action' => 'login']);
+		}
 			$limit = Configure::read('pagination_item_per_page');
 			$start = $page*Configure::read('pagination_item_per_page');
 			$total_pages = ceil($this->Users->getTotalUsersOfCat($catID) / Configure::read('pagination_item_per_page'));

@@ -257,11 +257,13 @@ License: You must have a valid license purchased only from themeforest (the abov
 
 
 <?php if (strstr($_SERVER['REQUEST_URI'], 'search')): ?>
+		<?php if(!$this->Session->check('User')):?>
 		<script type="text/javascript">
         jQuery(document).ready(function() {
         	$('#loginModal').modal('show');
         });
 		</script>
+		<?php endif; ?>
 		<!-- https://developers.google.com/maps/documentation/javascript/places-autocomplete -->
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true&libraries=places"></script>
 		<script src="/assets/global/plugins/gmaps/gmaps.js" type="text/javascript"></script>
