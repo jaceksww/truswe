@@ -11,7 +11,7 @@
 <?php
 //pr($this->Session->read('User'));
 ?>
-		<div class="portlet box green">
+		<div class="portlet box red">
 			<div class="portlet-title">
 				<div class="caption"><i class="fa fa-cog"></i><?php echo $subtitle ?></div>
 			</div>
@@ -26,14 +26,22 @@
 					//echo $this->Form->hidden('uri');
 					?>
 					<div class="form-group">
+							<label class="control-label col-md-3">Adres strony profilowej:</label>
+							<div class="controls  col-md-9">
+								<li><a class="openRegisterModal" href="/<?php echo $this->Session->read('User.login')?>" data-toggle="modal"><?php echo 'www.'.$_SERVER['SERVER_NAME'].'/'.$this->Session->read('User.login')?></a></li>
+					
+							</div>
+						</div>
+						
+					<div class="form-group">
 							<label class="control-label col-md-3">Avatar:</label>
 							<div class="controls col-md-9">
 							<?php
-								if(file_exists($staticurl."profiles/".$user['id']."/".$user['mainImage'])){
-									echo '<img class="img-responsive" src="'.$staticurl.'profiles/'.$user['id'].'/'.$user['mainImage'].'" alt="">';
+								if($user['mainImage'] != '' && file_exists($staticurl."profiles/".$user['id']."/".$user['mainImage'])){
+									echo '<img class="img-responsive" style="max-height:80px" src="'.$staticurl.'profiles/'.$user['id'].'/'.$user['mainImage'].'" alt="">';
 								}
 								else{
-									echo '<img class="img-responsive" src="'.$staticurl.'profiles/avatar-default.jpg" alt="">';
+									echo '<img class="img-responsive" style="max-height:80px" src="'.$staticurl.'profiles/avatar-default.jpg" alt="">';
 								} 
 								?>
 								<?php 
@@ -75,7 +83,7 @@
 						<div class="form-group">
 							<label class="control-label col-md-3">Miasto:</label>
 							<div class="controls col-md-9">
-								<?php echo $this->Form->input('city',['class'=>'form-control', 'label'=>false]);?>
+								<?php echo $this->Form->input('city',['id'=>'manage_city','class'=>'form-control', 'label'=>false]);?>
 							</div>
 						</div>
 						
@@ -83,6 +91,12 @@
 							<label class="control-label col-md-3">Transport:</label>
 							<div class="controls col-md-9">
 								<?php 
+								if(!empty($usersCities)){
+									foreach($usersCities as $city){
+									echo '<li>'.$city['city'];
+									echo '</li> ';
+								}
+								}
 								if($user['type'] == 1){
 									echo $this->Html->link('<i class="fa fa-align-justify"></i> Zarządzaj miejscowościami', ['controller'=>'users', 'action'=>'manageCities', $user['id']] , array('escape'=>false,'class'=>'btn default btn-xs blue')); 
 								}else{

@@ -49,7 +49,9 @@ class AppController extends Controller
 	function checkIfLoggedIn(){
 		if(!$this->session->check('User')){
 			$this->Flash->error('Zaloguj się aby uzyskać dostęp do wybranej strony.');
-			return $this->redirect('/users/login');
+			return false;
+		}else{
+			return true;
 		}
 	}
     function myurl($text)

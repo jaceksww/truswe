@@ -174,7 +174,7 @@ class UsersTable extends Table
 				');
 		$usersCities =array();
 		foreach($users_cities as $uc){
-			$usersCities[] = array('id'=>$uc['id'],'user_id'=>$uc['user_id'], 'city'=>$uc['city']);
+			$usersCities[] = array('id'=>$uc['id'],'user_id'=>$uc['user_id'], 'city'=>$uc['city'], 'lat'=>$uc['city_lat'], 'lng'=>$uc['city_lng']);
 		}
 		return $usersCities;
 		
@@ -187,11 +187,27 @@ class UsersTable extends Table
 				');
 	}
 	
-	public function addUserCity($userID, $city){
+	public function addUserCity($userID, $city, $coords=array('lat'=>0,'lng'=>0)){
 		$conn = ConnectionManager::get('default');
 			 $users = $conn->query('
-				insert into user_cities (user_id, city) values ('.$userID.', "'.$city.'")
+				insert into user_cities (user_id, city, city_lat, city_lng) values ('.$userID.', "'.$city.'", "'.$coords['lat'].'", "'.$coords['lng'].'")
 				');
+	}
+	
+	public function findLatLng($place){
+		$address = str_replace(array(", ", " ", " "), array("+", "+", "+"), $place);
+		$url = "http://maps.google.com/maps/api/geocode/json?address=$address&sensor=false&region=Europe";
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		$response = curl_exec($ch);
+		curl_close($ch);
+		$response_a = json_decode($response);
+		$lat = $response_a->results[0]->geometry->location->lat;
+		$long = $response_a->results[0]->geometry->location->lng;
+		return array('lat'=>$lat, 'lng'=>$long);
 	}
 	
 	//photo

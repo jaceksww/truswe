@@ -152,11 +152,23 @@ class UsersController extends AppController
 	{
 		$queryUser = $this->Users->getUserParams($profile);
 		$this->set('userParams',  $queryUser);
+		
+		$queryUsersCities = $this->Users->getUserCities($queryUser[0]['id']);
+		$this->set('usersCities',  $queryUsersCities);
+		
 		if($queryUser[0]['type'] == '1'){
 			$this->layout = 'profile';
 		}else{
 			$this->layout = 'profilesimple';
 		}
+	}
+	public function profile_about(){
+		$params = $this->request->params['pass']['params'];
+		
+		$this->set('usersParams',  $params);
+		
+		$queryUsersCities = $this->Users->getUserCities($params[0]['id']);
+		$this->set('usersCities',  $queryUsersCities);
 	}
 
     /**
@@ -217,7 +229,10 @@ class UsersController extends AppController
 	/*account*/
 	public function manage()
     {
-    	$this->checkIfLoggedIn();
+    	if(!$this->checkIfLoggedIn()){
+			return $this->redirect(['controller'=>'users','action' => 'login']);
+		}
+		
 		$id = $this->session->read('User.id');
 		
 			$user = $this->Users->get($id);
@@ -229,6 +244,9 @@ class UsersController extends AppController
     	if(!empty($this->request->data)){
     		//$this->request->data['uri'] = strtolower($this->myurl($this->request->data['name']));
 			$users = TableRegistry::get('Users');
+			$coords = $this->Users->findLatLng($this->request->data('city'));
+			$this->request->data['city_lat'] = $coords['lat'];
+			$this->request->data['city_lng'] = $coords['lng'];
 			$entity = $users->newEntity($this->request->data());
     		
     		$users->save($entity);
@@ -242,7 +260,7 @@ class UsersController extends AppController
 				}
 				
     		$this->Flash->set('Dane użytkownika zostały zapisane pomyślnie.');
-    		return $this->redirect(['controller'=>'users','action' => 'index', $entity->type]);
+    		return $this->redirect(['controller'=>'users','action' => 'manage', $entity->id]);
     	}
     	
 		$queryCats = $this->Users->getCats();
@@ -250,6 +268,10 @@ class UsersController extends AppController
 		
 		$queryUsersCats = $this->Users->getUserCategories($id);
 		$this->set('usersCats',  $queryUsersCats);
+		
+		$queryUsersCities = $this->Users->getUserCities($id);
+		$this->set('usersCities',  $queryUsersCities);
+		
 		$this -> render('/Admin/Users/manage');
     }
     public function manageCities($id=0)
@@ -259,7 +281,9 @@ class UsersController extends AppController
 		
 		$this->set('userID',  $id);
 		if(!empty($this->request->data)){
-			$this->Users->addUserCity($_POST['userID'], $_POST['city']);
+			$coords = $this->Users->findLatLng($_POST['city']);
+			
+			$this->Users->addUserCity($_POST['userID'], $_POST['city'], $coords);
 			$this->Flash->set('Miejscowość została zapisana pomyślnie.');
 			return $this->redirect(['controller'=>'users','action' => 'manageCities', $_POST['userID']]);
 		}

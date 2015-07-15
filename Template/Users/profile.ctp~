@@ -1,2 +1,0 @@
-<h1>PROFIL $userParams[0]['login']; ?></h1>
-PROFIL <?php pr($userParams); ?>

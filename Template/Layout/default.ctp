@@ -255,7 +255,13 @@ License: You must have a valid license purchased only from themeforest (the abov
 
 
 
+<?php if (strstr($_SERVER['REQUEST_URI'], 'search') || strstr($_SERVER['REQUEST_URI'], 'manageCities') || strstr($_SERVER['REQUEST_URI'], 'manage')): ?>
+<!-- https://developers.google.com/maps/documentation/javascript/places-autocomplete -->
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true&libraries=places"></script>
+		<script src="/assets/global/plugins/gmaps/gmaps.js" type="text/javascript"></script>
+<?php endif; ?>    
 
+		
 <?php if (strstr($_SERVER['REQUEST_URI'], 'search')): ?>
 		<?php if(!$this->Session->check('User')):?>
 		<script type="text/javascript">
@@ -264,9 +270,7 @@ License: You must have a valid license purchased only from themeforest (the abov
         });
 		</script>
 		<?php endif; ?>
-		<!-- https://developers.google.com/maps/documentation/javascript/places-autocomplete -->
-		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true&libraries=places"></script>
-		<script src="/assets/global/plugins/gmaps/gmaps.js" type="text/javascript"></script>
+		
 		<script type="text/javascript">
 			  jQuery(document).ready(function() {
 				
@@ -287,6 +291,7 @@ License: You must have a valid license purchased only from themeforest (the abov
 				
 				var input_route_to = document.getElementById('route_to');
 				autocomplete = new google.maps.places.Autocomplete(input_route_to, options);
+				
 				
 				//markers
 				var UsersSearch = function () {
@@ -331,6 +336,48 @@ License: You must have a valid license purchased only from themeforest (the abov
 
 		</script>
 <?php endif; ?>    
+
+<?php if (strstr($_SERVER['REQUEST_URI'], 'manageCities') ): ?>
+		
+		
+		<script type="text/javascript">
+			  jQuery(document).ready(function() {
+				
+				var defaultBounds = new google.maps.LatLngBounds(
+				  new google.maps.LatLng(-33.8902, 151.1759),
+				  new google.maps.LatLng(-33.8474, 151.2631));
+
+				var input = document.getElementById('city');
+				var options = {
+				  bounds: defaultBounds,
+				  types: ['geocode'],
+				   //componentRestrictions: {country: 'pl'}
+				};
+				autocomplete = new google.maps.places.Autocomplete(input, options);
+			  });
+		</script>
+<?php endif; ?>   
+
+<?php if ( strstr($_SERVER['REQUEST_URI'], 'manage')): ?>
+		
+		
+		<script type="text/javascript">
+			  jQuery(document).ready(function() {
+				
+				var defaultBounds = new google.maps.LatLngBounds(
+				  new google.maps.LatLng(-33.8902, 151.1759),
+				  new google.maps.LatLng(-33.8474, 151.2631));
+
+				var inputManage = document.getElementById('manage_city');
+				var options = {
+				  bounds: defaultBounds,
+				  types: ['geocode'],
+				   //componentRestrictions: {country: 'pl'}
+				};
+				autocomplete = new google.maps.places.Autocomplete(inputManage, options);
+			  });
+		</script>
+<?php endif; ?>
 
 <script src="/js/trustran.js?v=001" type="text/javascript"></script>
 	
