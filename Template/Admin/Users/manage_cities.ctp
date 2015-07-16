@@ -4,13 +4,14 @@
 <br />
 <hr />
 <br />
-		<div class="portlet box green">
-			<div class="portlet-title">
-				<div class="caption"><i class="fa fa-cog"></i><?php echo $subtitle ?></div>
-			</div>
+		<div class="portlet box red"  style="border:none;">
+			
 			<div class="portlet-body form">	
+				<?php echo $this->element('user_manage_menu', ['user'=>$user, 'active'=>3]);?>
+
 				<div class="row">
 				<div class="controls col-md-12">
+				<br /><h3><?php echo $subtitle ?></h3>
 				<?php
 				echo $this->Form->create('', ['class' => 'form-horizontal form-bordered']); 
 				?>
@@ -18,8 +19,8 @@
 				<table style="margin:10px;">
 				<tr>
 					<td>Dodaj nową: </td>
-					<td><?php echo $this->Form->input('city',['inputContainer' => '{{content}}', 'label'=>false]);?></td>
-					<td><input type="submit" value="Dodaj"></td>
+					<td><?php echo $this->Form->input('city',['class'=>'form-control','inputContainer' => '{{content}}', 'label'=>false]);?></td>
+					<td><input type="submit"  class="btn green" value="Dodaj"></td>
 				</tr>
 				</table>
 

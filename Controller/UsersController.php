@@ -170,6 +170,12 @@ class UsersController extends AppController
 		$queryUsersCities = $this->Users->getUserCities($params[0]['id']);
 		$this->set('usersCities',  $queryUsersCities);
 	}
+	public function profile_description(){
+		$params = $this->request->params['pass']['params'];
+		
+		$this->set('usersParams',  $params);
+		
+	}
 
     /**
      * Displays a view
@@ -290,6 +296,9 @@ class UsersController extends AppController
 		$queryUsersCities = $this->Users->getUserCities($id);
 		$this->set('usersCities',  $queryUsersCities);
 		
+		$user = $this->Users->get($id);
+			$this->set('user', $user);
+		
 		$this -> render('/Admin/Users/manage_cities');
 	}
 	public function removeCity($id=0, $userID)
@@ -297,6 +306,40 @@ class UsersController extends AppController
 		$this->Users->remUserCity($id, $userID);
 		
 		return $this->redirect(['controller'=>'users','action' => 'manageCities', $userID]);
+	}
+	
+	public function galleries($id=0)
+    {
+		$this->set('title', 'Moje konto');
+		$this->set('subtitle', 'Zarządzanie galerią');
+		
+		$this->set('userID',  $id);
+		if(!empty($this->request->data)){
+			$userID = $id;
+			$tmpname = rand(000000,99999999999).'.jpg';
+			move_uploaded_file($_FILES['photo']['tmp_name'], Configure::read('staticurl')."profiles/tmp/".$tmpname);
+			$this->Image->prepare(Configure::read('staticurl')."profiles/tmp/".$tmpname);
+			$this->Image->resize(320,200);//width,height,Red,Green,Blue
+			$this->Image->save(Configure::read('staticurl')."profiles/".$userID."/".$tmpname);//.$Largeimage[0].'_L.'.$Largeimage[1]
+			
+			$this->Users->addUserPhoto($_POST['userID'], $tmpname);
+			$this->Flash->set('Miejscowość została zapisana pomyślnie.');
+			return $this->redirect(['controller'=>'users','action' => 'galleries', $_POST['userID']]);
+		}
+		$queryUsersPhotos = $this->Users->getUserPhotos($id);
+		$this->set('usersPhotos',  $queryUsersPhotos);
+		
+		$user = $this->Users->get($id);
+		$this->set('user', $user);
+		
+		$this -> render('/Admin/Users/galleries');
+	}
+	public function removePhoto($id=0, $userID)
+    {
+		//TO DO!!! remove file
+		$this->Users->remUserPhoto($id, $userID);
+		
+		return $this->redirect(['controller'=>'users','action' => 'galleries', $userID]);
 	}
 	
 	// main image
@@ -315,6 +358,9 @@ class UsersController extends AppController
 			unlink(Configure::read('staticurl')."profiles/tmp/".$tmpname);
 			
 		}
+		$user = $this->Users->get($userID);
+			$this->set('user', $user);
+			
 		$this->set('userID', $userID);
 		$user = $this->Users->get($userID);
 		$this->set('mainimage', $user['mainImage']);
@@ -322,6 +368,35 @@ class UsersController extends AppController
 		$this -> render('/Admin/Users/mainimage');
 	}
     
+	//descriptions
+	public function description($userID){
+		
+		if(!$this->checkIfLoggedIn()){
+			return $this->redirect(['controller'=>'users','action' => 'login']);
+		}
+		
+		$id = $this->session->read('User.id');
+		
+			$user = $this->Users->get($id);
+			$this->set('user', $user);
+    		$this->set('title', 'Moje konto');
+			$this->set('subtitle', 'Zarządzanie treściami "O mnie" i "Zakres usług"');
+    	
+    	
+    	if(!empty($this->request->data)){
+    		//$this->request->data['uri'] = strtolower($this->myurl($this->request->data['name']));
+			$users = TableRegistry::get('Users');
+			$entity = $users->newEntity($this->request->data());
+    		$users->save($entity);
+			
+				
+    		$this->Flash->set('Dane użytkownika zostały zapisane pomyślnie.');
+    		return $this->redirect(['controller'=>'users','action' => 'description', $entity->id]);
+    	}
+    	
+		
+		$this -> render('/Admin/Users/description');
+	}
     
     
 }

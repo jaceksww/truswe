@@ -123,12 +123,14 @@
 											<div class="note note-default lightgray search-res-box" onclick="location.href = \'#\'">
 												<div class="col-lg-3">
 												';
-												if(file_exists("/uploads/profiles/".$user['id']."/main.jpg")){
-													echo '<img class="img-responsive" src="/uploads/profiles/'.$user['id'].'/main.jpg" alt="">';
+												
+												if($user['mainImage'] != '' && file_exists($staticurl."profiles/".$user['id']."/".$user['mainImage'])){
+													echo '<img class="img-responsive"  src="'.$staticurl.'profiles/'.$user['id'].'/'.$user['mainImage'].'" alt="">';
 												}
 												else{
-													echo '<img class="img-responsive" src="/uploads/profiles/avatar-default.jpg" alt="">';
+													echo '<img class="img-responsive" src="'.$staticurl.'profiles/avatar-default.jpg" alt="">';
 												} 
+								
 												echo '
 												</div>
 												<div class="col-lg-9">

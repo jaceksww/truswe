@@ -131,25 +131,8 @@
     <div class="container">
       <h2>O mnie / <strong>o firmie</strong></h2>
       <div class="row">
-        <div class="col-md-3" >
-		 <img src="../../img/o-mnie/o-mnie-1.jpg" alt="walmart" class="img-responsive">
-		 </div>
-		 <div class="col-md-9" >
-          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-			nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-			nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-			nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-			nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-			nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-			nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-			nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-			nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-			nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-        </div>
+	  <?php echo $this->requestAction(['controller'=>'users', 'action'=>'profile_description', 'pass'=>array('params'=>$userParams)]);?>
+        
         </div>
       </div>
     </div>

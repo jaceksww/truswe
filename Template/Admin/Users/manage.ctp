@@ -11,11 +11,12 @@
 <?php
 //pr($this->Session->read('User'));
 ?>
-		<div class="portlet box red">
-			<div class="portlet-title">
-				<div class="caption"><i class="fa fa-cog"></i><?php echo $subtitle ?></div>
-			</div>
+		<div class="portlet box red"  style="border:none;">
+			
 			<div class="portlet-body form">	
+				<?php echo $this->element('user_manage_menu', ['user'=>$user, 'active'=>1]);?>
+				
+					<br /><h3 class="page-title"><?php echo $subtitle ?></h3>
 					<?php 
 					if(!empty($user)){
 						echo $this->Form->create($user, ['class' => 'form-horizontal form-bordered']); 
@@ -86,9 +87,9 @@
 								<?php echo $this->Form->input('city',['id'=>'manage_city','class'=>'form-control', 'label'=>false]);?>
 							</div>
 						</div>
-						
+						<!--
 						<div class="form-group">
-							<label class="control-label col-md-3">Transport:</label>
+							<label class="control-label col-md-3">W jakiś miejscowościach świadczysz usługi?:</label>
 							<div class="controls col-md-9">
 								<?php 
 								if(!empty($usersCities)){
@@ -106,6 +107,7 @@
 
 							</div>
 						</div>
+						-->
 						
 						<div class="form-group">
 							<label class="control-label col-md-3">Rodzaj konta:</label>
@@ -123,8 +125,7 @@
 							</div>
 						</div>
 						
-						<fieldset>
-					
+					<fieldset>
 					<div class="controls col-md-3 text-right">
 					  Rodzaj transportu:
 					</div>
@@ -153,13 +154,13 @@
                     </fieldset>
 					
 					
-						
+						<!--
 						<div class="form-group">
 							<label class="control-label col-md-3">Opis:</label>
 							<?php echo $this->Form->textarea('description',['class'=>'inbox-editor wysihtml5 form-control  col-md-9', 'data-provide'=>'markdown' , 'rows'=>12,'label'=>false]);?>
 							
 						</div>
-						
+						-->
 						<div class="form-actions">
 									<div class="row">
 										<div class="col-md-offset-3 col-md-9">
@@ -168,6 +169,7 @@
 										</div>
 									</div>
 								</div>
+								
 								
 					<?php 
 					//echo $this->Form->button('Add');

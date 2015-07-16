@@ -7,19 +7,7 @@
                 <li> <h4> <i class="fa fa-circle"></i> Miejscowość: <?php echo (!empty($usersParams[0]['city'])) ? $usersParams[0]['city'] : '-' ?></h4></li>
                 <li> <h4> <i class="fa fa-circle"></i> Zakres usług:</h4>
 				<br />
-					<ul>
-						<li> Transport na lotniska: 
-						<?php 
-						$cities = '';
-						foreach($usersCities as $city): 
-						$cities .= $city['city']. ', '; 
-						endforeach; 
-						$cities = trim ($cities, ', ');
-						echo $cities;
-						?>
-						</li>
-						<li> Dowóz w dowolne miejsce na terenie kraju.</li>
-					</ul>
+					<?php echo (!empty($usersParams[0]['services'])) ? $usersParams[0]['services'] : '-' ?>
 				</li>
                
               </ul>
