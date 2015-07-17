@@ -49,19 +49,17 @@
 				<h4>Miejscowości, w których świadczone są usługi <small>(miejscowości te zostaną zaznaczone na mapie jako miejsca gdzie świadczysz usługi)</small></h4>
 				<ul>
 				<?php 
-				$userCitiesStr = '';
+				 echo  count($usersCities);
 				if(!empty($usersCities) && count($usersCities) > 0){
 					foreach($usersCities as $city){
 						if($city['is_main'] == 1) continue;
-						$userCitiesStr .= '<li>'.$city['city'];
-						$userCitiesStr .= $this->Html->link('<i class="fa fa-times-circle"></i> ', ['controller'=>'users', 'action'=>'removeCity', $city['id'], $city['user_id'] ], array('escape'=>false));
-						$userCitiesStr .= '</li> ';
+						echo '<li>'.$city['city'];
+						echo $this->Html->link('<i class="fa fa-times-circle"></i> ', ['controller'=>'users', 'action'=>'removeCity', $city['id'], $city['user_id'] ], array('escape'=>false));
+						echo '</li> ';
 					}
+				}else{
+					echo 'Brak zapisanych miejscowości';
 				}
-				if($userCitiesStr == ''){
-					$userCitiesStr .= '<li>Brak zapisanych miejscowości</li>';
-				}
-				echo $userCitiesStr;
 				?>
 				</ul>
 				
@@ -69,19 +67,16 @@
 				<h4>Siedziby firmy <small>(miejscowości te zostaną zaznaczone na mapie na Twojej stronie profilowej - kontakt)</small></h4>
 				<ul>
 				<?php 
-				$userCitiesStr = '';
 				if(!empty($usersCities) && count($usersCities) > 0){
 					foreach($usersCities as $city){
 						if($city['is_main'] == 0) continue;
-						$userCitiesStr .= '<li>'.$city['city'];
-						$userCitiesStr .= $this->Html->link('<i class="fa fa-times-circle"></i> ', ['controller'=>'users', 'action'=>'removeCity', $city['id'], $city['user_id'] ], array('escape'=>false));
-						$userCitiesStr .= '</li> ';
+						echo '<li>'.$city['city'];
+						echo $this->Html->link('<i class="fa fa-times-circle"></i> ', ['controller'=>'users', 'action'=>'removeCity', $city['id'], $city['user_id'] ], array('escape'=>false));
+						echo '</li> ';
 					}
+				}else{
+					echo 'Brak zapisanych miejscowości';
 				}
-				if($userCitiesStr == ''){
-					$userCitiesStr .= '<li>Brak zapisanych miejscowości</li>';
-				}
-				echo $userCitiesStr;
 				?>
 				</ul>
 			</div>

@@ -38,22 +38,22 @@ class UsersTable extends Table
 	public function checkErrors($data){
 		$error = '';
 			if($data['password'] == '' || $data['password'] != $data['password2']){
-				$error .= "Wystąpił problem z hasłem. Sprawdź czy hasło nie jest puste i czy są identyczne.\n";
+				$error .= "Wystąpił problem z hasłem. Sprawdź czy hasło nie jest puste i czy są identyczne.<br />";
 			}
 			if(empty($data['login']) ||  $data['login'] == '' ){
-				$error .= "Login jest obowiązkowy\n";
+				$error .= "Login jest obowiązkowy<br />";
 			}
 			if(empty($data['email']) ||  $data['email'] == '' ){
-				$error .= "Email jest obowiązkowy\n";
+				$error .= "Email jest obowiązkowy<br />";
 			}
 			
 			$queryLogin = $this->getByField('login', $data['login'] );
 			if(!empty($queryLogin )){
-				$error .= "Ten Login już wcześniej został użyty\n";
+				$error .= "Ten Login już wcześniej został użyty<br />";
 			}
 			$queryEmail = $this->getByField('email', $data['email'] );
 			if(!empty($queryEmail )){
-				$error .= "Ten Email już wcześniej został użyty \n";
+				$error .= "Ten Email już wcześniej został użyty <br />";
 			}
 			return $error;
 	}
@@ -62,7 +62,7 @@ class UsersTable extends Table
 		
 			$conn = ConnectionManager::get('default');
 			 $users = $conn->query('
-				select u.id, u.uri,u.login, uc.name, u.city from users u
+				select u.id, u.uri,u.login, uc.name, u.city, u.mainImage from users u
 				left outer join users_user_categories as uuc on (u.id = uuc.user_id)
 				left outer join user_categories as uc on (uuc.user_category_id = uc.id) 
 				where uc.id = '.$catID.' and active = 1 and deleted = 0
@@ -174,7 +174,7 @@ class UsersTable extends Table
 				');
 		$usersCities =array();
 		foreach($users_cities as $uc){
-			$usersCities[] = array('id'=>$uc['id'],'user_id'=>$uc['user_id'], 'city'=>$uc['city']);
+			$usersCities[] = array('id'=>$uc['id'],'is_main'=>$uc['is_main'],'user_id'=>$uc['user_id'], 'city'=>$uc['city'], 'lat'=>$uc['city_lat'], 'lng'=>$uc['city_lng']);
 		}
 		return $usersCities;
 		
@@ -187,11 +187,27 @@ class UsersTable extends Table
 				');
 	}
 	
-	public function addUserCity($userID, $city){
+	public function addUserCity($userID, $city,$is_main, $coords=array('lat'=>0,'lng'=>0)){
 		$conn = ConnectionManager::get('default');
 			 $users = $conn->query('
-				insert into user_cities (user_id, city) values ('.$userID.', "'.$city.'")
+				insert into user_cities (user_id, city, city_lat, city_lng, is_main) values ('.$userID.', "'.$city.'", "'.$coords['lat'].'", "'.$coords['lng'].'", '.$is_main.')
 				');
+	}
+	
+	public function findLatLng($place){
+		$address = str_replace(array(", ", " ", " "), array("+", "+", "+"), $place);
+		$url = "http://maps.google.com/maps/api/geocode/json?address=$address&sensor=false&region=Europe";
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		$response = curl_exec($ch);
+		curl_close($ch);
+		$response_a = json_decode($response);
+		$lat = $response_a->results[0]->geometry->location->lat;
+		$long = $response_a->results[0]->geometry->location->lng;
+		return array('lat'=>$lat, 'lng'=>$long);
 	}
 	
 	//photo
@@ -202,6 +218,33 @@ class UsersTable extends Table
 				update users set mainImage = "'.$mainimage.'" where id = '.$userID.'
 				');
 		
+	}
+	public function getUserPhotos($userID){
+		
+			$conn = ConnectionManager::get('default');
+			  $users_photos = $conn->query('
+				select * from user_photos where user_id = '.$userID.' 
+				');
+		$usersPhotos =array();
+		foreach($users_photos as $up){
+			$usersPhotos[] = array('id'=>$up['id'],'user_id'=>$up['user_id'], 'photo'=>$up['photo']);
+		}
+		return $usersPhotos;
+		
+	}
+	
+	public function remUserPhoto($id, $userID){
+		$conn = ConnectionManager::get('default');
+			 $users = $conn->query('
+				delete from user_photos where id = '.$id.' and user_id = '.$userID.'
+				');
+	}
+	
+	public function addUserPhoto($userID, $photo){
+		$conn = ConnectionManager::get('default');
+			 $users = $conn->query('
+				insert into user_photos (user_id, photo) values ('.$userID.', "'.$photo.'")
+				');
 	}
 	
 }

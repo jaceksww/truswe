@@ -174,7 +174,7 @@ class UsersTable extends Table
 				');
 		$usersCities =array();
 		foreach($users_cities as $uc){
-			$usersCities[] = array('id'=>$uc['id'],'user_id'=>$uc['user_id'], 'city'=>$uc['city'], 'lat'=>$uc['city_lat'], 'lng'=>$uc['city_lng']);
+			$usersCities[] = array('id'=>$uc['id'],'is_main'=>$uc['is_main'],'user_id'=>$uc['user_id'], 'city'=>$uc['city'], 'lat'=>$uc['city_lat'], 'lng'=>$uc['city_lng']);
 		}
 		return $usersCities;
 		
@@ -187,10 +187,10 @@ class UsersTable extends Table
 				');
 	}
 	
-	public function addUserCity($userID, $city, $coords=array('lat'=>0,'lng'=>0)){
+	public function addUserCity($userID, $city, $coords=array('lat'=>0,'lng'=>0),$is_main){
 		$conn = ConnectionManager::get('default');
 			 $users = $conn->query('
-				insert into user_cities (user_id, city, city_lat, city_lng) values ('.$userID.', "'.$city.'", "'.$coords['lat'].'", "'.$coords['lng'].'")
+				insert into user_cities (user_id, city, city_lat, city_lng, is_main) values ('.$userID.', "'.$city.'", "'.$coords['lat'].'", "'.$coords['lng'].'", '.$is_main.')
 				');
 	}
 	

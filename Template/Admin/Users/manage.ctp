@@ -80,13 +80,18 @@
 								<?php echo $this->Form->input('lastname',['class'=>'form-control', 'label'=>false]);?>
 							</div>
 						</div>
-						
+						<!--
 						<div class="form-group">
-							<label class="control-label col-md-3">Miasto:</label>
+							<label class="control-label col-md-3">Sziedziba firmy:</label>
 							<div class="controls col-md-9">
 								<?php echo $this->Form->input('city',['id'=>'manage_city','class'=>'form-control', 'label'=>false]);?>
+								<?php 
+									echo $this->Html->link('<i class="fa fa-justify"></i> Dodaj więcej siedzib', ['controller'=>'users', 'action'=>'manageCities', $user['id'],1] , array('escape'=>false,'class'=>'btn default btn-xs blue')); 
+								
+								?>
 							</div>
 						</div>
+						-->
 						<!--
 						<div class="form-group">
 							<label class="control-label col-md-3">W jakiś miejscowościach świadczysz usługi?:</label>

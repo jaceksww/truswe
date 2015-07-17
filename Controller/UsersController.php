@@ -280,7 +280,7 @@ class UsersController extends AppController
 		
 		$this -> render('/Admin/Users/manage');
     }
-    public function manageCities($id=0)
+    public function manageCities($id=0, $is_main=0)
     {
 		$this->set('title', 'Moje konto');
 		$this->set('subtitle', 'Zarządzanie miejscowościami');
@@ -289,7 +289,7 @@ class UsersController extends AppController
 		if(!empty($this->request->data)){
 			$coords = $this->Users->findLatLng($_POST['city']);
 			
-			$this->Users->addUserCity($_POST['userID'], $_POST['city'], $coords);
+			$this->Users->addUserCity($_POST['userID'], $_POST['city'], $coords, $_POST['is_main']);
 			$this->Flash->set('Miejscowość została zapisana pomyślnie.');
 			return $this->redirect(['controller'=>'users','action' => 'manageCities', $_POST['userID']]);
 		}
@@ -298,7 +298,7 @@ class UsersController extends AppController
 		
 		$user = $this->Users->get($id);
 			$this->set('user', $user);
-		
+		$this->set('is_main', $is_main);
 		$this -> render('/Admin/Users/manage_cities');
 	}
 	public function removeCity($id=0, $userID)

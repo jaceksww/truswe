@@ -94,7 +94,7 @@ class UsersController extends AppController
 			}
 			
 			$resp = json_decode($response->body);
-			if(!$resp->success){
+			if(!$resp->success)
 			{
 				$error .= 'Źle zweryfikowana kontrola antyspamowa!';
 			}
@@ -152,11 +152,29 @@ class UsersController extends AppController
 	{
 		$queryUser = $this->Users->getUserParams($profile);
 		$this->set('userParams',  $queryUser);
+		
+		$queryUsersCities = $this->Users->getUserCities($queryUser[0]['id']);
+		$this->set('usersCities',  $queryUsersCities);
+		
 		if($queryUser[0]['type'] == '1'){
 			$this->layout = 'profile';
 		}else{
 			$this->layout = 'profilesimple';
 		}
+	}
+	public function profile_about(){
+		$params = $this->request->params['pass']['params'];
+		
+		$this->set('usersParams',  $params);
+		
+		$queryUsersCities = $this->Users->getUserCities($params[0]['id']);
+		$this->set('usersCities',  $queryUsersCities);
+	}
+	public function profile_description(){
+		$params = $this->request->params['pass']['params'];
+		
+		$this->set('usersParams',  $params);
+		
 	}
 
     /**
@@ -168,7 +186,10 @@ class UsersController extends AppController
      */
     public function search($catID=1, $page=0)
     {
-		
+		if($page > 0 && !$this->session->check('User')){
+			$this->Flash->error('Nie możesz przeglądać ofert. Zaloguj się lub utwórz konto.');
+			return $this->redirect(['controller'=>'users','action' => 'login']);
+		}
 			$limit = Configure::read('pagination_item_per_page');
 			$start = $page*Configure::read('pagination_item_per_page');
 			$total_pages = ceil($this->Users->getTotalUsersOfCat($catID) / Configure::read('pagination_item_per_page'));
@@ -214,7 +235,10 @@ class UsersController extends AppController
 	/*account*/
 	public function manage()
     {
-    	$this->checkIfLoggedIn();
+    	if(!$this->checkIfLoggedIn()){
+			return $this->redirect(['controller'=>'users','action' => 'login']);
+		}
+		
 		$id = $this->session->read('User.id');
 		
 			$user = $this->Users->get($id);
@@ -226,6 +250,9 @@ class UsersController extends AppController
     	if(!empty($this->request->data)){
     		//$this->request->data['uri'] = strtolower($this->myurl($this->request->data['name']));
 			$users = TableRegistry::get('Users');
+			$coords = $this->Users->findLatLng($this->request->data('city'));
+			$this->request->data['city_lat'] = $coords['lat'];
+			$this->request->data['city_lng'] = $coords['lng'];
 			$entity = $users->newEntity($this->request->data());
     		
     		$users->save($entity);
@@ -239,7 +266,7 @@ class UsersController extends AppController
 				}
 				
     		$this->Flash->set('Dane użytkownika zostały zapisane pomyślnie.');
-    		return $this->redirect(['controller'=>'users','action' => 'index', $entity->type]);
+    		return $this->redirect(['controller'=>'users','action' => 'manage', $entity->id]);
     	}
     	
 		$queryCats = $this->Users->getCats();
@@ -247,22 +274,31 @@ class UsersController extends AppController
 		
 		$queryUsersCats = $this->Users->getUserCategories($id);
 		$this->set('usersCats',  $queryUsersCats);
+		
+		$queryUsersCities = $this->Users->getUserCities($id);
+		$this->set('usersCities',  $queryUsersCities);
+		
 		$this -> render('/Admin/Users/manage');
     }
-    public function manageCities($id=0)
+    public function manageCities($id=0, $is_main=0)
     {
 		$this->set('title', 'Moje konto');
 		$this->set('subtitle', 'Zarządzanie miejscowościami');
 		
 		$this->set('userID',  $id);
 		if(!empty($this->request->data)){
-			$this->Users->addUserCity($_POST['userID'], $_POST['city']);
+			$coords = $this->Users->findLatLng($_POST['city']);
+			
+			$this->Users->addUserCity($_POST['userID'], $_POST['city'], $coords);
 			$this->Flash->set('Miejscowość została zapisana pomyślnie.');
 			return $this->redirect(['controller'=>'users','action' => 'manageCities', $_POST['userID']]);
 		}
 		$queryUsersCities = $this->Users->getUserCities($id);
 		$this->set('usersCities',  $queryUsersCities);
 		
+		$user = $this->Users->get($id);
+			$this->set('user', $user);
+		$this->set('is_main', $is_main);
 		$this -> render('/Admin/Users/manage_cities');
 	}
 	public function removeCity($id=0, $userID)
@@ -270,6 +306,40 @@ class UsersController extends AppController
 		$this->Users->remUserCity($id, $userID);
 		
 		return $this->redirect(['controller'=>'users','action' => 'manageCities', $userID]);
+	}
+	
+	public function galleries($id=0)
+    {
+		$this->set('title', 'Moje konto');
+		$this->set('subtitle', 'Zarządzanie galerią');
+		
+		$this->set('userID',  $id);
+		if(!empty($this->request->data)){
+			$userID = $id;
+			$tmpname = rand(000000,99999999999).'.jpg';
+			move_uploaded_file($_FILES['photo']['tmp_name'], Configure::read('staticurl')."profiles/tmp/".$tmpname);
+			$this->Image->prepare(Configure::read('staticurl')."profiles/tmp/".$tmpname);
+			$this->Image->resize(320,200);//width,height,Red,Green,Blue
+			$this->Image->save(Configure::read('staticurl')."profiles/".$userID."/".$tmpname);//.$Largeimage[0].'_L.'.$Largeimage[1]
+			
+			$this->Users->addUserPhoto($_POST['userID'], $tmpname);
+			$this->Flash->set('Miejscowość została zapisana pomyślnie.');
+			return $this->redirect(['controller'=>'users','action' => 'galleries', $_POST['userID']]);
+		}
+		$queryUsersPhotos = $this->Users->getUserPhotos($id);
+		$this->set('usersPhotos',  $queryUsersPhotos);
+		
+		$user = $this->Users->get($id);
+		$this->set('user', $user);
+		
+		$this -> render('/Admin/Users/galleries');
+	}
+	public function removePhoto($id=0, $userID)
+    {
+		//TO DO!!! remove file
+		$this->Users->remUserPhoto($id, $userID);
+		
+		return $this->redirect(['controller'=>'users','action' => 'galleries', $userID]);
 	}
 	
 	// main image
@@ -288,6 +358,9 @@ class UsersController extends AppController
 			unlink(Configure::read('staticurl')."profiles/tmp/".$tmpname);
 			
 		}
+		$user = $this->Users->get($userID);
+			$this->set('user', $user);
+			
 		$this->set('userID', $userID);
 		$user = $this->Users->get($userID);
 		$this->set('mainimage', $user['mainImage']);
@@ -295,6 +368,35 @@ class UsersController extends AppController
 		$this -> render('/Admin/Users/mainimage');
 	}
     
+	//descriptions
+	public function description($userID){
+		
+		if(!$this->checkIfLoggedIn()){
+			return $this->redirect(['controller'=>'users','action' => 'login']);
+		}
+		
+		$id = $this->session->read('User.id');
+		
+			$user = $this->Users->get($id);
+			$this->set('user', $user);
+    		$this->set('title', 'Moje konto');
+			$this->set('subtitle', 'Zarządzanie treściami "O mnie" i "Zakres usług"');
+    	
+    	
+    	if(!empty($this->request->data)){
+    		//$this->request->data['uri'] = strtolower($this->myurl($this->request->data['name']));
+			$users = TableRegistry::get('Users');
+			$entity = $users->newEntity($this->request->data());
+    		$users->save($entity);
+			
+				
+    		$this->Flash->set('Dane użytkownika zostały zapisane pomyślnie.');
+    		return $this->redirect(['controller'=>'users','action' => 'description', $entity->id]);
+    	}
+    	
+		
+		$this -> render('/Admin/Users/description');
+	}
     
     
 }
