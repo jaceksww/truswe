@@ -14,67 +14,9 @@
 		<!--IMAGES -->
 		<div style="padding-top:0px;background:none;" class="portfolio-block content content-center" id="portfolio">
 		
-			<div class="row">
-			  <div class="item col-md-4 col-sm-6 col-xs-12">
-				<img src="../../assets/frontend/onepage/img/portfolio/2.jpg" alt="NAME" class="img-responsive">
-				<a href="../../assets/frontend/onepage/img/portfolio/2.jpg" class="zoom valign-center">
-				  <div class="valign-center-elem" style="position: absolute; top: 50%; margin-top: -40px; width: 100%; height: 80px;">
-				    <strong>Zdjęcie z galerii</strong>
-				    
-				    <b>Zobacz</b>
-				  </div>
-				</a>
-			  </div>
-			  <div class="item col-md-4 col-sm-6 col-xs-12">
-				<img src="../../assets/frontend/onepage/img/portfolio/6.jpg" alt="NAME" class="img-responsive">
-				<a href="../../assets/frontend/onepage/img/portfolio/6.jpg" class="zoom valign-center">
-				  <div class="valign-center-elem" style="position: absolute; top: 50%; margin-top: -40px; width: 100%; height: 80px;">
-				    <strong>Zdjęcie z galerii</strong>
-				    
-				    <b>Zobacz</b>
-				  </div>
-				</a>
-			  </div>
-			  <div class="item col-md-4 col-sm-3 col-xs-12">
-				<img src="../../assets/frontend/onepage/img/portfolio/8.jpg" alt="NAME" class="img-responsive">
-				<a href="../../assets/frontend/onepage/img/portfolio/8.jpg" class="zoom valign-center">
-				  <div class="valign-center-elem" style="position: absolute; top: 50%; margin-top: -40px; width: 100%; height: 80px;">
-				    <strong>Zdjęcie z galerii</strong>
-				    
-				    <b>Zobacz</b>
-				  </div>
-				</a>
-			  </div>
-			  <div class="item col-md-4 col-sm-3 col-xs-12">
-				<img src="../../assets/frontend/onepage/img/portfolio/3.jpg" alt="NAME" class="img-responsive">
-				<a href="../../assets/frontend/onepage/img/portfolio/3.jpg" class="zoom valign-center">
-				  <div class="valign-center-elem" style="position: absolute; top: 50%; margin-top: -40px; width: 100%; height: 80px;">
-				    <strong>Zdjęcie z galerii</strong>
-				    
-				    <b>Zobacz</b>
-				  </div>
-				</a>
-			  </div>
-			  <div class="item col-md-4 col-sm-3 col-xs-12">
-				<img src="../../assets/frontend/onepage/img/portfolio/5.jpg" alt="NAME" class="img-responsive">
-				<a href="../../assets/frontend/onepage/img/portfolio/5.jpg" class="zoom valign-center">
-				  <div class="valign-center-elem" style="position: absolute; top: 50%; margin-top: -40px; width: 100%; height: 80px;">
-				    <strong>Zdjęcie z galerii</strong>
-				    
-				    <b>Zobacz</b>
-				  </div>
-				</a>
-			  </div>
-			  <div class="item col-md-4 col-sm-3 col-xs-12">
-				<img src="../../assets/frontend/onepage/img/portfolio/4.jpg" alt="NAME" class="img-responsive">
-				<a href="../../assets/frontend/onepage/img/portfolio/4.jpg" class="zoom valign-center">
-				  <div class="valign-center-elem" style="position: absolute; top: 50%; margin-top: -40px; width: 100%; height: 80px;">
-				    <strong>Zdjęcie z galerii</strong>
-				    
-				    <b>Zobacz</b>
-				  </div>
-				</a>
-			  </div>
+			<div class="row" >
+			<?php echo $this->requestAction(['controller'=>'users', 'action'=>'profile_gallery', 'pass'=>array('params'=>$userParams)]);?>
+			  
 			  
 			</div>
 			<!--end IMAGES -->
@@ -176,27 +118,8 @@
               <div class="row">
                 
                 <div class="col-md-12 col-sm-12">
-                 
-				Tutaj klient wpisuje jakąś dodatkową informację jeśli chce. Lorem ipsum dolor sit amet, Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat consectetuer adipiscing elit, 
-				sed diam nonummy nibh euismod tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-				<div class="separator-orange"><br /><br /></div>
-					<?php
-					$contact_params = array(
-																array('type'=>'Nazwa firmy', 'val'=>'Transpol', 'icon'=>'fa-angle-double-right'),
-																array('type'=>'Miejscowość', 'val'=>'Warszawa', 'icon'=>'fa-map-marker'),
-																array('type'=>'Nr telefonu', 'val'=>'676 655 433', 'icon'=>'fa-mobile'),
-																array('type'=>'Adres e-mail', 'val'=>'transpol@jakasf.pl', 'icon'=>'fa-envelope-o'),
-																array('type'=>'Nr GG', 'val'=>'5444433', 'icon'=>'fa-sun-o'),
-																array('type'=>'Skype', 'val'=>'transpol.firma', 'icon'=>'fa-skype')
-																);
-					?>
-					<?php foreach($contact_params as $param):?>
-					<div class="row">
-					<div class="col-md-6 text-right"><h4><?php echo $param['type']?>  : </h4></div> 
-					<div class="col-md-6 text-left lead lead"><h4> <span   class="contact-marker fa <?php echo $param['icon']?>">&nbsp;</span> <?php echo $param['val']?></h4></div>
-					</div>
-					<?php endforeach; ?>
-				</div>
+                 <?php echo $this->requestAction(['controller'=>'users', 'action'=>'profile_contact', 'pass'=>array('params'=>$userParams)]);?>
+				
 			</div>
 			 <div class="row">
                 

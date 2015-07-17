@@ -136,7 +136,7 @@
 												<div class="col-lg-9">
 													<h4 class="block">'. $user['login'].'</h4>
 													<p>
-														 <span class="testimonials-name">Miejscowość: </span>'. $user['city'].'<br />
+														 <span class="testimonials-name">Miejscowość: </span>'. $user['city'].'TO DO<br />
 														 <span class="orange">Transport: </span>';
 														 $cities_str = '';
 														 foreach($user['cities'] as $city){

@@ -4,15 +4,20 @@
               <div class="clearfix"></div>
 			  <br />
               <ul class="list-unstyled">
-                <li> <h4> <i class="fa fa-circle"></i> Miejscowość: 
-                <?php foreach($usersCities as $city):?>
-						  	<?php if($city['is_main'] == 1) echo $city['city']; ?>
-							  
+                <li> 
+					
+						<h4> <i class="fa fa-circle"></i> Siedziba firmy: </h4>
+						<ul>
+						<?php foreach($usersCities as $city):?>
+							<?php if($city['is_main'] == 1) echo '<li>'.$city['city'].'</li>'; ?>
 						<?php endforeach;?>
-                </h4></li>
-                <li> <h4> <i class="fa fa-circle"></i> Zakres usług:</h4>
-				<br />
-					<?php echo (!empty($usersParams[0]['services'])) ? $usersParams[0]['services'] : '-' ?>
+						</ul>
+					
+				</li>
+				<li> <h4> <i class="fa fa-circle"></i> Zakres usług:</h4>
+					
+						<?php echo (!empty($usersParams[0]['services'])) ? $usersParams[0]['services'] : '-' ?>
+				
 				</li>
                
               </ul>

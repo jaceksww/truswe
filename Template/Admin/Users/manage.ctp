@@ -26,11 +26,11 @@
 					}
 					//echo $this->Form->hidden('uri');
 					?>
+					<legend>Podstawowe dane</legend>
 					<div class="form-group">
 							<label class="control-label col-md-3">Adres strony profilowej:</label>
 							<div class="controls  col-md-9">
-								<li><a class="openRegisterModal" href="/<?php echo $this->Session->read('User.login')?>" data-toggle="modal"><?php echo 'www.'.$_SERVER['SERVER_NAME'].'/'.$this->Session->read('User.login')?></a></li>
-					
+								<i class="fa fa-link"></i> <a class="openRegisterModal" href="/<?php echo $this->Session->read('User.login')?>" data-toggle="modal"><?php echo 'www.'.$_SERVER['SERVER_NAME'].'/'.$this->Session->read('User.login')?></a>
 							</div>
 						</div>
 						
@@ -67,19 +67,6 @@
 							</div>
 						</div>
 						
-						<div class="form-group">
-							<label class="control-label col-md-3">Imię:</label>
-							<div class="controls col-md-9">
-								<?php echo $this->Form->input('firstname',['class'=>'form-control', 'label'=>false]);?>
-							</div>
-						</div>
-						
-						<div class="form-group">
-							<label class="control-label col-md-3">Nazwisko:</label>
-							<div class="controls col-md-9">
-								<?php echo $this->Form->input('lastname',['class'=>'form-control', 'label'=>false]);?>
-							</div>
-						</div>
 						<!--
 						<div class="form-group">
 							<label class="control-label col-md-3">Sziedziba firmy:</label>
@@ -158,7 +145,58 @@
 					  
                     </fieldset>
 					
+					<legend>Dane kontaktowe</legend>
+					<div class="form-group">
+							<label class="control-label col-md-3">Dowolny tekst w sekcji "Kontakt":</label>
+							<div class="controls col-md-9">
+								<?php echo $this->Form->textarea('other_long',['class'=>'form-control', 'label'=>false]);?>
+							</div>
+					</div>
+					<div class="form-group">
+							<label class="control-label col-md-3">Nazwa firmy:</label>
+							<div class="controls col-md-9">
+								<?php echo $this->Form->input('company',['class'=>'form-control', 'label'=>false]);?>
+							</div>
+					</div>
+					<div class="form-group">
+							<label class="control-label col-md-3">Imię:</label>
+							<div class="controls col-md-9">
+								<?php echo $this->Form->input('firstname',['class'=>'form-control', 'label'=>false]);?>
+							</div>
+					</div>
+						
+					<div class="form-group">
+							<label class="control-label col-md-3">Nazwisko:</label>
+							<div class="controls col-md-9">
+								<?php echo $this->Form->input('lastname',['class'=>'form-control', 'label'=>false]);?>
+							</div>
+					</div>
+					<div class="form-group">
+							<label class="control-label col-md-3">Nr telefonu:</label>
+							<div class="controls col-md-9">
+								<?php echo $this->Form->input('phone',['class'=>'form-control', 'label'=>false]);?>
+							</div>
+					</div>
+					<div class="form-group">
+							<label class="control-label col-md-3">Nr GG:</label>
+							<div class="controls col-md-9">
+								<?php echo $this->Form->input('gg',['class'=>'form-control', 'label'=>false]);?>
+							</div>
+					</div>
+					<div class="form-group">
+							<label class="control-label col-md-3">Skype:</label>
+							<div class="controls col-md-9">
+								<?php echo $this->Form->input('skype',['class'=>'form-control', 'label'=>false]);?>
+							</div>
+					</div>
+					<div class="form-group">
+							<label class="control-label col-md-3">Inne:</label>
+							<div class="controls col-md-9">
+								<?php echo $this->Form->input('other',['class'=>'form-control', 'label'=>false]);?>
+							</div>
+					</div>
 					
+						
 						<!--
 						<div class="form-group">
 							<label class="control-label col-md-3">Opis:</label>

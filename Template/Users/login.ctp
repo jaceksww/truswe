@@ -31,6 +31,7 @@
                         <a href="page-forgotton-password.html">Zapomniałeś hasło?</a>
                       </div>
                    </div>
+				   <!--
                   <div class="row">
                   
                     <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-10 padding-right-30">
@@ -38,15 +39,16 @@
                         <div class="login-socio">
                             <p class="text-muted">Lub zaloguj się używając:
                             <a href="javascript:;" data-original-title="facebook" style="font-size:25px;position:relative;left:5px; top:3px;color:#3a5795" class="fa fa-facebook-square" title="facebook"></a>
-                            <!--
+                            
                             <a href="javascript:;" data-original-title="Twitter" class="twitter" title="Twitter"></a>
                             <a href="javascript:;" data-original-title="Google Plus" class="googleplus" title="Google Plus"></a>
                             ><a href="javascript:;" data-original-title="Linkedin" class="linkedin" title="LinkedIn"></a>
-                            -->
+                            
                            	</p>
                         </div>
                       </div>
                   </div>  
+				  -->
                     <div class="row">
                       <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-20">                        
                         <button type="submit" class="btn btn-primary">Zaloguj się</button>

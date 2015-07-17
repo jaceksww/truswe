@@ -156,6 +156,8 @@ class UsersController extends AppController
 		$queryUsersCities = $this->Users->getUserCities($queryUser[0]['id']);
 		$this->set('usersCities',  $queryUsersCities);
 		
+		
+		
 		if($queryUser[0]['type'] == '1'){
 			$this->layout = 'profile';
 		}else{
@@ -175,6 +177,22 @@ class UsersController extends AppController
 		
 		$this->set('usersParams',  $params);
 		
+	}
+	public function profile_gallery(){
+		$params = $this->request->params['pass']['params'];
+		
+		$this->set('usersParams',  $params);
+		
+		$queryUsersPhotos = $this->Users->getUserPhotos($params[0]['id']);
+		$this->set('usersPhotos',  $queryUsersPhotos);
+		
+	}
+	public function profile_contact(){
+		$params = $this->request->params['pass']['params'];
+		$this->set('usersParams',  $params);
+		
+		$queryUsersCities = $this->Users->getUserCities($params[0]['id']);
+		$this->set('usersCities',  $queryUsersCities);
 	}
 
     /**
@@ -250,9 +268,9 @@ class UsersController extends AppController
     	if(!empty($this->request->data)){
     		//$this->request->data['uri'] = strtolower($this->myurl($this->request->data['name']));
 			$users = TableRegistry::get('Users');
-			$coords = $this->Users->findLatLng($this->request->data('city'));
-			$this->request->data['city_lat'] = $coords['lat'];
-			$this->request->data['city_lng'] = $coords['lng'];
+			//$coords = $this->Users->findLatLng($this->request->data('city'));
+			//$this->request->data['city_lat'] = $coords['lat'];
+			//$this->request->data['city_lng'] = $coords['lng'];
 			$entity = $users->newEntity($this->request->data());
     		
     		$users->save($entity);
@@ -319,7 +337,7 @@ class UsersController extends AppController
 			$tmpname = rand(000000,99999999999).'.jpg';
 			move_uploaded_file($_FILES['photo']['tmp_name'], Configure::read('staticurl')."profiles/tmp/".$tmpname);
 			$this->Image->prepare(Configure::read('staticurl')."profiles/tmp/".$tmpname);
-			$this->Image->resize(320,200);//width,height,Red,Green,Blue
+			$this->Image->resize(900,750);//width,height,Red,Green,Blue
 			$this->Image->save(Configure::read('staticurl')."profiles/".$userID."/".$tmpname);//.$Largeimage[0].'_L.'.$Largeimage[1]
 			
 			$this->Users->addUserPhoto($_POST['userID'], $tmpname);
