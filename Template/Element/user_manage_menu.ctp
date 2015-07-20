@@ -1,8 +1,14 @@
 ﻿<div class="tabbable tabbable-tabdrop">
 											<ul class="nav nav-tabs">
-												<li <?php echo ($active == 1) ? 'class="active"' : '' ?> >
-													<a href="/users/manage" >Moje konto</a>
-												</li>
+													
+													<?php
+													echo '<li ';
+													echo ($active == 1) ? 'class="active"' : '';
+													echo '>';
+													echo $this->Html->link('<i class="fa fa-user"></i> Moje dane', ['controller'=>'users', 'action'=>'manage', $user['id']] , array('escape'=>false,'class'=>'')); 
+													echo '</li>';
+													?>
+													
 												<li <?php echo ($active == 2) ? 'class="active"' : '' ?> >
 													<?php echo $this->Html->link('<i class="fa fa-camera"></i> Zdjęcie główne ', ['controller'=>'users', 'action'=>'mainimage', $user['id']] , array('escape'=>false,'class'=>''));?> 
 												</li>

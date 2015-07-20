@@ -52,7 +52,7 @@
                     <div class="row">
                       <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-20">                        
                         <button type="submit" class="btn btn-primary">Zaloguj się</button>
-                        <button type="button" class="btn btn-default">Anuluj</button>
+                        <a href="/" type="button" class="btn btn-default">Anuluj</a>
                       </div>
                     </div>
                     

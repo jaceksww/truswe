@@ -279,8 +279,7 @@ jQuery(document).ready(function() {
 			
         }
     }
-
-            handleWysihtml5();
+	handleWysihtml5();
 			
 	$('#adminUsersFilterType').change(function(){
 		window.location.href='/admin/users/setfilter/type/'+$(this).val();

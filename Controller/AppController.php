@@ -44,10 +44,16 @@ class AppController extends Controller
         $this->set('staticurl',Configure::read('staticurl'));
 		$this->set('pageurl',Configure::read('pageurl'));
 		$this->session = $this->request->session();
+		
     }
     
+	function saveLocation(){
+		$this->session->write('App.lastLocation', $_SERVER['REQUEST_URI']);
+	}
+	
 	function checkIfLoggedIn(){
 		if(!$this->session->check('User')){
+			
 			$this->Flash->error('Zaloguj się aby uzyskać dostęp do wybranej strony.');
 			return false;
 		}else{

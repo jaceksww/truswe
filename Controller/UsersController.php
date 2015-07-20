@@ -61,7 +61,13 @@ class UsersController extends AppController
 				$this->Flash->success('Witaj '.$checkUser[0]['login'].'! Logowanie zakończyło się powodzeniem.');
 				unset($checkUser[0]['password']);
 				$this->session->write('User', $checkUser[0]);
-				return $this->redirect('/');
+				if($this->session->read('App.lastLocation') != '/'){
+					$redirection = $this->session->read('App.lastLocation');
+					$this->session->write('App.lastLocation', '/');
+					return $this->redirect($redirection);
+				}else{
+					return $this->redirect('/');
+				}
 			}else{
 				$this->Flash->error('Nieudana próba logowania. Spróbuj ponownie.');
 				return $this->redirect('/users/login');
@@ -204,6 +210,8 @@ class UsersController extends AppController
      */
     public function search($catID=1, $page=0)
     {
+		$this->saveLocation();
+		
 		if($page > 0 && !$this->session->check('User')){
 			$this->Flash->error('Nie możesz przeglądać ofert. Zaloguj się lub utwórz konto.');
 			return $this->redirect(['controller'=>'users','action' => 'login']);
@@ -253,6 +261,7 @@ class UsersController extends AppController
 	/*account*/
 	public function manage()
     {
+		$this->saveLocation();
     	if(!$this->checkIfLoggedIn()){
 			return $this->redirect(['controller'=>'users','action' => 'login']);
 		}

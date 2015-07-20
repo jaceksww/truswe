@@ -73,6 +73,7 @@ License: You must have a valid license purchased only from themeforest (the abov
 		    });
 	};
 	</script>
+	
 </head>
 <!-- Head END -->
 
@@ -170,7 +171,7 @@ License: You must have a valid license purchased only from themeforest (the abov
   <div class="modal-dialog">
   <div class="modal-content">
       <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
 			Zaloguj się
       </div>
       <div class="modal-body">
@@ -187,7 +188,7 @@ License: You must have a valid license purchased only from themeforest (the abov
   <div class="modal-dialog">
   <div class="modal-content">
       <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
 			Utwórz profil
       </div>
       <div class="modal-body">
@@ -252,6 +253,28 @@ License: You must have a valid license purchased only from themeforest (the abov
     </script>
 <?php endif; ?>
 
+<?php if ( strstr($_SERVER['REQUEST_URI'], 'description')): ?>
+	<!--wysing -->
+	<script src="/assets/global/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js" type="text/javascript"></script>
+	<script src="/assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js" type="text/javascript"></script>
+	<script>
+	jQuery(document).ready(function() {       
+		var handleWysihtml5 = function () {
+			if (!jQuery().wysihtml5) {
+				return;
+			}
+
+			if ($('.wysihtml5').size() > 0) {
+				$('.wysihtml5').wysihtml5({
+					"stylesheets": ["../../assets/global/plugins/bootstrap-wysihtml5/wysiwyg-color.css"]
+				});
+				
+			}
+		}
+		handleWysihtml5();
+	});
+	</script>
+<?php endif;?>
 
 
 
@@ -261,7 +284,8 @@ License: You must have a valid license purchased only from themeforest (the abov
 		<script src="/assets/global/plugins/gmaps/gmaps.js" type="text/javascript"></script>
 <?php endif; ?>    
 
-		
+
+
 <?php if (strstr($_SERVER['REQUEST_URI'], 'search')): ?>
 		<?php if(!$this->Session->check('User')):?>
 		<script type="text/javascript">

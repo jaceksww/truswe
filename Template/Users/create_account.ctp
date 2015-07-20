@@ -247,7 +247,7 @@
                     <div class="row">
                       <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-20">                        
                         <button type="submit" id="submitCreateAccountClient" class="btn btn-primary">Utwórz konto</button>
-                        <button type="button" class="btn btn-default">Anuluj</button>
+                        <a href="/" type="button" class="btn btn-default">Anuluj</a>
                       </div>
                     </div>
                     

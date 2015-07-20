@@ -1,7 +1,7 @@
 <link href="../../assets/global/plugins/jquery-file-upload/css/jquery.fileupload.css" rel="stylesheet">
 
 <h1><?php echo $title ?></h1>
-<?php echo $this->Html->link('<i class="fa fa-arrow-circle-left"></i> Wróć do użytkownika', ['controller'=>'users', 'action'=>'manage', $userID ], array('escape'=>false,'class'=>'btn default btn-xs blue')); ?>
+<?php if(strstr($_SERVER['REQUEST_URI'], 'admin'))  echo $this->Html->link('<i class="fa fa-arrow-circle-left"></i> Wróć do listy </a>', ['controller'=>'users', 'action'=>'index', $user['type'] ], array('escape'=>false,'class'=>'btn default btn-xs blue')); ?>
 <br />
 <hr />
 <br />
